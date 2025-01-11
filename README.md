@@ -36,9 +36,15 @@ git clone git@github.com:stongri9/ddd_training_camp.git
 # リポジトリのディレクトリに移動
 cd /path/to/ddd_training_camp
 
+# envファイルをコピー
+cp -p .env.example .env
+
 # 依存パッケージのインストール
 composer install 
 npm install
+
+# app_keyを生成
+./vendor/bin/sail artisan key:generate
 
 # コンテナを起動
 ./vendor/bin/sail up -d
