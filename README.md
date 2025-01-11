@@ -9,6 +9,8 @@ DDDを駆使して勤怠管理システムを作成する
 
 ## 技術スタック
 - Laravel 11.x
+    - Laravel Sail
+    - Laravel Breeze
 - PHP 8.4
 - MySQL 8.0
 - Docker
