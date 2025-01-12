@@ -23,12 +23,4 @@ class ZipCode {
     {
         return new self($zipCode);
     }
-
-    /**
-     * @return string
-     */
-    public function getVal(): string 
-    {
-        return $this->value;
-    }
 }
