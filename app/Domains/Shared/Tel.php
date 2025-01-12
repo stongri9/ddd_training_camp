@@ -8,7 +8,7 @@ class Tel {
      * @throws \InvalidArgumentException
      */
     private function __construct(
-        private readonly string $value,
+        public readonly string $value,
     ) {
         
         if (!preg_match('/^0\d{9,10}$/', $this->value)) {

@@ -8,7 +8,7 @@ class ZipCode {
      * @throws \InvalidArgumentException
      */
     private function __construct(
-        private readonly string $value
+        public readonly string $value
     ) {
         if (preg_match('/[0-9]{7}/', $this->value)) {
             throw new \InvalidArgumentException('郵便番号の値が不正です。');
@@ -22,5 +22,13 @@ class ZipCode {
     public static function create(string $zipCode): self
     {
         return new self($zipCode);
+    }
+
+    /**
+     * @return string
+     */
+    public function getVal(): string 
+    {
+        return $this->value;
     }
 }

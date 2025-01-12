@@ -2,10 +2,11 @@
 
 namespace App\Domains\Inquiry;
 
+use App\Domains\DomainEntity;
 use App\Domains\Shared\Tel;
 use App\Domains\Shared\ZipCode;
 
-class Inquiry {
+class Inquiry extends DomainEntity {
     /**
      * @param int|null $id
      * @param string $last_name
@@ -77,5 +78,19 @@ class Inquiry {
         $this->zip_code = ZipCode::create($zip_code);
         $this->address = $address;
         $this->content = $content;
+    }
+
+    /**
+     * @return array
+     */
+    public function convertParams():array {
+        return [
+            'last_name' => $this->last_name,
+            'first_name' => $this->first_name,
+            'tel' => $this->tel->value,
+            'zip_code' => $this->zip_code->value,
+            'address' => $this->address,
+            'content' => $this->content,
+        ];
     }
 }
