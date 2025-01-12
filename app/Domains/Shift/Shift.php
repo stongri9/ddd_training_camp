@@ -38,7 +38,7 @@ class Shift extends DomainEntity {
         if (count($nightShiftUserIds) < 2) {
             throw new \InvalidArgumentException('夜勤の人は2人以上必要です。');
         }
-        $dateValueObject = new Date($date);
+        $dateValueObject = Date::create($date);
 
         $shiftEntity = new Shift(null, $dateValueObject, $dayShiftUserIds, $lateShiftUserIds, $nightShiftUserIds);
         
