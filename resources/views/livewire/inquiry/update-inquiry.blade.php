@@ -1,10 +1,12 @@
 <section class="space-y-6">
     <x-primary-button
         x-data=""
-        x-on:click.prevent="$dispatch('open-modal', 'create-inquiry')"
-    >{{ __('Create Inquiry') }}</x-primary-button>
-    <x-modal name="create-inquiry" :show="$errors->isNotEmpty()" focusable>
+        x-on:click.prevent="$dispatch('open-modal', 'update-inquiry{{$form->id}}')"
+    >{{ __('Update Inquiry') }}</x-primary-button>
+    
+    <x-modal name="update-inquiry{{$form->id}}" :show="$errors->isNotEmpty()" focusable>
         <form wire:submit="execute">
+            <input type="hidden" id="id" wire:model="form.id">
             <div>
                 @error('form.last_name') <span class="error">{{ $message }}</span> @enderror
             </div>
@@ -42,3 +44,5 @@
         </form>
     </x-modal>
 </section>
+
+

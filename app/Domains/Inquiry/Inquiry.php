@@ -2,6 +2,7 @@
 
 namespace App\Domains\Inquiry;
 
+use App\Attributes\Getter;
 use App\Domains\DomainEntity;
 use App\Domains\Shared\Tel;
 use App\Domains\Shared\ZipCode;
@@ -17,13 +18,13 @@ class Inquiry extends DomainEntity {
      * @param string $content
      */
     private function __construct(
-        private int|null $id = null,
-        private string $last_name,
-        private string $first_name,
-        private Tel $tel,
-        private ZipCode $zip_code,
-        private string $address,
-        private string $content,
+        #[Getter] protected int|null $id = null,
+        #[Getter] private string $last_name,
+        #[Getter] private string $first_name,
+        #[Getter] private Tel $tel,
+        #[Getter] private ZipCode $zip_code,
+        #[Getter] private string $address,
+        #[Getter] private string $content,
     ) {
     }
 
@@ -46,6 +47,36 @@ class Inquiry extends DomainEntity {
     ): self {
         return new self(
             null,
+            $last_name,
+            $first_name,
+            Tel::create($tel),
+            ZipCode::create($zip_code),
+            $address,
+            $content,
+        );
+    }
+
+    /**
+     * @param int $id
+     * @param string $last_name
+     * @param string $first_name
+     * @param string $tel
+     * @param string $zip_code
+     * @param string $address
+     * @param string $content
+     * @return \App\Domains\Inquiry\Inquiry
+     */
+    public static function recontract(
+        int $id,
+        string $last_name,
+        string $first_name,
+        string $tel,
+        string $zip_code,
+        string $address,
+        string $content,
+    ): self {
+        return new self(
+            $id,
             $last_name,
             $first_name,
             Tel::create($tel),
@@ -86,6 +117,7 @@ class Inquiry extends DomainEntity {
      */
     public function convertParams():array {
         return [
+            'id' => $this->id,
             'last_name' => $this->last_name,
             'first_name' => $this->first_name,
             'tel' => $this->tel->value,
