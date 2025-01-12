@@ -18,7 +18,7 @@ class Inquiry extends DomainEntity {
      * @param string $content
      */
     private function __construct(
-        #[Getter] private int|null $id = null,
+        #[Getter] protected int|null $id = null,
         #[Getter] private string $last_name,
         #[Getter] private string $first_name,
         #[Getter] private Tel $tel,
@@ -117,6 +117,7 @@ class Inquiry extends DomainEntity {
      */
     public function convertParams():array {
         return [
+            'id' => $this->id,
             'last_name' => $this->last_name,
             'first_name' => $this->first_name,
             'tel' => $this->tel->value,
