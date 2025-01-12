@@ -3,7 +3,6 @@
 namespace App\Domains\Shared;
 
 use Carbon\Carbon;
-use Carbon\Exceptions\InvalidFormatException;
 
 class Date {
     /**
@@ -15,7 +14,7 @@ class Date {
     ) {
         try {
             $value = Carbon::parse($value)->format('y-m-d');
-        } catch (InvalidFormatException $e) {
+        } catch (\Exception $e) {
             throw new \InvalidArgumentException(
                 '日付の形式が不正です。'
             );
