@@ -7,10 +7,10 @@ use App\Domains\Shared\Date;
 class DayOffRequest
 {
     /**
-     * @param string $date
+     * @param Date $date
      */
     private function __construct(
-        public readonly string $date,
+        public readonly Date $date,
     ) {
     }
 
@@ -21,8 +21,7 @@ class DayOffRequest
     public static function create(
         string $date
     ): self {
-        $this->validate($date);
-        return new self($date);
+        return new self(new Date($date));
     }
 
     /**
@@ -32,19 +31,6 @@ class DayOffRequest
     public static function reconstruct(
         string $date
     ): self {
-        return new self($date);
-    }
-
-    /**
-     * @return void
-     * @throws \InvalidArgumentException
-     */
-    public function validate(string $date): void
-    {
-        if (!is_a($date, Date::class)) {
-            throw new \InvalidArgumentException(
-                    '日付の形式が不正です。'
-            );
-        }
+        return new self(new Date($date));
     }
 }
