@@ -2,11 +2,12 @@
 
 namespace App\Domains\User;
 
+use App\Attributes\Getter;
 use App\Domains\DomainEntity;
+use App\Domains\User\DayOffRequest;
 
 class User extends DomainEntity
 {
-
     /**
      * @param int|null $id
      * @param DayOffRequest[] $dayOffRequests
@@ -15,7 +16,7 @@ class User extends DomainEntity
         #[Getter]
         private int|null $id,
         #[Getter]
-        private array $dayOffRequests = []
+        private array $dayOffRequests
     ) {
         $this->dayOffRequests = $this->createDayOffRequests($dayOffRequests);
     }
@@ -53,13 +54,14 @@ class User extends DomainEntity
     }
 
     /**
+     * @param int $id
      * @param string[] $dayOffRequests
      */
     public static function reconstruct(
         int $id,
         array $dayOffRequests
     ): self {
-        $dayOffRequestsObjects = $this->createDayOffRequests($dayOffRequests);
+        $dayOffRequestsObjects = self::createDayOffRequests($dayOffRequests);
         return new self($id, $dayOffRequestsObjects);
     }
 
@@ -67,7 +69,7 @@ class User extends DomainEntity
      * @param string[] $dayOffRequest
      * @return DayOffRequest[]
      */
-    private function createDayOffRequests(array $dayOffRequest): array
+    private static function createDayOffRequests(array $dayOffRequests): array
     {
         return array_map(
             fn($dayOffRequest) => DayOffRequest::create($dayOffRequest),

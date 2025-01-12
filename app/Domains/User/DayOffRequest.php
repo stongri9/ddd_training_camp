@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Dommains\DayOffRequest;
+namespace App\Domains\User;
 
 use App\Domains\Shared\Date;
 
@@ -21,7 +21,7 @@ class DayOffRequest
     public static function create(
         string $date
     ): self {
-        return new self(new Date($date));
+        return new self(Date::create($date));
     }
 
     /**
@@ -31,6 +31,6 @@ class DayOffRequest
     public static function reconstruct(
         string $date
     ): self {
-        return new self(new Date($date));
+        return new self(Date::create($date));
     }
 }
