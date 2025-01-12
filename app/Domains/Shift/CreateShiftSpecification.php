@@ -2,6 +2,7 @@
 namespace App\Domains\Shift;
 
 use App\Domains\BaseSpecification;
+use App\Domains\User\IUserRepository;
 use DateTimeImmutable;
 
 class CreateShiftSpecification extends BaseSpecification {
