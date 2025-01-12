@@ -64,13 +64,13 @@ class User extends DomainEntity
     }
 
     /**
-     * @param array $dayOffRequest
+     * @param string[] $dayOffRequest
      * @return DayOffRequest[]
      */
     private function createDayOffRequests(array $dayOffRequest): array
     {
         return array_map(
-            fn($dayOffRequest) => new DayOffRequest($dayOffRequest),
+            fn($dayOffRequest) => DayOffRequest::create($dayOffRequest),
             $dayOffRequests
         );
     }
