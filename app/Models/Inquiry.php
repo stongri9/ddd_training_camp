@@ -14,4 +14,9 @@ class Inquiry extends Model
      * @var string
      */
     protected $table = 'inquiries';
+
+    /**
+     * @var array
+     */
+    protected $guarded = ['id'];
 }

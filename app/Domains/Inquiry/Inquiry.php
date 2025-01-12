@@ -45,12 +45,13 @@ class Inquiry extends DomainEntity {
         string $content,
     ): self {
         return new self(
-            last_name: $last_name,
-            first_name:$first_name,
-            tel: Tel::create($tel),
-            zip_code:ZipCode::create($zip_code),
-            address: $address,
-            content: $content,
+            null,
+            $last_name,
+            $first_name,
+            Tel::create($tel),
+            ZipCode::create($zip_code),
+            $address,
+            $content,
         );
     }
 
