@@ -17,6 +17,7 @@ class User extends DomainEntity
         #[Getter]
         private array $dayOffRequests = []
     ) {
+        $this->dayOffRequests = $this->createDayOffRequests($dayOffRequests);
     }
 
     /**
@@ -37,10 +38,7 @@ class User extends DomainEntity
     public function update(
         array $newDayOffRequests
     ): void {
-        $this->dayOffRequests = array_map(
-            fn($newDayOffRequest) => new DayOffRequest($newDayOffRequest),
-            $newDayOffRequests
-        );
+        $this->dayOffRequests = $this->createDayOffRequests($newDayOffRequests);
     }
 
     /**
@@ -61,10 +59,19 @@ class User extends DomainEntity
         int $id,
         array $dayOffRequests
     ): self {
-        $dayOffRequestsObjects = array_map(
+        $dayOffRequestsObjects = $this->createDayOffRequests($dayOffRequests);
+        return new self($id, $dayOffRequestsObjects);
+    }
+
+    /**
+     * @param array $dayOffRequest
+     * @return DayOffRequest[]
+     */
+    private function createDayOffRequests(array $dayOffRequest): array
+    {
+        return array_map(
             fn($dayOffRequest) => new DayOffRequest($dayOffRequest),
             $dayOffRequests
         );
-        return new self($id, $dayOffRequestsObjects);
     }
 }
