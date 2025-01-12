@@ -16,7 +16,10 @@ return new class extends Migration
             $table->timestamps();
             $table->string('last_name')->comment('姓');
             $table->string('first_name')->comment('名');
+            $table->string('tel')->comment('電話番号');
+            $table->string('zip_code', 7)->comment('郵便番号');
             $table->string('address')->comment('住所');
+            $table->text('content')->comment('問合せ内容');
         });
     }
 
