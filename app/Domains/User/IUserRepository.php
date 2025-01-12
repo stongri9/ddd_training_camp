@@ -2,11 +2,12 @@
 
 namespace App\Domains\User;
 
-use App\Models\User as UserModel;
-use Illuminate\Database\Eloquent\Collection;
+use App\Models\User;
+use App\Domains\User\User as UserEntity;
 
-interface IUserRepository {
-    public function find(int $id): UserModel;
+interface IUserRepository
+{
+    public function find(int $id): User;
 
-    public function update(User $user): void;
+    public function update(UserEntity $user): void;
 }
