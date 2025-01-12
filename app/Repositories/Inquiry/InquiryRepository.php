@@ -42,12 +42,9 @@ class InquiryRepository implements IInquiryRepository
      */
     public function update(Inquiry $inquiry): void {
         $model = InquiryModel::find($inquiry->id);
-
         if ($model && is_a($model, InquiryModel::class)) {
-            InquiryModel::updateOrCreate(
-                ['id' => $inquiry->id], 
-                $inquiry->convertParams()
-            );
+            $model->fill($inquiry->convertParams())->save();
+            return;
         }
         
         throw new \Exception('問合せのデータが存在しません。');

@@ -10,7 +10,7 @@ class DomainEntity {
     {
         $reflectionProperty = new ReflectionProperty($this, $name);
         $reflectionAttributes = $reflectionProperty->getAttributes(Getter::class);
-        if (!count($reflectionAttributes)) {
+        if (count($reflectionAttributes)) {
             return $this->{$name};
         }
 

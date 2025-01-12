@@ -10,9 +10,6 @@ class ZipCode {
     private function __construct(
         public readonly string $value
     ) {
-        if (!preg_match('/^\d{7}$/', $this->value)) {
-            throw new \InvalidArgumentException('郵便番号の値が不正です。');
-        }
     }
 
     /**
@@ -21,6 +18,9 @@ class ZipCode {
      */
     public static function create(string $zipCode): self
     {
+        if (!preg_match('/^\d{7}$/', $zipCode)) {
+            throw new \InvalidArgumentException('郵便番号の値が不正です。');
+        }
         return new self($zipCode);
     }
 }

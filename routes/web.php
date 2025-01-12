@@ -11,12 +11,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::view('profile', 'profile')
         ->name('profile');
     
-    Route::prefix('inquiry')->group(function () {
-        Route::view('/', 'pages.inquiry.index')
-            ->name('inquiry');
-        Route::view('create', 'pages.inquiry.create')
-            ->name('create-inquiry');
-    });
+    Route::view('inquiry', 'inquiry')
+        ->name('inquiry');
 });
 
 require __DIR__.'/auth.php';
