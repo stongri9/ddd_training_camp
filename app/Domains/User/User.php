@@ -3,13 +3,14 @@
 namespace App\Domains\User;
 
 use App\Domains\DomainEntity;
+use App\Domains\Shared\Date;
 
 
 class User extends DomainEntity {
 
     /**
      * @param int|null $id
-     * @param array $dayOffRequests
+     * @param Date[] $dayOffRequests
      */
     private function __construct(
         #[Getter]
@@ -19,7 +20,10 @@ class User extends DomainEntity {
     ) {
     }
 
-
+    /**
+     * @param array $dayOffRequests
+     * @return void
+     */
     public function update(
         array $dayOffRequests
     ): void {
