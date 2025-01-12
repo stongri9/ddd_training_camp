@@ -2,8 +2,6 @@
 
 namespace App\Domains\Shared;
 
-use Carbon\Carbon;
-
 class Date {
     /**
      * @param string $value
@@ -13,7 +11,7 @@ class Date {
         public readonly string $value,
     ) {
         try {
-            $value = Carbon::parse($value)->format('y-m-d');
+            $this->value = (new \DateTimeImmutable($value))->format('Y-m-d');
         } catch (\Exception $e) {
             throw new \InvalidArgumentException(
                 '日付の形式が不正です。'
