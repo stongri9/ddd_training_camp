@@ -4,5 +4,7 @@
             {{ __('Inquiry') }}
         </h2>
     </x-slot>
+    
+    <livewire:inquiry.show-inquiry />
     <livewire:inquiry.create-inquiry />
 </x-app-layout>

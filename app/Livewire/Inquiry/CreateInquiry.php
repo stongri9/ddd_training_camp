@@ -41,7 +41,7 @@ class CreateInquiry extends Component
 
         session()->flash('status', 'Post successfully updated.');
 
-        $this->redirect('/dashboard');
+        $this->redirect('/inquiry');
     }
 
     /**

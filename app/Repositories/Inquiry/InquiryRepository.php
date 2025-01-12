@@ -19,6 +19,11 @@ class InquiryRepository implements IInquiryRepository
         return InquiryModel::find($id);
     }
 
+    public function findAll(): \Illuminate\Database\Eloquent\Collection
+    {
+        return InquiryModel::all();
+    }
+
     /**
      * インサート処理
      * 

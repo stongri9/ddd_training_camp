@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('inquiries', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
+            $table->dateTime('deleted_at')->nullable()->comment('削除日時');
             $table->string('last_name')->comment('姓');
             $table->string('first_name')->comment('名');
             $table->string('tel')->comment('電話番号');
