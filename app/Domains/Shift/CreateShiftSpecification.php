@@ -68,7 +68,7 @@ class CreateShiftSpecification extends BaseSpecification {
             $violations[] = '日勤にアルバイトを含めることはできません。';
         }
         if(!$dayShiftusers->contains(function ($user) {
-            return in_array($user->role, ['nurse', 'associateNurse']);
+            return in_array($user->role, ['nurse', 'associateNurse'], true);
         })) {
             $violations[] = '日勤には看護師または准看護師を1人以上含める必要があります。';
         }
@@ -81,7 +81,7 @@ class CreateShiftSpecification extends BaseSpecification {
             $violations[] = '遅番にアルバイトを含めることはできません。';
         }
         if(!$lateShiftusers->contains(function ($user) {
-            return in_array($user->role, ['nurse', 'associateNurse']);
+            return in_array($user->role, ['nurse', 'associateNurse'], true);
         })) {
             $violations[] = '遅番には看護師または准看護師を1人以上含める必要があります。';
         }
@@ -94,7 +94,7 @@ class CreateShiftSpecification extends BaseSpecification {
             $violations[] = '夜勤には看護師を1人以上含める必要があります。';
         }
         if($lateShiftusers->contains(function ($user) {
-            return in_array($user->role, ['headNurse', 'chief', 'part']);
+            return in_array($user->role, ['headNurse', 'chief', 'part'], true);
         })) {
             $violations[] = '夜勤に看護師長、主任、パートを含めることはできません。';
         }

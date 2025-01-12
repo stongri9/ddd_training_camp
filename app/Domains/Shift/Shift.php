@@ -3,8 +3,8 @@ namespace App\Domains\Shift;
 
 use App\Attributes\Getter;
 
-use App\Domains\DomainEntity;
-use App\Domains\Shared\Date;
+use app\Domains\DomainEntity;
+use app\Domains\Shared\Date;
 
 class Shift extends DomainEntity {
     /**
@@ -43,7 +43,7 @@ class Shift extends DomainEntity {
         $shiftEntity = new Shift(null, $dateValueObject, $dayShiftUserIds, $lateShiftUserIds, $nightShiftUserIds);
         
         $dateTimeObject = new \DateTimeImmutable($dateValueObject->value);
-        $isBusinessDay = !in_array($dateTimeObject->format('D'), config('closedDays.closedWeekDays')) && !in_array($dateTimeObject->format('Y-m-d'), config('closedDays.holidays'));
+        $isBusinessDay = !in_array($dateTimeObject->format('D'), config('closedDays.closedWeekDays')) && !in_array($dateTimeObject->format('Y-m-d'), config('closedDays.holidays'), true);
         if (!$isBusinessDay && count($dayShiftUserIds) < 3) {
             throw new \InvalidArgumentException('休院日の場合、日勤の人は3人以上必要です。');
         }

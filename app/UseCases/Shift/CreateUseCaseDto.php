@@ -4,25 +4,19 @@ namespace App\UseCases\Shift;
 
 class CreateUseCaseDto {
     private function __construct(
-        public readonly string $date,
-        public readonly array $dayShiftUserIds,
-        public readonly array $lateShiftUserIds,
-        public readonly array $nightShiftUserIds,
+        public readonly string $startDate,
+        public readonly string $endDate,
     ) {
     }
 
     public static function create(
-        string $date,
-        array $dayShiftUserIds,
-        array $lateShiftUserIds,
-        array $nightShiftUserIds,
+        string $startDate,
+        string $endDate,
     ): self
     {
         return new CreateUseCaseDto(
-            $date,
-            $dayShiftUserIds,
-            $lateShiftUserIds,
-            $nightShiftUserIds,
+            $startDate,
+            $endDate,
         );
     }
 }
