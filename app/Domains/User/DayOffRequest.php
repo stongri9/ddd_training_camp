@@ -7,12 +7,11 @@ use DateTimeImmutable;
 class DayOffRequest
 {
     /**
-     * @param DateTimeImmutable $date
+     * @param string $date
      */
     private function __construct(
-        public DateTimeImmutable $date,
+        public string $date,
     ) {
-        $this->date = $date->format('Y-m-d');
     }
 
     /**
@@ -22,7 +21,8 @@ class DayOffRequest
     public static function create(
         string $date
     ): self {
-        return new self(new DateTimeImmutable($date));
+        $dateObject = new DateTimeImmutable($date);
+        return new self($dateObject->format('Y-m-d'));
     }
 
     /**
@@ -32,6 +32,7 @@ class DayOffRequest
     public static function reconstruct(
         string $date
     ): self {
-        return new self(new DateTimeImmutable($date));
+        $dateObject = new DateTimeImmutable($date);
+        return new self($dateObject->format('Y-m-d'));
     }
 }
