@@ -1,11 +1,10 @@
 <?php
 namespace App\Domains\Shift;
 
-use App\Domains\BaseSpecification;
 use App\Domains\User\IUserRepository;
 use DateTimeImmutable;
 
-class CreateShiftSpecification extends BaseSpecification {
+class CreateShiftSpecification {
     public function __construct(
         private readonly IShiftRepository $shiftRepository,
         private readonly IUserRepository $userRepository,
@@ -32,8 +31,7 @@ class CreateShiftSpecification extends BaseSpecification {
         $userShiftMappings = [];
         foreach ($shifts as $shift) {
             $date = $shift->date;
-            $userIds = [...$shift->dayShiftUserIds, ...$shift->lateShiftUserIds, ...$shift->nightShiftUserIds];
-            foreach ($userIds as $userId) {
+            foreach ($shift->userIds as $userId) {
                 if (!isset($userShiftMappings[$userId])) {
                     $userShiftMappings[$userId] = [];
                 }
@@ -46,7 +44,7 @@ class CreateShiftSpecification extends BaseSpecification {
             $maxConsecutiveWorkingDays = 0;
             $dayBefore = null;
             foreach ($dates as $date) {
-                if (isset($dayBefore) && strtotime($date) === strtotime($dayBefore . '+1 day')) {
+                if (isset($dayBefore) && $date->format('Y-m-d') === $dayBefore->modify('+1 day')->format('Y-m-d')) {
                     $consecutiveWorkingDays++;
                 } else {
                     $consecutiveWorkingDays = 1;
@@ -62,40 +60,28 @@ class CreateShiftSpecification extends BaseSpecification {
 
         //日勤ルール
         $dayShiftusers = $this->userRepository->getUsersByIds($dayShiftUserIds);
-        if($dayShiftusers->contains(function ($user) {
-            return $user->role === 'arbeit';
-        })) {
+        if($dayShiftusers->contains(fn ($user) => $user->role === 'arbeit')) {
             $violations[] = '日勤にアルバイトを含めることはできません。';
         }
-        if(!$dayShiftusers->contains(function ($user) {
-            return in_array($user->role, ['nurse', 'associateNurse'], true);
-        })) {
+        if(!$dayShiftusers->contains(fn ($user) => in_array($user->role, ['nurse', 'associateNurse'], true))) {
             $violations[] = '日勤には看護師または准看護師を1人以上含める必要があります。';
         }
 
         //遅番ルール
         $lateShiftusers = $this->userRepository->getUsersByIds($lateShiftUserIds);
-        if($lateShiftusers->contains(function ($user) {
-            return $user->role === 'arbeit';
-        })) {
+        if($lateShiftusers->contains(fn ($user) => $user->role === 'arbeit')) {
             $violations[] = '遅番にアルバイトを含めることはできません。';
         }
-        if(!$lateShiftusers->contains(function ($user) {
-            return in_array($user->role, ['nurse', 'associateNurse'], true);
-        })) {
+        if(!$lateShiftusers->contains(fn ($user) => in_array($user->role, ['nurse', 'associateNurse'], true))) {
             $violations[] = '遅番には看護師または准看護師を1人以上含める必要があります。';
         }
 
         //夜勤ルール
         $nightShiftusers = $this->userRepository->getUsersByIds($lateShiftUserIds);
-        if(!$nightShiftusers->contains(function ($user) {
-            return $user->role === 'nurse';
-        })) {
+        if(!$nightShiftusers->contains(fn ($user) => $user->role === 'nurse')) {
             $violations[] = '夜勤には看護師を1人以上含める必要があります。';
         }
-        if($lateShiftusers->contains(function ($user) {
-            return in_array($user->role, ['headNurse', 'chief', 'part'], true);
-        })) {
+        if($lateShiftusers->contains(fn ($user) => in_array($user->role, ['headNurse', 'chief', 'part'], true))) {
             $violations[] = '夜勤に看護師長、主任、パートを含めることはできません。';
         }
         $nextDayShift = $this->shiftRepository->getShiftByDate($dateTimeObject->modify('+1 day'));

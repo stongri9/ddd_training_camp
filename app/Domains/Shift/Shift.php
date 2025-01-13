@@ -56,6 +56,10 @@ class Shift extends DomainEntity {
         return $shiftEntity;
     }
 
+    public function getUserIdsAttribute(): array{
+        return [...$this->dayShiftUserIds, ...$this->lateShiftUserIds, ...$this->nightShiftUserIds];
+    }
+
     /**
      * @return array
      */
