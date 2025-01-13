@@ -3,7 +3,7 @@
 namespace App\Repositories\Shift;
 
 use App\Domains\Shift\IShiftRepository;
-use app\Domains\Shift\Shift;
+use App\Domains\Shift\Shift;
 use \App\Models\Shift as ShiftModel;
 use Illuminate\Support\Collection;
 

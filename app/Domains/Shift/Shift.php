@@ -1,10 +1,10 @@
 <?php 
-namespace app\Domains\Shift;
+namespace App\Domains\Shift;
 
 use App\Attributes\Getter;
 
-use app\Domains\DomainEntity;
-use app\Domains\Shared\Date;
+use App\Domains\DomainEntity;
+use App\Domains\Shared\Date;
 
 class Shift extends DomainEntity {
     /**
