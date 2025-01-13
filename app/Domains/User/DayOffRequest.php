@@ -3,9 +3,13 @@
 namespace App\Domains\User;
 
 use DateTimeImmutable;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Database\Factories\DayOffRequestFactory;
 
 class DayOffRequest
 {
+    use HasFactory;
+
     /**
      * @param string $date
      */
@@ -32,5 +36,10 @@ class DayOffRequest
         string $date
     ): self {
         return new self(new DateTimeImmutable($date));
+    }
+
+    protected static function newFactory()
+    {
+        return DayOffRequestFactory::new();
     }
 }
