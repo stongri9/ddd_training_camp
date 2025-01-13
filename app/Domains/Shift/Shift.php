@@ -1,15 +1,15 @@
-<?php 
+<?php
 namespace App\Domains\Shift;
 
 use App\Attributes\Getter;
+use DateTimeImmutable;
 
 use App\Domains\DomainEntity;
-use App\Domains\Shared\Date;
 
 class Shift extends DomainEntity {
     /**
      * @param int|null  $id
-     * @param Date $date
+     * @param DateTimeImmutable $date
      * @param int[] $dayShiftUserIds
      * @param int[] $lateShiftUserIds
      * @param int[] $nightShiftUserIds
@@ -18,7 +18,7 @@ class Shift extends DomainEntity {
         #[Getter]
         private int|null $id = null,
         #[Getter]
-        private Date $date,
+        private DateTimeImmutable $date,
         #[Getter]
         private array $dayShiftUserIds,
         #[Getter]
@@ -38,11 +38,16 @@ class Shift extends DomainEntity {
         if (count($nightShiftUserIds) < 2) {
             throw new \InvalidArgumentException('夜勤の人は2人以上必要です。');
         }
-        $dateValueObject = Date::create($date);
 
-        $shiftEntity = new Shift(null, $dateValueObject, $dayShiftUserIds, $lateShiftUserIds, $nightShiftUserIds);
-        
-        $dateTimeObject = new \DateTimeImmutable($dateValueObject->value);
+        $dateTimeObject = new DateTimeImmutable($date);
+        $shiftEntity = new Shift(
+            null,
+            $dateTimeObject,
+            $dayShiftUserIds,
+            $lateShiftUserIds,
+            $nightShiftUserIds
+        );
+
         $isBusinessDay = !in_array($dateTimeObject->format('D'), config('closedDays.closedWeekDays')) && !in_array($dateTimeObject->format('Y-m-d'), config('closedDays.holidays'));
         if (!$isBusinessDay && count($dayShiftUserIds) < 3) {
             throw new \InvalidArgumentException('休院日の場合、日勤の人は3人以上必要です。');

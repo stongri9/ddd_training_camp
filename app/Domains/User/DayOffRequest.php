@@ -2,15 +2,15 @@
 
 namespace App\Domains\User;
 
-use App\Domains\Shared\Date;
+use DateTimeImmutable;
 
 class DayOffRequest
 {
     /**
-     * @param Date $date
+     * @param string $date
      */
     private function __construct(
-        public readonly Date $date,
+        public DateTimeImmutable $date,
     ) {
     }
 
@@ -21,7 +21,7 @@ class DayOffRequest
     public static function create(
         string $date
     ): self {
-        return new self(Date::create($date));
+        return new self(new DateTimeImmutable($date));
     }
 
     /**
@@ -31,6 +31,6 @@ class DayOffRequest
     public static function reconstruct(
         string $date
     ): self {
-        return new self(Date::create($date));
+        return new self(new DateTimeImmutable($date));
     }
 }
