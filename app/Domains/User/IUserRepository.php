@@ -2,12 +2,12 @@
 
 namespace App\Domains\User;
 
-use App\Models\User;
-use App\Domains\User\User as UserEntity;
+use App\Models\User as UserModel;
+use App\Domains\User\User;
 
 interface IUserRepository
 {
-    public function find(int $id): User|null;
+    public function find(int $id): UserModel|null;
 
-    public function update(UserEntity $user): void;
+    public function update(User $user): void;
 }
