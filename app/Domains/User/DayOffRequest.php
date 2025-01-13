@@ -10,7 +10,7 @@ class DayOffRequest
      * @param string $date
      */
     private function __construct(
-        public string $date,
+        public DateTimeImmutable $date,
     ) {
     }
 
@@ -21,8 +21,7 @@ class DayOffRequest
     public static function create(
         string $date
     ): self {
-        $dateObject = new DateTimeImmutable($date);
-        return new self($dateObject->format('Y-m-d'));
+        return new self(new DateTimeImmutable($date));
     }
 
     /**
@@ -32,7 +31,6 @@ class DayOffRequest
     public static function reconstruct(
         string $date
     ): self {
-        $dateObject = new DateTimeImmutable($date);
-        return new self($dateObject->format('Y-m-d'));
+        return new self(new DateTimeImmutable($date));
     }
 }
