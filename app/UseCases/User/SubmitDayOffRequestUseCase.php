@@ -7,7 +7,6 @@ use App\Domains\User\IUserRepository;
 use App\Domains\User\DayOffRequest;
 use App\Domains\User\SubmitDayOffRequestSpecification;
 use App\UseCases\User\SubmitDayOffRequestCaseDto;
-use DateTimeImmutable;
 use InvalidArgumentException;
 
 class SubmitDayOffRequestUseCase {
