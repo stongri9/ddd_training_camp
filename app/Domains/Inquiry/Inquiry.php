@@ -2,12 +2,10 @@
 
 namespace App\Domains\Inquiry;
 
-use App\Attributes\Getter;
-use App\Domains\DomainEntity;
 use App\Domains\Shared\Tel;
 use App\Domains\Shared\ZipCode;
 
-class Inquiry extends DomainEntity {
+class Inquiry {
     /**
      * @param int|null $id
      * @param string $last_name
@@ -18,13 +16,13 @@ class Inquiry extends DomainEntity {
      * @param string $content
      */
     private function __construct(
-        #[Getter] protected int|null $id = null,
-        #[Getter] private string $last_name,
-        #[Getter] private string $first_name,
-        #[Getter] private Tel $tel,
-        #[Getter] private ZipCode $zip_code,
-        #[Getter] private string $address,
-        #[Getter] private string $content,
+        public private(set) int|null $id = null,
+        public private(set) string $last_name,
+        public private(set) string $first_name,
+        public private(set) Tel $tel,
+        public private(set) ZipCode $zip_code,
+        public private(set) string $address,
+        public private(set) string $content,
     ) {
     }
 
