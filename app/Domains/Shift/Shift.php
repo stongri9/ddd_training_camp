@@ -1,5 +1,5 @@
 <?php 
-namespace App\Domains\Shift;
+namespace app\Domains\Shift;
 
 use App\Attributes\Getter;
 
@@ -54,5 +54,18 @@ class Shift extends DomainEntity {
             throw new \InvalidArgumentException('営業日の場合、遅番の人は1人以上必要です。');
         }
         return $shiftEntity;
+    }
+
+    /**
+     * @return array
+     */
+    public function convertParams():array {
+        return [
+            'id' => $this->id,
+            'date' => $this->date->value,
+            'dayShiftUserIds' => $this->dayShiftUserIds,
+            'lateShiftUserIds' => $this->lateShiftUserIds,
+            'nightShiftUserIds' => $this->nightShiftUserIds,
+        ];
     }
 }
