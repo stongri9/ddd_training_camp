@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace App\Domains\User;
 
@@ -9,14 +9,12 @@ use App\Domains\User\DayOffRequest;
 class User extends DomainEntity
 {
     /**
-     * @param int|null $id
+     * @param int|null $idß
      * @param DayOffRequest[] $dayOffRequests
      */
     private function __construct(
-        #[Getter]
-        private int|null $id,
-        #[Getter]
-        private array $dayOffRequests
+        public private(set) int|null $id,
+        public private(set) array $dayOffRequests
     ) {
         $this->dayOffRequests = $this->createDayOffRequests($dayOffRequests);
     }
@@ -33,7 +31,7 @@ class User extends DomainEntity
     }
 
     /**
-     * @param DayOffRequest[] $dayOffRequests
+     * @param array $newDayOffRequests
      * @return void
      */
     public function update(
@@ -45,7 +43,7 @@ class User extends DomainEntity
     /**
      * @return array
      */
-    public function convertParams(): array 
+    public function convertParams(): array
     {
         return [
             'id' => $this->id,
