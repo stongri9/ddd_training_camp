@@ -19,19 +19,15 @@ class SubmitDayOffRequestUseCase {
     public function __invoke(SubmitDayOffRequestCaseDto $dto): void
     {
         try {
-            $errors = $this->submitDayOffRequestSpecification->getViolations($dto->dayOffRequests);
-
-            if (filled($errors)) {
-                throw new InvalidArgumentException(implode(PHP_EOL, $errors));
+            if (!$this->submitDayOffRequestSpecification->isSatisfied($dto->dayOffRequests)) {
+                throw new InvalidArgumentException(PHP_EOL, '申請できない日付が含まれています');
             }
 
             $userModel = $this->userRepository->find($dto->userId);
             $user = User::reconstruct($userModel->id, $userModel->dayOffRequests);
 
-            $user->update(array_map(function($dayOffRequest) {
-                return DayOffRequest::create($dayOffRequest);
-            }, $dto->dayOffRequests));
-            
+            $user->update(array_map(fn ($dayOffRequest) => DayOffRequest::create($dayOffRequest), $dto->dayOffRequests));
+
             $this->userRepository->update($user);
         } catch (\Exception $e) {
             throw $e;
