@@ -1,8 +1,8 @@
 <section class="space-y-6">
-    <x-primary-button
+    <x-m-primary-button
         x-data=""
         x-on:click.prevent="$dispatch('open-modal', 'update-inquiry{{$form->id}}')"
-    >{{ __('Update Inquiry') }}</x-primary-button>
+    >{{ __('Update Inquiry') }}</x-m-primary-button>
     
     <x-modal name="update-inquiry{{$form->id}}" :show="$errors->isNotEmpty()" focusable>
         <form wire:submit="execute">

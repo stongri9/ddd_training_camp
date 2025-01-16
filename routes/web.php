@@ -10,7 +10,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     
     Route::view('shift', 'shift')
         ->name('shift');
-    
+
     Route::view('dayoff', 'dayoff')
         ->name('dayoff');
 

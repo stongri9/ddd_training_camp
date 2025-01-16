@@ -33,10 +33,10 @@ new class extends Component
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')" wire:navigate>
                         {{ __('Dashboard') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('dayoff')" :active="request()->routeIs('dayoff')" wire:navigate>
+                    <x-nav-link :href="route('shift')" :active="request()->routeIs('shift')" wire:navigate>
                         {{ __('Shift') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('shift')" :active="request()->routeIs('shift')" wire:navigate>
+                    <x-nav-link :href="route('dayoff')" :active="request()->routeIs('dayoff')" wire:navigate>
                         {{ __('DayOff') }}
                     </x-nav-link>
                     <x-nav-link :href="route('inquiry')" :active="request()->routeIs('inquiry')" wire:navigate>
