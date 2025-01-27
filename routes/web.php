@@ -5,20 +5,15 @@ use Illuminate\Support\Facades\Route;
 Route::view('/', 'welcome');
 
 Route::middleware(['auth', 'verified'])->group(function () {
-    Route::view('dashboard', 'dashboard')
-        ->name('dashboard');
+    Route::view('dashboard', 'pages.dashboard')->name('dashboard');
     
-    Route::view('shift', 'shift')
-        ->name('shift');
+    Route::view('shift', 'pages.shift')->name('shift');
 
-    Route::view('dayoff', 'dayoff')
-        ->name('dayoff');
+    Route::view('dayoff', 'pages.dayoff')->name('dayoff');
 
-    Route::view('profile', 'profile')
-        ->name('profile');
+    Route::view('profile', 'pages.profile')->name('profile');
     
-    Route::view('inquiry', 'inquiry')
-        ->name('inquiry');
+    Route::view('inquiry', 'pages.inquiry')->name('inquiry');
 });
 
 require __DIR__.'/auth.php';
