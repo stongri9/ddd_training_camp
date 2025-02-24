@@ -6,7 +6,7 @@ use DateTimeImmutable;
 
 use App\Domains\DomainEntity;
 
-class Shift extends DomainEntity {
+class Shift {
     /**
      * @param int|null  $id
      * @param DateTimeImmutable $date
@@ -15,16 +15,11 @@ class Shift extends DomainEntity {
      * @param int[] $nightShiftUserIds
      */
     private function __construct(
-        #[Getter]
-        private int|null $id = null,
-        #[Getter]
-        private DateTimeImmutable $date,
-        #[Getter]
-        private array $dayShiftUserIds,
-        #[Getter]
-        private array $lateShiftUserIds,
-        #[Getter]
-        private array $nightShiftUserIds,
+        public private(set) int|null $id = null,
+        public private(set) DateTimeImmutable $date,
+        public private(set) array $dayShiftUserIds,
+        public private(set) array $lateShiftUserIds,
+        public private(set) array $nightShiftUserIds,
     ) {
     }
 

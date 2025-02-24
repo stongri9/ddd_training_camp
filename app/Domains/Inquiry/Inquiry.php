@@ -113,7 +113,8 @@ class Inquiry {
     /**
      * @return array
      */
-    public function convertParams():array {
+    public function convertParams():array 
+    {
         return [
             'id' => $this->id,
             'last_name' => $this->last_name,

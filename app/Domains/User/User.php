@@ -2,27 +2,23 @@
 
 namespace App\Domains\User;
 
-use App\Attributes\Getter;
-use App\Domains\DomainEntity;
 use App\Domains\User\DayOffRequest;
 
-class User extends DomainEntity
+class User
 {
     /**
      * @param int|null $id
      * @param DayOffRequest[] $dayOffRequests
      */
     private function __construct(
-        #[Getter]
-        private int|null $id,
-        #[Getter]
-        private array $dayOffRequests
+        public private(set) int|null $id,
+        public private(set) array $dayOffRequests
     ) {
         $this->dayOffRequests = $this->createDayOffRequests($dayOffRequests);
     }
 
     /**
-     * @return App\Domains\DomainEntity\User
+     * @return self
      */
     public static function create(): self
     {

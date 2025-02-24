@@ -6,7 +6,7 @@ use App\Attributes\Getter;
 use App\Domains\DomainEntity;
 use DateTimeImmutable;
 
-class PublishShiftEvent extends DomainEntity
+class PublishShiftEvent
 {
     /**
     * @param int|null $id
@@ -14,14 +14,10 @@ class PublishShiftEvent extends DomainEntity
     * @param DateTimeImmutable $date
     */
     private function __construct(
-      #[Getter]
-      private int|null $id,
-      #[Getter]
-      private int $shiftId,
-      #[Getter]
-      private DateTimeImmutable $date,
-      #[Getter]
-      private int $createdUserId
+      public private(set) int|null $id,
+      public private(set) int $shiftId,
+      public private(set) DateTimeImmutable $date,
+      public private(set) int $createdUserId
     ) {
     }
 
