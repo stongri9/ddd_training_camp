@@ -1,0 +1,13 @@
+parameters:
+	ignoreErrors:
+		-
+			message: '#^Call to an undefined static method App\\Models\\Inquiry\:\:create\(\)\.$#'
+			identifier: staticMethod.notFound
+			count: 1
+			path: app/Repositories/Inquiry/InquiryRepository.php
+
+		-
+			message: '#^Call to an undefined static method App\\Models\\Inquiry\:\:find\(\)\.$#'
+			identifier: staticMethod.notFound
+			count: 2
+			path: app/Repositories/Inquiry/InquiryRepository.php
