@@ -1,25 +1,19 @@
-<?php 
+<?php
 
 namespace App\Domains\User;
-
-use App\Domains\User\DayOffRequest;
 
 class User
 {
     /**
-     * @param int|null $id
-     * @param DayOffRequest[] $dayOffRequests
+     * @param  DayOffRequest[]  $dayOffRequests
      */
     private function __construct(
-        public private(set) int|null $id,
+        public readonly ?int $id,
         public private(set) array $dayOffRequests
     ) {
         $this->dayOffRequests = $this->createDayOffRequests($dayOffRequests);
     }
 
-    /**
-     * @return self
-     */
     public static function create(): self
     {
         return new self(
@@ -29,8 +23,7 @@ class User
     }
 
     /**
-     * @param DayOffRequest[] $dayOffRequests
-     * @return void
+     * @param  DayOffRequest[]  $dayOffRequests
      */
     public function update(
         array $newDayOffRequests
@@ -38,37 +31,34 @@ class User
         $this->dayOffRequests = $this->createDayOffRequests($newDayOffRequests);
     }
 
-    /**
-     * @return array
-     */
-    public function convertParams(): array 
+    public function convertParams(): array
     {
         return [
             'id' => $this->id,
-            'dayOffRequests' => $this->dayOffRequests
+            'dayOffRequests' => $this->dayOffRequests,
         ];
     }
 
     /**
-     * @param int $id
-     * @param string[] $dayOffRequests
+     * @param  string[]  $dayOffRequests
      */
     public static function reconstruct(
         int $id,
         array $dayOffRequests
     ): self {
         $dayOffRequestsObjects = self::createDayOffRequests($dayOffRequests);
+
         return new self($id, $dayOffRequestsObjects);
     }
 
     /**
-     * @param string[] $dayOffRequest
+     * @param  string[]  $dayOffRequest
      * @return DayOffRequest[]
      */
     private static function createDayOffRequests(array $dayOffRequests): array
     {
         return array_map(
-            fn($dayOffRequest) => DayOffRequest::create($dayOffRequest),
+            fn ($dayOffRequest) => DayOffRequest::create($dayOffRequest),
             $dayOffRequests
         );
     }

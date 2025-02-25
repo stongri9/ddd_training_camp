@@ -2,7 +2,7 @@
 
 return [
     'closedWeekDays' => [
-        'Thu','Sun',
+        'Thu', 'Sun',
     ],
     // TODO: のちのちマスタ管理する
     'holidays' => [

@@ -9,12 +9,10 @@ class SubmitDayOffRequestSpecification
 {
     public function __construct(
         private IShiftRepository $shiftRepository,
-    ) {
-    }
+    ) {}
 
     /**
-     * @param string[] $dayOffRequests
-     * @return bool
+     * @param  string[]  $dayOffRequests
      */
     public function isSatisfied(array $dayOffRequests): bool
     {
@@ -22,7 +20,7 @@ class SubmitDayOffRequestSpecification
         $latestShift = $this->shiftRepository->getLatestShift();
 
         foreach ($dayOffRequests as $dayOffRequest) {
-            if ($latestShift->date->format("y-m-d") > (new DateTimeImmutable($dayOffRequest))->format("y-m-d")) {
+            if ($latestShift->date->format('y-m-d') > (new DateTimeImmutable($dayOffRequest))->format('y-m-d')) {
                 return false;
             }
         }

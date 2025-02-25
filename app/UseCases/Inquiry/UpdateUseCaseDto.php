@@ -1,8 +1,9 @@
-<?php 
+<?php
 
 namespace App\UseCases\Inquiry;
 
-class UpdateUseCaseDto {
+class UpdateUseCaseDto
+{
     private function __construct(
         public readonly int $id,
         public readonly string $last_name,
@@ -11,19 +12,17 @@ class UpdateUseCaseDto {
         public readonly string $zip_code,
         public readonly string $address,
         public readonly string $content,
-    ) {
-    }
+    ) {}
 
     public static function create(
-        int $id, 
+        int $id,
         string $last_name,
         string $first_name,
         string $tel,
         string $zip_code,
         string $address,
         string $content,
-    ): self
-    {
+    ): self {
         return new UpdateUseCaseDto(
             $id,
             $last_name,

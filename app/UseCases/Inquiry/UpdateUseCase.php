@@ -5,18 +5,16 @@ namespace App\UseCases\Inquiry;
 use App\Domains\Inquiry\IInquiryRepository;
 use App\Domains\Inquiry\Inquiry;
 
-class UpdateUseCase {
-    public function __construct(
-        private readonly IInquiryRepository $inquiryRepository,
-    )
-    {}
+class UpdateUseCase
+{
+    public function __construct(private readonly IInquiryRepository $inquiryRepository) {}
 
     public function __invoke(UpdateUseCaseDto $updateUseCaseDto): void
     {
         $model = $this->inquiryRepository->find($updateUseCaseDto->id);
 
         try {
-            $inquiry = Inquiry::recontract(
+            $inquiry = Inquiry::reconstract(
                 $model->id,
                 $model->last_name,
                 $model->first_name,

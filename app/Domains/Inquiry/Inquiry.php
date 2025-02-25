@@ -1,40 +1,30 @@
-<?php 
+<?php
 
 namespace App\Domains\Inquiry;
 
 use App\Domains\Shared\Tel;
 use App\Domains\Shared\ZipCode;
 
-class Inquiry {
+class Inquiry
+{
     /**
-     * @param int|null $id
-     * @param string $last_name
-     * @param string $first_name
-     * @param \App\Domains\Shared\Tel $tel
-     * @param \App\Domains\Shared\ZipCode $zip_code
-     * @param string $address
-     * @param string $content
+     * @param  string  $last_name
+     * @param  string  $first_name
+     * @param  \App\Domains\Shared\Tel  $tel
+     * @param  \App\Domains\Shared\ZipCode  $zip_code
+     * @param  string  $address
+     * @param  string  $content
      */
     private function __construct(
-        public private(set) int|null $id = null,
+        public readonly ?int $id,
         public private(set) string $last_name,
         public private(set) string $first_name,
         public private(set) Tel $tel,
         public private(set) ZipCode $zip_code,
         public private(set) string $address,
         public private(set) string $content,
-    ) {
-    }
+    ) {}
 
-    /**
-     * @param string $last_name
-     * @param string $first_name
-     * @param string $tel
-     * @param string $zip_code
-     * @param string $address
-     * @param string $content
-     * @return \App\Domains\Inquiry\Inquiry
-     */
     public static function create(
         string $last_name,
         string $first_name,
@@ -54,17 +44,7 @@ class Inquiry {
         );
     }
 
-    /**
-     * @param int $id
-     * @param string $last_name
-     * @param string $first_name
-     * @param string $tel
-     * @param string $zip_code
-     * @param string $address
-     * @param string $content
-     * @return \App\Domains\Inquiry\Inquiry
-     */
-    public static function recontract(
+    public static function reconstract(
         int $id,
         string $last_name,
         string $first_name,
@@ -84,15 +64,6 @@ class Inquiry {
         );
     }
 
-    /**
-     * @param string $last_name
-     * @param string $first_name
-     * @param string $tel
-     * @param string $zip_code
-     * @param string $address
-     * @param string $content
-     * @return void
-     */
     public function update(
         string $last_name,
         string $first_name,
@@ -100,8 +71,7 @@ class Inquiry {
         string $zip_code,
         string $address,
         string $content,
-    ): void
-    {
+    ): void {
         $this->last_name = $last_name;
         $this->first_name = $first_name;
         $this->tel = Tel::create($tel);
@@ -110,10 +80,7 @@ class Inquiry {
         $this->content = $content;
     }
 
-    /**
-     * @return array
-     */
-    public function convertParams():array 
+    public function convertParams(): array
     {
         return [
             'id' => $this->id,

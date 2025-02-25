@@ -1,7 +1,8 @@
-<?php 
+<?php
 
 namespace App\Domains\Shift;
 
-interface IShiftRepository {
+interface IShiftRepository
+{
     public function getLatestShift(): Shift;
 }

@@ -7,15 +7,13 @@ use DateTimeImmutable;
 class DayOffRequest
 {
     /**
-     * @param string $date
+     * @param  string  $date
      */
     private function __construct(
         public DateTimeImmutable $date,
-    ) {
-    }
+    ) {}
 
     /**
-     * @param string $date
      * @return \App\Domains\DayOffRequest
      */
     public static function create(
@@ -25,7 +23,6 @@ class DayOffRequest
     }
 
     /**
-     * @param string $date
      * @return \App\Domains\DayOffRequest
      */
     public static function reconstruct(

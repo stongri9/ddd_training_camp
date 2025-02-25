@@ -5,18 +5,14 @@ namespace App\UseCases\Inquiry;
 use App\Domains\Inquiry\IInquiryRepository;
 use Illuminate\Database\Eloquent\Collection;
 
-class ShowUseCase {
-    /**
-     * @param \App\Domains\Inquiry\IInquiryRepository $inquiryRepository
-     */
+class ShowUseCase
+{
     public function __construct(
         private readonly IInquiryRepository $inquiryRepository,
     ) {}
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Collection
-     */
-    public function __invoke():Collection {
+    public function __invoke(): Collection
+    {
         return $this->inquiryRepository->findAll();
     }
 }
