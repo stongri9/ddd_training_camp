@@ -1,6 +1,24 @@
 parameters:
 	ignoreErrors:
 		-
+			message: '#^Cannot call method hasVerifiedEmail\(\) on mixed\.$#'
+			identifier: method.nonObject
+			count: 1
+			path: app/Http/Controllers/Auth/VerifyEmailController.php
+
+		-
+			message: '#^Cannot call method markEmailAsVerified\(\) on mixed\.$#'
+			identifier: method.nonObject
+			count: 1
+			path: app/Http/Controllers/Auth/VerifyEmailController.php
+
+		-
+			message: '#^Parameter \#1 \$user of class Illuminate\\Auth\\Events\\Verified constructor expects Illuminate\\Contracts\\Auth\\MustVerifyEmail, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Http/Controllers/Auth/VerifyEmailController.php
+
+		-
 			message: '#^Call to an undefined method Illuminate\\Contracts\\Auth\\Guard\:\:logout\(\)\.$#'
 			identifier: method.notFound
 			count: 1
@@ -229,6 +247,12 @@ parameters:
 			path: tests/Feature/Auth/AuthenticationTest.php
 
 		-
+			message: '#^Parameter \#1 \$user of method Illuminate\\Foundation\\Testing\\TestCase\:\:actingAs\(\) expects Illuminate\\Contracts\\Auth\\Authenticatable, App\\Models\\User\|Illuminate\\Database\\Eloquent\\Collection\<int, App\\Models\\User\> given\.$#'
+			identifier: argument.type
+			count: 2
+			path: tests/Feature/Auth/AuthenticationTest.php
+
+		-
 			message: '#^Access to an undefined property App\\Models\\User\|Illuminate\\Database\\Eloquent\\Collection\<int, App\\Models\\User\>\:\:\$email\.$#'
 			identifier: property.notFound
 			count: 1
@@ -247,9 +271,27 @@ parameters:
 			path: tests/Feature/Auth/EmailVerificationTest.php
 
 		-
+			message: '#^Cannot call method hasVerifiedEmail\(\) on App\\Models\\User\|Illuminate\\Database\\Eloquent\\Collection\<int, App\\Models\\User\>\|null\.$#'
+			identifier: method.nonObject
+			count: 2
+			path: tests/Feature/Auth/EmailVerificationTest.php
+
+		-
+			message: '#^Parameter \#1 \$user of method Illuminate\\Foundation\\Testing\\TestCase\:\:actingAs\(\) expects Illuminate\\Contracts\\Auth\\Authenticatable, App\\Models\\User\|Illuminate\\Database\\Eloquent\\Collection\<int, App\\Models\\User\> given\.$#'
+			identifier: argument.type
+			count: 3
+			path: tests/Feature/Auth/EmailVerificationTest.php
+
+		-
 			message: '#^Call to an undefined method Illuminate\\Testing\\TestResponse\:\:assertSeeVolt\(\)\.$#'
 			identifier: method.notFound
 			count: 1
+			path: tests/Feature/Auth/PasswordConfirmationTest.php
+
+		-
+			message: '#^Parameter \#1 \$user of method Illuminate\\Foundation\\Testing\\TestCase\:\:actingAs\(\) expects Illuminate\\Contracts\\Auth\\Authenticatable, App\\Models\\User\|Illuminate\\Database\\Eloquent\\Collection\<int, App\\Models\\User\> given\.$#'
+			identifier: argument.type
+			count: 3
 			path: tests/Feature/Auth/PasswordConfirmationTest.php
 
 		-
@@ -268,6 +310,18 @@ parameters:
 			message: '#^Access to an undefined property App\\Models\\User\:\:\$password\.$#'
 			identifier: property.notFound
 			count: 1
+			path: tests/Feature/Auth/PasswordUpdateTest.php
+
+		-
+			message: '#^Call to an undefined method App\\Models\\User\|Illuminate\\Database\\Eloquent\\Collection\<int, App\\Models\\User\>\:\:refresh\(\)\.$#'
+			identifier: method.notFound
+			count: 1
+			path: tests/Feature/Auth/PasswordUpdateTest.php
+
+		-
+			message: '#^Parameter \#1 \$user of method Illuminate\\Foundation\\Testing\\TestCase\:\:actingAs\(\) expects Illuminate\\Contracts\\Auth\\Authenticatable, App\\Models\\User\|Illuminate\\Database\\Eloquent\\Collection\<int, App\\Models\\User\> given\.$#'
+			identifier: argument.type
+			count: 2
 			path: tests/Feature/Auth/PasswordUpdateTest.php
 
 		-
@@ -301,9 +355,21 @@ parameters:
 			path: tests/Feature/ProfileTest.php
 
 		-
+			message: '#^Call to an undefined method App\\Models\\User\|Illuminate\\Database\\Eloquent\\Collection\<int, App\\Models\\User\>\:\:refresh\(\)\.$#'
+			identifier: method.notFound
+			count: 2
+			path: tests/Feature/ProfileTest.php
+
+		-
 			message: '#^Call to an undefined method Illuminate\\Testing\\TestResponse\:\:assertSeeVolt\(\)\.$#'
 			identifier: method.notFound
 			count: 1
+			path: tests/Feature/ProfileTest.php
+
+		-
+			message: '#^Parameter \#1 \$user of method Illuminate\\Foundation\\Testing\\TestCase\:\:actingAs\(\) expects Illuminate\\Contracts\\Auth\\Authenticatable, App\\Models\\User\|Illuminate\\Database\\Eloquent\\Collection\<int, App\\Models\\User\> given\.$#'
+			identifier: argument.type
+			count: 5
 			path: tests/Feature/ProfileTest.php
 
 		-

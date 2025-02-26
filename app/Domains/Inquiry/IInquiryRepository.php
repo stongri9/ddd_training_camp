@@ -9,12 +9,12 @@ interface IInquiryRepository
 {
     /**
      * @param int $id
-     * @return InquiryModel
+     * @return InquiryModel|null
      */
-    public function find(int $id): InquiryModel;
+    public function find(int $id): ?InquiryModel;
 
     /**
-     * @return Collection<InquiryModel>
+     * @return Collection<int, InquiryModel>
      */
     public function findAll(): Collection;
 

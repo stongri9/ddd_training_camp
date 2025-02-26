@@ -7,10 +7,11 @@ use DateTimeImmutable;
 class Shift
 {
     /**
-     * @param  DateTimeImmutable  $date
-     * @param  int[]  $dayShiftUserIds
-     * @param  int[]  $lateShiftUserIds
-     * @param  int[]  $nightShiftUserIds
+     * @param int|null $id
+     * @param \DateTimeImmutable $date
+     * @param int[] $dayShiftUserIds
+     * @param int[] $lateShiftUserIds
+     * @param int[] $nightShiftUserIds
      */
     private function __construct(
         public readonly ?int $id,
@@ -21,9 +22,12 @@ class Shift
     ) {}
 
     /**
-     * @param  int[]  $dayShiftUserIds
-     * @param  int[]  $lateShiftUserIds
-     * @param  int[]  $nightShiftUserIds
+     * @param string $date
+     * @param int[] $dayShiftUserIds
+     * @param int[] $lateShiftUserIds
+     * @param int[] $nightShiftUserIds
+     * @throws \InvalidArgumentException
+     * @return Shift
      */
     public static function create(string $date, array $dayShiftUserIds, array $lateShiftUserIds, array $nightShiftUserIds)
     {
@@ -39,8 +43,14 @@ class Shift
             $lateShiftUserIds,
             $nightShiftUserIds
         );
-
-        $isBusinessDay = ! in_array($dateTimeObject->format('D'), config('closedDays.closedWeekDays')) && ! in_array($dateTimeObject->format('Y-m-d'), config('closedDays.holidays'));
+        
+        // TODO: 静的解析のためやむなく変数切り出し、マスタ化する際に消す
+        /** @var string[] */
+        $closedWeekDays = config('closedDays.closedWeekDays');
+        /** @var string[] */
+        $holidays = config('closedDays.holidays');
+        $isBusinessDay = ! in_array($dateTimeObject->format('D'), $closedWeekDays) 
+                      && ! in_array($dateTimeObject->format('Y-m-d'), $holidays);
         if (! $isBusinessDay && count($dayShiftUserIds) < 3) {
             throw new \InvalidArgumentException('休院日の場合、日勤の人は3人以上必要です。');
         }

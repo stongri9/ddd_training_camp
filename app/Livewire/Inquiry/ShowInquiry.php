@@ -10,7 +10,7 @@ use Livewire\Component;
 class ShowInquiry extends Component
 {
     /**
-     * @var Collection<\App\Models\Inquiry>
+     * @var Collection<int, \App\Models\Inquiry>
      */
     public Collection $inquiries;
 

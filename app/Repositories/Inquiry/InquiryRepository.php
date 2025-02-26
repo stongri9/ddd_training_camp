@@ -12,7 +12,7 @@ class InquiryRepository implements IInquiryRepository
      * @param int $id
      * @return InquiryModel|null
      */
-    public function find(int $id): InquiryModel
+    public function find(int $id): ?InquiryModel
     {
         return InquiryModel::find($id);
     }

@@ -15,7 +15,7 @@ class ShowUseCase
     ) {}
 
     /**
-     * @return Collection<\App\Models\Inquiry>
+     * @return Collection<int, \App\Models\Inquiry>
      */
     public function __invoke(): Collection
     {

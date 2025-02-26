@@ -45,7 +45,11 @@ class UpdateInquiry extends Component
      */
     public function mount(int $id): void
     {
-        $this->form->setInquiry(($this->inquiryEditUseCase)($id));
+        $inquiry = ($this->inquiryEditUseCase)($id);
+
+        if (!$inquiry) return;
+
+        $this->form->setInquiry($inquiry);
     }
 
     /**
