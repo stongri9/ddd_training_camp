@@ -7,9 +7,6 @@ use Illuminate\Database\Eloquent\Collection;
 
 class ShowUseCase
 {
-    /**
-     * @param IInquiryRepository $inquiryRepository
-     */
     public function __construct(
         private readonly IInquiryRepository $inquiryRepository,
     ) {}

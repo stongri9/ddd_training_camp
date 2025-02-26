@@ -4,17 +4,12 @@ namespace App\Domains\Shared;
 
 class ZipCode
 {
-    /**
-     * @param string $value
-     */
     private function __construct(
         public readonly string $value
     ) {}
 
     /**
-     * @param string $zipCode
      * @throws \InvalidArgumentException
-     * @return ZipCode
      */
     public static function create(string $zipCode): self
     {

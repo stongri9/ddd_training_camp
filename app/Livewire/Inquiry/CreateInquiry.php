@@ -10,28 +10,15 @@ use Livewire\Component;
 
 class CreateInquiry extends Component
 {
-    /**
-     * @var CreateForm
-     */
     public CreateForm $form;
 
-    /**
-     * @var CreateUseCase
-     */
     private CreateUseCase $createUseCase;
 
-    /**
-     * @param CreateUseCase $createUseCase
-     * @return void
-     */
     public function boot(CreateUseCase $createUseCase): void
     {
         $this->createUseCase = $createUseCase;
     }
 
-    /**
-     * @return void
-     */
     public function execute(): void
     {
         $this->validate();
@@ -46,9 +33,6 @@ class CreateInquiry extends Component
         $this->redirect('/inquiry');
     }
 
-    /**
-     * @return View
-     */
     public function render(): View
     {
         return view('livewire.inquiry.create-inquiry');

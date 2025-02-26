@@ -8,10 +8,6 @@ use App\Models\Inquiry as InquiryModel;
 
 class InquiryRepository implements IInquiryRepository
 {
-    /**
-     * @param int $id
-     * @return InquiryModel|null
-     */
     public function find(int $id): ?InquiryModel
     {
         return InquiryModel::find($id);
@@ -25,19 +21,13 @@ class InquiryRepository implements IInquiryRepository
         return InquiryModel::all();
     }
 
-    /**
-     * @param \App\Domains\Inquiry\Inquiry $inquiry
-     * @return void
-     */
     public function create(Inquiry $inquiry): void
     {
         InquiryModel::create($inquiry->convertParams());
     }
 
     /**
-     * @param \App\Domains\Inquiry\Inquiry $inquiry
      * @throws \Exception
-     * @return void
      */
     public function update(Inquiry $inquiry): void
     {

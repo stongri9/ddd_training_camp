@@ -4,17 +4,12 @@ namespace App\Domains\Shared;
 
 class Tel
 {
-    /**
-     * @param string $value
-     */
     private function __construct(
         public readonly string $value,
     ) {}
 
     /**
-     * @param string $tel
      * @throws \InvalidArgumentException
-     * @return Tel
      */
     public static function create(string $tel): self
     {

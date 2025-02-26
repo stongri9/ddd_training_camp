@@ -17,12 +17,6 @@ class PublishShiftEvent
         public private(set) int $createdUserId
     ) {}
 
-    /**
-     * @param int $shiftId
-     * @param string $date
-     * @param int $createdUserId
-     * @return PublishShiftEvent
-     */
     public static function create(
         int $shiftId,
         string $date,
@@ -36,13 +30,6 @@ class PublishShiftEvent
         );
     }
 
-    /**
-     * @param int $id
-     * @param int $shiftId
-     * @param string $date
-     * @param int $createdUserId
-     * @return PublishShiftEvent
-     */
     public static function reconstruct(
         int $id,
         int $shiftId,

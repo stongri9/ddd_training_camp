@@ -9,8 +9,6 @@ class Logout
 {
     /**
      * Log the current user out of the application.
-     * 
-     * @return void
      */
     public function __invoke(): void
     {

@@ -66,3 +66,15 @@ php artisan test
 # DB接続を含むテスト
 ./vendor/bin/sail artisan test
 ```
+
+# 各種ツール
+```
+# フォーマット
+composer format
+
+# 静的解析
+composer analize
+
+# ↑二つ
+composer check
+```

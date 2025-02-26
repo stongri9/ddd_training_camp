@@ -25,15 +25,6 @@ class Inquiry
         public private(set) string $content,
     ) {}
 
-    /**
-     * @param string $last_name
-     * @param string $first_name
-     * @param string $tel
-     * @param string $zip_code
-     * @param string $address
-     * @param string $content
-     * @return Inquiry
-     */
     public static function create(
         string $last_name,
         string $first_name,
@@ -53,16 +44,6 @@ class Inquiry
         );
     }
 
-    /**
-     * @param int $id
-     * @param string $last_name
-     * @param string $first_name
-     * @param string $tel
-     * @param string $zip_code
-     * @param string $address
-     * @param string $content
-     * @return Inquiry
-     */
     public static function reconstract(
         int $id,
         string $last_name,
@@ -83,15 +64,6 @@ class Inquiry
         );
     }
 
-    /**
-     * @param string $last_name
-     * @param string $first_name
-     * @param string $tel
-     * @param string $zip_code
-     * @param string $address
-     * @param string $content
-     * @return void
-     */
     public function update(
         string $last_name,
         string $first_name,

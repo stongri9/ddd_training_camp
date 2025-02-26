@@ -163,12 +163,6 @@ parameters:
 			path: app/Repositories/Inquiry/InquiryRepository.php
 
 		-
-			message: '#^PHPDoc tag @return with type App\\Models\\Inquiry\|null is not subtype of native type App\\Models\\Inquiry\.$#'
-			identifier: return.phpDocType
-			count: 1
-			path: app/Repositories/Inquiry/InquiryRepository.php
-
-		-
 			message: '#^Access to an undefined property App\\Models\\Inquiry\:\:\$address\.$#'
 			identifier: property.notFound
 			count: 1

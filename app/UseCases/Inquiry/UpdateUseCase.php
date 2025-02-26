@@ -7,21 +7,16 @@ use App\Domains\Inquiry\Inquiry;
 
 class UpdateUseCase
 {
-    /**
-     * @param IInquiryRepository $inquiryRepository
-     */
     public function __construct(private readonly IInquiryRepository $inquiryRepository) {}
 
     /**
-     * @param UpdateUseCaseDto $updateUseCaseDto
      * @throws \Exception
-     * @return void
      */
     public function __invoke(UpdateUseCaseDto $updateUseCaseDto): void
     {
         $model = $this->inquiryRepository->find($updateUseCaseDto->id);
 
-        if (!$model) {
+        if (! $model) {
             throw new \Exception('問合せデータが登録されていません');
         }
 

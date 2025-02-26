@@ -5,7 +5,6 @@ namespace App\UseCases\User;
 class SubmitDayOffRequestUseCaseDto
 {
     /**
-     * @param  int  $userId
      * @param  string[]  $dayOffRequests
      */
     private function __construct(
@@ -15,9 +14,8 @@ class SubmitDayOffRequestUseCaseDto
 
     /**
      * Summary of create
-     * @param int $userId
-     * @param string[] $dayOffRequests
-     * @return SubmitDayOffRequestUseCaseDto
+     *
+     * @param  string[]  $dayOffRequests
      */
     public static function create(
         int $userId,

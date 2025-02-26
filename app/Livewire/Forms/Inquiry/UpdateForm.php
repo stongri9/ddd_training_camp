@@ -50,10 +50,6 @@ class UpdateForm extends Form
     #[Validate('required')]
     public $content = '';
 
-    /**
-     * @param \App\Models\Inquiry $inquiry
-     * @return void
-     */
     public function setInquiry(Inquiry $inquiry): void
     {
         $this->id = $inquiry->id;

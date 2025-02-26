@@ -2,7 +2,6 @@
 
 namespace App\UseCases\User;
 
-use App\Domains\User\DayOffRequest;
 use App\Domains\User\IUserRepository;
 use App\Domains\User\SubmitDayOffRequestSpecification;
 use App\Domains\User\User;

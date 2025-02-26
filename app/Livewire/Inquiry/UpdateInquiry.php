@@ -11,26 +11,12 @@ use Livewire\Component;
 
 class UpdateInquiry extends Component
 {
-    /**
-     * @var UpdateForm
-     */
     public UpdateForm $form;
 
-    /**
-     * @var InquiryEditUseCase
-     */
     private InquiryEditUseCase $inquiryEditUseCase;
 
-    /**
-     * @var InquiryUpdateUseCase
-     */
     private InquiryUpdateUseCase $inquiryUpdateUseCase;
 
-    /**
-     * @param \App\UseCases\Inquiry\EditUseCase $inquiryEditUseCase
-     * @param \App\UseCases\Inquiry\UpdateUseCase $inquiryUpdateUseCase
-     * @return void
-     */
     public function boot(
         InquiryEditUseCase $inquiryEditUseCase,
         InquiryUpdateUseCase $inquiryUpdateUseCase,
@@ -39,22 +25,17 @@ class UpdateInquiry extends Component
         $this->inquiryUpdateUseCase = $inquiryUpdateUseCase;
     }
 
-    /**
-     * @param int $id
-     * @return void
-     */
     public function mount(int $id): void
     {
         $inquiry = ($this->inquiryEditUseCase)($id);
 
-        if (!$inquiry) return;
+        if (! $inquiry) {
+            return;
+        }
 
         $this->form->setInquiry($inquiry);
     }
 
-    /**
-     * @return void
-     */
     public function execute(): void
     {
         $this->validate();
@@ -69,9 +50,6 @@ class UpdateInquiry extends Component
         $this->redirect('/inquiry');
     }
 
-    /**
-     * @return View
-     */
     public function render(): View
     {
         return view('livewire.inquiry.update-inquiry');

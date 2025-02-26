@@ -5,8 +5,7 @@ namespace App\Domains\User;
 class User
 {
     /**
-     * @param int|null $id
-     * @param DayOffRequest[] $dayOffRequests
+     * @param  DayOffRequest[]  $dayOffRequests
      */
     private function __construct(
         public readonly ?int $id,
@@ -14,8 +13,7 @@ class User
     ) {}
 
     /**
-     * @param string[] $dayOffRequests
-     * @return User
+     * @param  string[]  $dayOffRequests
      */
     public static function create(array $dayOffRequests): self
     {
@@ -28,7 +26,7 @@ class User
     /**
      * @param  string[]  $newDayOffRequests
      */
-    public function update(array $newDayOffRequests): void 
+    public function update(array $newDayOffRequests): void
     {
         $this->dayOffRequests = $this->createDayOffRequests($newDayOffRequests);
     }
