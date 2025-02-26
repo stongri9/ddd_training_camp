@@ -9,20 +9,25 @@ use App\Models\Inquiry as InquiryModel;
 class InquiryRepository implements IInquiryRepository
 {
     /**
-     * 1件取得
+     * @param int $id
+     * @return InquiryModel|null
      */
     public function find(int $id): InquiryModel
     {
         return InquiryModel::find($id);
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Collection<int, InquiryModel>
+     */
     public function findAll(): \Illuminate\Database\Eloquent\Collection
     {
         return InquiryModel::all();
     }
 
     /**
-     * インサート処理
+     * @param \App\Domains\Inquiry\Inquiry $inquiry
+     * @return void
      */
     public function create(Inquiry $inquiry): void
     {
@@ -30,7 +35,9 @@ class InquiryRepository implements IInquiryRepository
     }
 
     /**
-     * アップデート処理
+     * @param \App\Domains\Inquiry\Inquiry $inquiry
+     * @throws \Exception
+     * @return void
      */
     public function update(Inquiry $inquiry): void
     {

@@ -1,6 +1,114 @@
 parameters:
 	ignoreErrors:
 		-
+			message: '#^Call to an undefined method Illuminate\\Contracts\\Auth\\Guard\:\:logout\(\)\.$#'
+			identifier: method.notFound
+			count: 1
+			path: app/Livewire/Actions/Logout.php
+
+		-
+			message: '#^Access to an undefined property App\\Models\\Inquiry\:\:\$address\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/Livewire/Forms/Inquiry/UpdateForm.php
+
+		-
+			message: '#^Access to an undefined property App\\Models\\Inquiry\:\:\$content\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/Livewire/Forms/Inquiry/UpdateForm.php
+
+		-
+			message: '#^Access to an undefined property App\\Models\\Inquiry\:\:\$first_name\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/Livewire/Forms/Inquiry/UpdateForm.php
+
+		-
+			message: '#^Access to an undefined property App\\Models\\Inquiry\:\:\$id\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/Livewire/Forms/Inquiry/UpdateForm.php
+
+		-
+			message: '#^Access to an undefined property App\\Models\\Inquiry\:\:\$last_name\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/Livewire/Forms/Inquiry/UpdateForm.php
+
+		-
+			message: '#^Access to an undefined property App\\Models\\Inquiry\:\:\$tel\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/Livewire/Forms/Inquiry/UpdateForm.php
+
+		-
+			message: '#^Access to an undefined property App\\Models\\Inquiry\:\:\$zip_code\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/Livewire/Forms/Inquiry/UpdateForm.php
+
+		-
+			message: '#^Class App\\Livewire\\Inquiry\\CreateInquiry has an uninitialized property \$createUseCase\. Give it default value or assign it in the constructor\.$#'
+			identifier: property.uninitialized
+			count: 1
+			path: app/Livewire/Inquiry/CreateInquiry.php
+
+		-
+			message: '#^Class App\\Livewire\\Inquiry\\CreateInquiry has an uninitialized property \$form\. Give it default value or assign it in the constructor\.$#'
+			identifier: property.uninitialized
+			count: 1
+			path: app/Livewire/Inquiry/CreateInquiry.php
+
+		-
+			message: '#^Class App\\Livewire\\Inquiry\\ShowInquiry has an uninitialized property \$inquiries\. Give it default value or assign it in the constructor\.$#'
+			identifier: property.uninitialized
+			count: 1
+			path: app/Livewire/Inquiry/ShowInquiry.php
+
+		-
+			message: '#^Class App\\Livewire\\Inquiry\\ShowInquiry has an uninitialized property \$showUseCase\. Give it default value or assign it in the constructor\.$#'
+			identifier: property.uninitialized
+			count: 1
+			path: app/Livewire/Inquiry/ShowInquiry.php
+
+		-
+			message: '#^Class App\\Livewire\\Inquiry\\UpdateInquiry has an uninitialized property \$form\. Give it default value or assign it in the constructor\.$#'
+			identifier: property.uninitialized
+			count: 1
+			path: app/Livewire/Inquiry/UpdateInquiry.php
+
+		-
+			message: '#^Class App\\Livewire\\Inquiry\\UpdateInquiry has an uninitialized property \$inquiryEditUseCase\. Give it default value or assign it in the constructor\.$#'
+			identifier: property.uninitialized
+			count: 1
+			path: app/Livewire/Inquiry/UpdateInquiry.php
+
+		-
+			message: '#^Class App\\Livewire\\Inquiry\\UpdateInquiry has an uninitialized property \$inquiryUpdateUseCase\. Give it default value or assign it in the constructor\.$#'
+			identifier: property.uninitialized
+			count: 1
+			path: app/Livewire/Inquiry/UpdateInquiry.php
+
+		-
+			message: '#^Method App\\Models\\User\:\:casts\(\) overrides method Illuminate\\Database\\Eloquent\\Model\:\:casts\(\) but is missing the \#\[\\Override\] attribute\.$#'
+			identifier: method.missingOverride
+			count: 1
+			path: app/Models/User.php
+
+		-
+			message: '#^Method App\\Providers\\AppServiceProvider\:\:register\(\) overrides method Illuminate\\Support\\ServiceProvider\:\:register\(\) but is missing the \#\[\\Override\] attribute\.$#'
+			identifier: method.missingOverride
+			count: 1
+			path: app/Providers/AppServiceProvider.php
+
+		-
+			message: '#^Method App\\Providers\\VoltServiceProvider\:\:register\(\) overrides method Illuminate\\Support\\ServiceProvider\:\:register\(\) but is missing the \#\[\\Override\] attribute\.$#'
+			identifier: method.missingOverride
+			count: 1
+			path: app/Providers/VoltServiceProvider.php
+
+		-
 			message: '#^Call to an undefined static method App\\Models\\Inquiry\:\:create\(\)\.$#'
 			identifier: staticMethod.notFound
 			count: 1
@@ -11,3 +119,195 @@ parameters:
 			identifier: staticMethod.notFound
 			count: 2
 			path: app/Repositories/Inquiry/InquiryRepository.php
+
+		-
+			message: '#^Method App\\Repositories\\Inquiry\\InquiryRepository\:\:create\(\) overrides method App\\Domains\\Inquiry\\IInquiryRepository\:\:create\(\) but is missing the \#\[\\Override\] attribute\.$#'
+			identifier: method.missingOverride
+			count: 1
+			path: app/Repositories/Inquiry/InquiryRepository.php
+
+		-
+			message: '#^Method App\\Repositories\\Inquiry\\InquiryRepository\:\:find\(\) overrides method App\\Domains\\Inquiry\\IInquiryRepository\:\:find\(\) but is missing the \#\[\\Override\] attribute\.$#'
+			identifier: method.missingOverride
+			count: 1
+			path: app/Repositories/Inquiry/InquiryRepository.php
+
+		-
+			message: '#^Method App\\Repositories\\Inquiry\\InquiryRepository\:\:findAll\(\) overrides method App\\Domains\\Inquiry\\IInquiryRepository\:\:findAll\(\) but is missing the \#\[\\Override\] attribute\.$#'
+			identifier: method.missingOverride
+			count: 1
+			path: app/Repositories/Inquiry/InquiryRepository.php
+
+		-
+			message: '#^Method App\\Repositories\\Inquiry\\InquiryRepository\:\:update\(\) overrides method App\\Domains\\Inquiry\\IInquiryRepository\:\:update\(\) but is missing the \#\[\\Override\] attribute\.$#'
+			identifier: method.missingOverride
+			count: 1
+			path: app/Repositories/Inquiry/InquiryRepository.php
+
+		-
+			message: '#^PHPDoc tag @return with type App\\Models\\Inquiry\|null is not subtype of native type App\\Models\\Inquiry\.$#'
+			identifier: return.phpDocType
+			count: 1
+			path: app/Repositories/Inquiry/InquiryRepository.php
+
+		-
+			message: '#^Access to an undefined property App\\Models\\Inquiry\:\:\$address\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/UseCases/Inquiry/UpdateUseCase.php
+
+		-
+			message: '#^Access to an undefined property App\\Models\\Inquiry\:\:\$content\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/UseCases/Inquiry/UpdateUseCase.php
+
+		-
+			message: '#^Access to an undefined property App\\Models\\Inquiry\:\:\$first_name\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/UseCases/Inquiry/UpdateUseCase.php
+
+		-
+			message: '#^Access to an undefined property App\\Models\\Inquiry\:\:\$id\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/UseCases/Inquiry/UpdateUseCase.php
+
+		-
+			message: '#^Access to an undefined property App\\Models\\Inquiry\:\:\$last_name\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/UseCases/Inquiry/UpdateUseCase.php
+
+		-
+			message: '#^Access to an undefined property App\\Models\\Inquiry\:\:\$tel\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/UseCases/Inquiry/UpdateUseCase.php
+
+		-
+			message: '#^Access to an undefined property App\\Models\\Inquiry\:\:\$zip_code\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/UseCases/Inquiry/UpdateUseCase.php
+
+		-
+			message: '#^Access to an undefined property App\\Models\\User\:\:\$dayOffRequests\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/UseCases/User/SubmitDayOffRequestUseCase.php
+
+		-
+			message: '#^Access to an undefined property App\\Models\\User\:\:\$id\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/UseCases/User/SubmitDayOffRequestUseCase.php
+
+		-
+			message: '#^Method App\\View\\Components\\AppLayout\:\:render\(\) overrides method Illuminate\\View\\Component\:\:render\(\) but is missing the \#\[\\Override\] attribute\.$#'
+			identifier: method.missingOverride
+			count: 1
+			path: app/View/Components/AppLayout.php
+
+		-
+			message: '#^Method App\\View\\Components\\GuestLayout\:\:render\(\) overrides method Illuminate\\View\\Component\:\:render\(\) but is missing the \#\[\\Override\] attribute\.$#'
+			identifier: method.missingOverride
+			count: 1
+			path: app/View/Components/GuestLayout.php
+
+		-
+			message: '#^Access to an undefined property App\\Models\\User\|Illuminate\\Database\\Eloquent\\Collection\<int, App\\Models\\User\>\:\:\$email\.$#'
+			identifier: property.notFound
+			count: 2
+			path: tests/Feature/Auth/AuthenticationTest.php
+
+		-
+			message: '#^Call to an undefined method Illuminate\\Testing\\TestResponse\:\:assertSeeVolt\(\)\.$#'
+			identifier: method.notFound
+			count: 2
+			path: tests/Feature/Auth/AuthenticationTest.php
+
+		-
+			message: '#^Access to an undefined property App\\Models\\User\|Illuminate\\Database\\Eloquent\\Collection\<int, App\\Models\\User\>\:\:\$email\.$#'
+			identifier: property.notFound
+			count: 1
+			path: tests/Feature/Auth/EmailVerificationTest.php
+
+		-
+			message: '#^Access to an undefined property App\\Models\\User\|Illuminate\\Database\\Eloquent\\Collection\<int, App\\Models\\User\>\:\:\$id\.$#'
+			identifier: property.notFound
+			count: 2
+			path: tests/Feature/Auth/EmailVerificationTest.php
+
+		-
+			message: '#^Call to an undefined method Illuminate\\Testing\\TestResponse\:\:assertSeeVolt\(\)\.$#'
+			identifier: method.notFound
+			count: 1
+			path: tests/Feature/Auth/EmailVerificationTest.php
+
+		-
+			message: '#^Call to an undefined method Illuminate\\Testing\\TestResponse\:\:assertSeeVolt\(\)\.$#'
+			identifier: method.notFound
+			count: 1
+			path: tests/Feature/Auth/PasswordConfirmationTest.php
+
+		-
+			message: '#^Access to an undefined property App\\Models\\User\|Illuminate\\Database\\Eloquent\\Collection\<int, App\\Models\\User\>\:\:\$email\.$#'
+			identifier: property.notFound
+			count: 4
+			path: tests/Feature/Auth/PasswordResetTest.php
+
+		-
+			message: '#^Call to an undefined method Illuminate\\Testing\\TestResponse\:\:assertSeeVolt\(\)\.$#'
+			identifier: method.notFound
+			count: 2
+			path: tests/Feature/Auth/PasswordResetTest.php
+
+		-
+			message: '#^Access to an undefined property App\\Models\\User\:\:\$password\.$#'
+			identifier: property.notFound
+			count: 1
+			path: tests/Feature/Auth/PasswordUpdateTest.php
+
+		-
+			message: '#^Call to an undefined method Illuminate\\Testing\\TestResponse\:\:assertSeeVolt\(\)\.$#'
+			identifier: method.notFound
+			count: 1
+			path: tests/Feature/Auth/RegistrationTest.php
+
+		-
+			message: '#^Access to an undefined property App\\Models\\User\:\:\$email_verified_at\.$#'
+			identifier: property.notFound
+			count: 1
+			path: tests/Feature/ProfileTest.php
+
+		-
+			message: '#^Access to an undefined property App\\Models\\User\|Illuminate\\Database\\Eloquent\\Collection\<int, App\\Models\\User\>\:\:\$email\.$#'
+			identifier: property.notFound
+			count: 2
+			path: tests/Feature/ProfileTest.php
+
+		-
+			message: '#^Access to an undefined property App\\Models\\User\|Illuminate\\Database\\Eloquent\\Collection\<int, App\\Models\\User\>\:\:\$email_verified_at\.$#'
+			identifier: property.notFound
+			count: 1
+			path: tests/Feature/ProfileTest.php
+
+		-
+			message: '#^Access to an undefined property App\\Models\\User\|Illuminate\\Database\\Eloquent\\Collection\<int, App\\Models\\User\>\:\:\$name\.$#'
+			identifier: property.notFound
+			count: 1
+			path: tests/Feature/ProfileTest.php
+
+		-
+			message: '#^Call to an undefined method Illuminate\\Testing\\TestResponse\:\:assertSeeVolt\(\)\.$#'
+			identifier: method.notFound
+			count: 1
+			path: tests/Feature/ProfileTest.php
+
+		-
+			message: '#^Call to method PHPUnit\\Framework\\Assert\:\:assertTrue\(\) with true will always evaluate to true\.$#'
+			identifier: method.alreadyNarrowedType
+			count: 1
+			path: tests/Unit/ExampleTest.php

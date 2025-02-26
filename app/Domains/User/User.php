@@ -5,32 +5,37 @@ namespace App\Domains\User;
 class User
 {
     /**
-     * @param  DayOffRequest[]  $dayOffRequests
+     * @param int|null $id
+     * @param DayOffRequest[] $dayOffRequests
      */
     private function __construct(
         public readonly ?int $id,
-        public private(set) array $dayOffRequests
-    ) {
-        $this->dayOffRequests = $this->createDayOffRequests($dayOffRequests);
-    }
+        public private(set) array $dayOffRequests,
+    ) {}
 
-    public static function create(): self
+    /**
+     * @param string[] $dayOffRequests
+     * @return User
+     */
+    public static function create(array $dayOffRequests): self
     {
         return new self(
             null,
-            [],
+            self::createDayOffRequests($dayOffRequests),
         );
     }
 
     /**
-     * @param  DayOffRequest[]  $dayOffRequests
+     * @param  string[]  $newDayOffRequests
      */
-    public function update(
-        array $newDayOffRequests
-    ): void {
+    public function update(array $newDayOffRequests): void 
+    {
         $this->dayOffRequests = $this->createDayOffRequests($newDayOffRequests);
     }
 
+    /**
+     * @return array{dayOffRequests: DayOffRequest[], id: int|null}
+     */
     public function convertParams(): array
     {
         return [
@@ -52,7 +57,7 @@ class User
     }
 
     /**
-     * @param  string[]  $dayOffRequest
+     * @param  string[]  $dayOffRequests
      * @return DayOffRequest[]
      */
     private static function createDayOffRequests(array $dayOffRequests): array

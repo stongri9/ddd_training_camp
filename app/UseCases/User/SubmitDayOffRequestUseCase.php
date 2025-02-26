@@ -28,10 +28,7 @@ class SubmitDayOffRequestUseCase
         $user = User::reconstruct($userModel->id, $userModel->dayOffRequests);
 
         try {
-            $user->update(array_map(
-                fn ($dayOffRequest) => DayOffRequest::create($dayOffRequest),
-                $dto->dayOffRequests),
-            );
+            $user->update($dto->dayOffRequests);
             $this->userRepository->update($user);
         } catch (\Exception $e) {
             throw $e;

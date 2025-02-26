@@ -7,27 +7,25 @@ use DateTimeImmutable;
 class DayOffRequest
 {
     /**
-     * @param  string  $date
+     * @param \DateTimeImmutable $date
      */
-    private function __construct(
-        public DateTimeImmutable $date,
-    ) {}
+    private function __construct(public DateTimeImmutable $date) {}
 
     /**
-     * @return \App\Domains\DayOffRequest
+     * @param string $date
+     * @return DayOffRequest
      */
-    public static function create(
-        string $date
-    ): self {
+    public static function create(string $date): self 
+    {
         return new self(new DateTimeImmutable($date));
     }
 
     /**
-     * @return \App\Domains\DayOffRequest
+     * @param string $date
+     * @return DayOffRequest
      */
-    public static function reconstruct(
-        string $date
-    ): self {
+    public static function reconstruct(string $date): self 
+    {
         return new self(new DateTimeImmutable($date));
     }
 }

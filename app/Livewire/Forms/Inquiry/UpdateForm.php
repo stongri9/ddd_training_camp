@@ -6,7 +6,7 @@ use App\Models\Inquiry;
 use Livewire\Attributes\Validate;
 use Livewire\Form;
 
-class UpdateInquiryForm extends Form
+class UpdateForm extends Form
 {
     #[Validate('required', 'int')]
     public $id = '';

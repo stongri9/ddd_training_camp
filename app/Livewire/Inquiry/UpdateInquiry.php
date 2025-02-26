@@ -2,34 +2,55 @@
 
 namespace App\Livewire\Inquiry;
 
-use App\Livewire\Forms\Inquiry\UpdateInquiryForm;
+use App\Livewire\Forms\Inquiry\UpdateForm;
 use App\UseCases\Inquiry\EditUseCase as InquiryEditUseCase;
 use App\UseCases\Inquiry\UpdateUseCase as InquiryUpdateUseCase;
 use App\UseCases\Inquiry\UpdateUseCaseDto;
-use Illuminate\View\View;
+use Illuminate\Contracts\View\View;
 use Livewire\Component;
 
 class UpdateInquiry extends Component
 {
-    public UpdateInquiryForm $form;
+    /**
+     * @var UpdateForm
+     */
+    public UpdateForm $form;
 
+    /**
+     * @var InquiryEditUseCase
+     */
     private InquiryEditUseCase $inquiryEditUseCase;
 
+    /**
+     * @var InquiryUpdateUseCase
+     */
     private InquiryUpdateUseCase $inquiryUpdateUseCase;
 
+    /**
+     * @param \App\UseCases\Inquiry\EditUseCase $inquiryEditUseCase
+     * @param \App\UseCases\Inquiry\UpdateUseCase $inquiryUpdateUseCase
+     * @return void
+     */
     public function boot(
         InquiryEditUseCase $inquiryEditUseCase,
-        InquiryUpdateUseCase $inquiryUpdateUseCase
+        InquiryUpdateUseCase $inquiryUpdateUseCase,
     ): void {
         $this->inquiryEditUseCase = $inquiryEditUseCase;
         $this->inquiryUpdateUseCase = $inquiryUpdateUseCase;
     }
 
+    /**
+     * @param int $id
+     * @return void
+     */
     public function mount(int $id): void
     {
         $this->form->setInquiry(($this->inquiryEditUseCase)($id));
     }
 
+    /**
+     * @return void
+     */
     public function execute(): void
     {
         $this->validate();
@@ -44,6 +65,9 @@ class UpdateInquiry extends Component
         $this->redirect('/inquiry');
     }
 
+    /**
+     * @return View
+     */
     public function render(): View
     {
         return view('livewire.inquiry.update-inquiry');

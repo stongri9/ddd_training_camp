@@ -5,7 +5,7 @@ namespace App\Livewire\Forms\Inquiry;
 use Livewire\Attributes\Validate;
 use Livewire\Form;
 
-class CreateInquiryForm extends Form
+class CreateForm extends Form
 {
     #[Validate('required')]
     public $last_name = '';
