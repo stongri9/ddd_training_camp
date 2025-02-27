@@ -1,13 +1,17 @@
-<?php 
+<?php
 
 namespace App\Domains\Inquiry;
 
 use App\Models\Inquiry as InquiryModel;
 use Illuminate\Database\Eloquent\Collection;
 
-interface IInquiryRepository {
-    public function find(int $id): InquiryModel;
+interface IInquiryRepository
+{
+    public function find(int $id): ?InquiryModel;
 
+    /**
+     * @return Collection<int, InquiryModel>
+     */
     public function findAll(): Collection;
 
     public function create(Inquiry $inquiry): void;

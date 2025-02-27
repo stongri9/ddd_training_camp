@@ -5,7 +5,8 @@ namespace App\UseCases\Inquiry;
 use App\Domains\Inquiry\IInquiryRepository;
 use App\Domains\Inquiry\Inquiry;
 
-class CreateUseCase {
+class CreateUseCase
+{
     public function __construct(
         private readonly IInquiryRepository $inquiryRepository,
     ) {}
