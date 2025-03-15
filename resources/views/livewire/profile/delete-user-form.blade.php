@@ -34,10 +34,10 @@ new class extends Component
         </p>
     </header>
 
-    <x-danger-button
+    <x-m-danger-button
         x-data=""
         x-on:click.prevent="$dispatch('open-modal', 'confirm-user-deletion')"
-    >{{ __('Delete Account') }}</x-danger-button>
+    >{{ __('Delete Account') }}</x-m-danger-button>
 
     <x-modal name="confirm-user-deletion" :show="$errors->isNotEmpty()" focusable>
         <form wire:submit="deleteUser" class="p-6">
@@ -66,13 +66,13 @@ new class extends Component
             </div>
 
             <div class="mt-6 flex justify-end">
-                <x-secondary-button x-on:click="$dispatch('close')">
+                <x-m-secondary-button x-on:click="$dispatch('close')">
                     {{ __('Cancel') }}
-                </x-secondary-button>
+                </x-m-secondary-button>
 
-                <x-danger-button class="ms-3">
+                <x-m-danger-button class="ms-3">
                     {{ __('Delete Account') }}
-                </x-danger-button>
+                </x-m-danger-button>
             </div>
         </form>
     </x-modal>
