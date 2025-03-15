@@ -21,6 +21,10 @@ class CreateUseCase
         private readonly ShiftFactory $shiftFactory,
     ) {}
 
+    /**
+     * @param CreateUseCaseDto $createUseCaseDto
+     * @return Collection<int, \app\Domains\Shift\Shift>
+     */
     public function __invoke(CreateUseCaseDto $createUseCaseDto): Collection
     {
         $shiftCollection = new Collection;
@@ -31,7 +35,7 @@ class CreateUseCase
         $confirmedNextShift = null;
         // 開始日〜終了日まで1日ずつ加算しながら日ごとのシフトを作成する
         for (; $date->diff($endDate)->d !== 0; $date->modify('+1 day')) {
-            if ($date === $endDate) {
+            if ($date->format('Y-m-d') === $endDate->format('Y-m-d')) {
                 $confirmedNextShift = $this->shiftRepository->getShiftByDate($date->modify('+1 day'));
             }
             $entity = $this->shiftFactory->create($date, $users, $previousShift, $confirmedNextShift);

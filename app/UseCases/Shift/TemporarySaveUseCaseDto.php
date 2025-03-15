@@ -6,6 +6,12 @@ use DateTimeImmutable;
 
 class TemporarySaveUseCaseDto
 {
+    /**
+     * @param DateTimeImmutable $date
+     * @param int[] $dayShiftUserIds
+     * @param int[] $lateShiftUserIds
+     * @param int[] $nightShiftUserIds
+     */
     private function __construct(
         public readonly DateTimeImmutable $date,
         public readonly array $dayShiftUserIds,
@@ -13,6 +19,13 @@ class TemporarySaveUseCaseDto
         public readonly array $nightShiftUserIds,
     ) {}
 
+    /**
+     * @param DateTimeImmutable $date
+     * @param int[] $dayShiftUserIds
+     * @param int[] $lateShiftUserIds
+     * @param int[] $nightShiftUserIds
+     * @return self
+     */
     public static function create(
         DateTimeImmutable $date,
         array $dayShiftUserIds,
