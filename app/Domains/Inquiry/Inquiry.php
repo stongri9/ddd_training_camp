@@ -2,16 +2,16 @@
 
 namespace app\Domains\Inquiry;
 
-use App\Domains\Shared\Tel;
-use App\Domains\Shared\ZipCode;
+use app\Domains\Shared\Tel;
+use app\Domains\Shared\ZipCode;
 
 class Inquiry
 {
     /**
      * @param  string  $last_name
      * @param  string  $first_name
-     * @param  \App\Domains\Shared\Tel  $tel
-     * @param  \App\Domains\Shared\ZipCode  $zip_code
+     * @param  Tel  $tel
+     * @param  ZipCode  $zip_code
      * @param  string  $address
      * @param  string  $content
      */

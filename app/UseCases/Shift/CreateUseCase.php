@@ -2,11 +2,11 @@
 
 namespace app\UseCases\Shift;
 
-use App\Domains\Shift\CreateShiftContinueSpecification;
-use App\Domains\Shift\CreateShiftUserRoleSpecification;
-use App\Domains\Shift\IShiftRepository;
-use App\Domains\Shift\ShiftFactory;
-use App\Domains\User\IUserRepository;
+use app\Domains\Shift\CreateShiftContinueSpecification;
+use app\Domains\Shift\CreateShiftUserRoleSpecification;
+use app\Domains\Shift\IShiftRepository;
+use app\Domains\Shift\ShiftFactory;
+use app\Domains\User\IUserRepository;
 use DateTime;
 use DateTimeImmutable;
 use Illuminate\Support\Collection;

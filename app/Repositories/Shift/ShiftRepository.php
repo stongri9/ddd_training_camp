@@ -2,9 +2,9 @@
 
 namespace app\Repositories\Shift;
 
-use App\Domains\Shift\IShiftRepository;
-use App\Domains\Shift\Shift;
-use App\Models\Shift as ShiftModel;
+use app\Domains\Shift\IShiftRepository;
+use app\Domains\Shift\Shift;
+use app\Models\Shift as ShiftModel;
 use Illuminate\Support\Collection;
 
 class ShiftRepository implements IShiftRepository
@@ -12,7 +12,7 @@ class ShiftRepository implements IShiftRepository
     /**
      * 最新のシフトを1件取得
      *
-     * @return \App\Models\Shift
+     * @return Shift
      */
     public function getLatestShift(): ?Shift
     {

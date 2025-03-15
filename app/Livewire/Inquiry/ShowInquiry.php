@@ -2,7 +2,7 @@
 
 namespace app\Livewire\Inquiry;
 
-use App\UseCases\Inquiry\ShowUseCase;
+use app\UseCases\Inquiry\ShowUseCase;
 use Illuminate\Contracts\View\View;
 use Illuminate\Database\Eloquent\Collection;
 use Livewire\Component;
@@ -10,7 +10,7 @@ use Livewire\Component;
 class ShowInquiry extends Component
 {
     /**
-     * @var Collection<int, \App\Models\Inquiry>
+     * @var Collection<int, \app\Models\Inquiry>
      */
     public Collection $inquiries;
 

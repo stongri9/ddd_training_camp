@@ -2,9 +2,9 @@
 
 namespace App\UseCases\User;
 
-use App\Domains\User\IUserRepository;
-use App\Domains\User\SubmitDayOffRequestSpecification;
-use App\Domains\User\User;
+use app\Domains\User\IUserRepository;
+use app\Domains\User\SubmitDayOffRequestSpecification;
+use app\Domains\User\User;
 use InvalidArgumentException;
 
 class SubmitDayOffRequestUseCase

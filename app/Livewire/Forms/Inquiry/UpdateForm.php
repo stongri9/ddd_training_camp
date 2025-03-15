@@ -2,7 +2,7 @@
 
 namespace app\Livewire\Forms\Inquiry;
 
-use App\Models\Inquiry;
+use app\Models\Inquiry;
 use Livewire\Attributes\Validate;
 use Livewire\Form;
 

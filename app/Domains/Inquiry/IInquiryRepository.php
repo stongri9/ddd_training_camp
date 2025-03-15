@@ -2,7 +2,7 @@
 
 namespace app\Domains\Inquiry;
 
-use App\Models\Inquiry as InquiryModel;
+use app\Models\Inquiry as InquiryModel;
 use Illuminate\Database\Eloquent\Collection;
 
 interface IInquiryRepository

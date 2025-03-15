@@ -2,10 +2,10 @@
 
 namespace app\Providers;
 
-use App\Domains\Inquiry\IInquiryRepository;
-use App\Domains\Shift\IShiftRepository;
-use App\Repositories\Inquiry\InquiryRepository;
-use App\Repositories\Shift\ShiftRepository;
+use app\Domains\Inquiry\IInquiryRepository;
+use app\Domains\Shift\IShiftRepository;
+use app\Repositories\Inquiry\InquiryRepository;
+use app\Repositories\Shift\ShiftRepository;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider

@@ -2,7 +2,7 @@
 
 namespace App\Domains\User;
 
-use App\Domains\Shift\IShiftRepository;
+use app\Domains\Shift\IShiftRepository;
 use DateTimeImmutable;
 
 class SubmitDayOffRequestSpecification

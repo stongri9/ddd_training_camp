@@ -2,7 +2,7 @@
 
 namespace app\Domains\User;
 
-use App\Models\User as UserModel;
+use app\Models\User as UserModel;
 use Illuminate\Support\Collection;
 
 interface IUserRepository

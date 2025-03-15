@@ -2,7 +2,7 @@
 
 namespace app\Domains\Shift;
 
-use App\Domains\User\IUserRepository;
+use app\Domains\User\IUserRepository;
 
 class CreateShiftUserRoleSpecification
 {

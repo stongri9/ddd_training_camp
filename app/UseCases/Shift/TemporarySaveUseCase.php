@@ -2,10 +2,10 @@
 
 namespace app\UseCases\Shift;
 
-use App\Domains\Shift\CreateShiftContinueSpecification;
-use App\Domains\Shift\CreateShiftUserRoleSpecification;
-use App\Domains\Shift\IShiftRepository;
-use App\Domains\Shift\Shift;
+use app\Domains\Shift\CreateShiftContinueSpecification;
+use app\Domains\Shift\CreateShiftUserRoleSpecification;
+use app\Domains\Shift\IShiftRepository;
+use app\Domains\Shift\Shift;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 

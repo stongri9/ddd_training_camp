@@ -1,6 +1,6 @@
 <?php
 
-use App\Livewire\Actions\Logout;
+use app\Livewire\Actions\Logout;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Livewire\Attributes\Layout;

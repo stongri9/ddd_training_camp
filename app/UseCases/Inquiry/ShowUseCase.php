@@ -2,7 +2,7 @@
 
 namespace app\UseCases\Inquiry;
 
-use App\Domains\Inquiry\IInquiryRepository;
+use app\Domains\Inquiry\IInquiryRepository;
 use Illuminate\Database\Eloquent\Collection;
 
 class ShowUseCase
