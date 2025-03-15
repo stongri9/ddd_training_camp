@@ -31,7 +31,7 @@ class Shift
      */
     public static function create(string $date, array $dayShiftUserIds, array $lateShiftUserIds, array $nightShiftUserIds)
     {
-        if (!collect([...$dayShiftUserIds, ...$lateShiftUserIds, ...$nightShiftUserIds])->every(fn($v) => is_int($v))) {
+        if (! collect([...$dayShiftUserIds, ...$lateShiftUserIds, ...$nightShiftUserIds])->every(fn ($v) => is_int($v))) {
             throw new \InvalidArgumentException('無効なユーザーIDです。');
         }
 
