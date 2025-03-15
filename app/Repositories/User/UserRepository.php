@@ -1,19 +1,45 @@
 <?php
 
-namespace App\Repositories\User;
+namespace app\Repositories\User;
 
-use App\Domains\User\IUserRepository;
-use App\Domains\User\User;
-use App\Models\DayOffRequest;
-use App\Models\User as UserModel;
+use app\Domains\User\IUserRepository;
+use app\Domains\User\User;
+use app\Models\DayOffRequest;
+use app\Models\User as UserModel;
+use Illuminate\Support\Collection;
 
 class UserRepository implements IUserRepository
 {
+    /**
+     * @param  int  $id
+     * @return UserModel|null
+     */
     public function find(int $id): ?UserModel
     {
         return UserModel::find($id);
     }
+    
+    /**
+     * @param  int[]  $ids
+     * @return Collection<int, UserModel>
+     */
+    public function getUsersByIds(array $ids): Collection
+    {
+        return UserModel::whereIn('id', $ids)->get();
+    }
 
+    /**
+     * @return Collection<int, UserModel>
+     */
+    public function findAll(): Collection
+    {
+        return UserModel::all();
+    }
+
+    /**
+     * @param  User  $user
+     * @return void
+     */
     public function update(User $user): void
     {
         $userModel = UserModel::find($user->id);

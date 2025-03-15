@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models;
+namespace app\Models;
 
 use Database\Factories\DayOffRequestFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;

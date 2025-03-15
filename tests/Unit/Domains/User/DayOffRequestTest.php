@@ -2,7 +2,7 @@
 
 namespace Tests\Unit\Domains\User;
 
-use App\Domains\User\DayOffRequest;
+use app\Domains\User\DayOffRequest;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
