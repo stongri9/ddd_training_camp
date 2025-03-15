@@ -7,16 +7,38 @@ use DateTimeImmutable;
 
 class DayOffRequest
 {
-    private function __construct(public DateTimeImmutable $date) {}
+    /**
+     * @param  int|null  $id
+     * @param  int|null  $user_id
+     * @param  DateTimeImmutable  $date
+     */
+    private function __construct(
+        public readonly ?int $id,
+        public readonly ?int $user_id,
+        public private(set) DateTimeImmutable $date
+    ) {}
 
-    public static function create(string $date): self
-    {
-        return new self(new DateTimeImmutable($date));
+    public static function create(
+        ?int $user_id,
+        string $date
+    ): self {
+        return new self(
+            null,
+            $user_id,
+            new DateTimeImmutable($date)
+        );
     }
 
-    public static function reconstruct(string $date): self
-    {
-        return new self(new DateTimeImmutable($date));
+    public static function reconstruct(
+        int $id,
+        int $user_id,
+        string $date
+    ): self {
+        return new self(
+            $id,
+            $user_id,
+            new DateTimeImmutable($date)
+        );
     }
 
     /**
