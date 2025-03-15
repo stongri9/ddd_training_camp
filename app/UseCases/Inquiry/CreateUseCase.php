@@ -1,6 +1,6 @@
 <?php
 
-namespace App\UseCases\Inquiry;
+namespace app\UseCases\Inquiry;
 
 use App\Domains\Inquiry\IInquiryRepository;
 use App\Domains\Inquiry\Inquiry;

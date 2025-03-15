@@ -1,6 +1,6 @@
 <?php 
 
-namespace App\Domains\Inquiry;
+namespace app\Domains\Inquiry;
 
 use App\Attributes\Getter;
 use App\Domains\DomainEntity;

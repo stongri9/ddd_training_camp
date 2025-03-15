@@ -1,6 +1,6 @@
 <?php 
 
-namespace App\Domains;
+namespace app\Domains;
 
 use App\Attributes\Getter;
 use ReflectionProperty;

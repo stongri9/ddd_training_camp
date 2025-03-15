@@ -1,5 +1,5 @@
 <?php
-namespace App\Domains\Shift;
+namespace app\Domains\Shift;
 
 use Illuminate\Support\Collection;
 

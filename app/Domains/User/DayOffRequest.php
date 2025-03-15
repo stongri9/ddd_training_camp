@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Domains\User;
+namespace app\Domains\User;
 
 use App\Domains\Shared\Date;
 

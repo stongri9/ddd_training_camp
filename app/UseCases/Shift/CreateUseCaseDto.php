@@ -1,6 +1,6 @@
 <?php
 
-namespace App\UseCases\Shift;
+namespace app\UseCases\Shift;
 
 class CreateUseCaseDto {
     private function __construct(

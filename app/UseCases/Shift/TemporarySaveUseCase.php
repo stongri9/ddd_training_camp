@@ -1,6 +1,6 @@
 <?php
 
-namespace App\UseCases\Shift;
+namespace app\UseCases\Shift;
 
 use App\Domains\Shift\IShiftRepository;
 use App\Domains\Shift\Shift;

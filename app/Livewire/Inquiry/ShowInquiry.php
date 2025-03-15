@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire\Inquiry;
+namespace app\Livewire\Inquiry;
 
 use App\UseCases\Inquiry\CreateUseCaseDto;
 use App\UseCases\Inquiry\ShowUseCase as InquiryShowUseCase;

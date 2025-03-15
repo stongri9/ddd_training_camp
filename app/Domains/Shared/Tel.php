@@ -1,6 +1,6 @@
 <?php 
 
-namespace App\Domains\Shared;
+namespace app\Domains\Shared;
 
 class Tel {
     /**

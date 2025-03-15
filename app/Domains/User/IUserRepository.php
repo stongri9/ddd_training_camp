@@ -1,6 +1,6 @@
 <?php 
 
-namespace App\Domains\User;
+namespace app\Domains\User;
 
 use App\Models\User as UserModel;
 use Illuminate\Database\Eloquent\Collection;
