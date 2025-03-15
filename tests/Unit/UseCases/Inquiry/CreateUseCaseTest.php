@@ -11,10 +11,15 @@ use PHPUnit\Framework\TestCase;
 class CreateUseCaseTest extends TestCase
 {
     private string $lastName = '山田';
+
     private string $firstName = '太郎';
+
     private string $tel = '09012345678';
+
     private string $zipCode = '1234567';
+
     private string $address = '東京都渋谷区';
+
     private string $content = 'お問い合わせ内容';
 
     public function test_create_inquiry_success(): void
@@ -79,4 +84,4 @@ class CreateUseCaseTest extends TestCase
 
         $useCase($dto);
     }
-} 
+}

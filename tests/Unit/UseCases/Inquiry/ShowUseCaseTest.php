@@ -12,7 +12,7 @@ class ShowUseCaseTest extends TestCase
 {
     public function test_show_inquiries(): void
     {
-        $model = new InquiryModel();
+        $model = new InquiryModel;
         $model->id = 1;
         $model->last_name = '山田';
         $model->first_name = '太郎';
@@ -34,4 +34,4 @@ class ShowUseCaseTest extends TestCase
         $this->assertSame(1, $result->count());
         $this->assertSame($model, $result->first());
     }
-} 
+}

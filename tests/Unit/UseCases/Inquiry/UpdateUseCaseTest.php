@@ -12,17 +12,23 @@ use PHPUnit\Framework\TestCase;
 class UpdateUseCaseTest extends TestCase
 {
     private int $id = 1;
+
     private string $lastName = '山田';
+
     private string $firstName = '太郎';
+
     private string $tel = '09012345678';
+
     private string $zipCode = '1234567';
+
     private string $address = '東京都渋谷区';
+
     private string $content = 'お問い合わせ内容';
 
     public function test_update_inquiry_success(): void
     {
         $model = $this->createInquiryModel();
-        
+
         $repository = $this->createMock(IInquiryRepository::class);
         $repository->expects($this->once())
             ->method('find')
@@ -75,7 +81,7 @@ class UpdateUseCaseTest extends TestCase
     public function test_update_inquiry_with_invalid_tel(): void
     {
         $model = $this->createInquiryModel();
-        
+
         $repository = $this->createMock(IInquiryRepository::class);
         $repository->expects($this->once())
             ->method('find')
@@ -103,7 +109,7 @@ class UpdateUseCaseTest extends TestCase
 
     private function createInquiryModel(): InquiryModel
     {
-        $model = new InquiryModel();
+        $model = new InquiryModel;
         $model->id = $this->id;
         $model->last_name = $this->lastName;
         $model->first_name = $this->firstName;
@@ -111,6 +117,7 @@ class UpdateUseCaseTest extends TestCase
         $model->zip_code = $this->zipCode;
         $model->address = $this->address;
         $model->content = $this->content;
+
         return $model;
     }
-} 
+}
