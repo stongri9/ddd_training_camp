@@ -11,10 +11,9 @@ class DayOffRequestTest extends TestCase
     #[Test]
     public function createが実行されることでインスタンスが生成される(): void
     {
-        $day_off_request = DayOffRequest::create(1, '2025-01-01');
+        $day_off_request = DayOffRequest::create('2025-01-01');
         $this->assertInstanceOf(DayOffRequest::class, $day_off_request);
         $this->assertNull($day_off_request->id);
-        $this->assertEquals(1, $day_off_request->user_id);
         $this->assertEquals('2025-01-01', $day_off_request->date->format('Y-m-d'));
     }
 
@@ -23,12 +22,10 @@ class DayOffRequestTest extends TestCase
     {
         $day_off_request = DayOffRequest::reconstruct(
             1,
-            1,
             '2025-01-01'
         );
         $this->assertInstanceOf(DayOffRequest::class, $day_off_request);
         $this->assertEquals(1, $day_off_request->id);
-        $this->assertEquals(1, $day_off_request->user_id);
         $this->assertEquals('2025-01-01', $day_off_request->date->format('Y-m-d'));
     }
 }

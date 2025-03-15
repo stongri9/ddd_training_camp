@@ -21,7 +21,7 @@ class DayOffRequest extends Model
      *
      * @var string|null
      */
-    const CREATED_AT = null;
+    const CREATED_AT = 'created_at';
 
     /**
      * The name of the "updated at" column.

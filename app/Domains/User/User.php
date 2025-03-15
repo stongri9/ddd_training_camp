@@ -8,8 +8,8 @@ class User
      * @param  DayOffRequest[]  $day_off_requests
      */
     private function __construct(
-        public readonly ?int $id,
         public private(set) array $day_off_requests,
+        public readonly ?int $id = null,
     ) {}
 
     /**
@@ -18,8 +18,7 @@ class User
     public static function create(array $day_off_requests): self
     {
         return new self(
-            null,
-            self::createDayOffRequests($day_off_requests, null)
+            day_off_requests: self::createDayOffRequests($day_off_requests)
         );
     }
 
@@ -30,7 +29,6 @@ class User
     {
         $this->day_off_requests = $this->createDayOffRequests(
             $new_day_off_requests,
-            $this->id
         );
     }
 
@@ -54,10 +52,9 @@ class User
     ): self {
         $dayOffRequestsObjects = self::createDayOffRequests(
             $day_off_requests,
-            $id
         );
 
-        return new self($id, $dayOffRequestsObjects);
+        return new self($dayOffRequestsObjects, $id);
     }
 
     /**
@@ -66,11 +63,9 @@ class User
      */
     private static function createDayOffRequests(
         array $day_off_requests,
-        ?int $user_id = null
     ): array {
         return array_map(
             fn ($day_off_request) => DayOffRequest::create(
-                $user_id,
                 $day_off_request
             ),
             $day_off_requests

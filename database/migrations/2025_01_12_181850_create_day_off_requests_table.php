@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('day_off_requests', function (Blueprint $table) {
             $table->unsignedBigInteger('user_id')->comment('ユーザーID');
             $table->date('date')->comment('休み希望日');
+            $table->timestamp('created_at')->nullable();
             $table->primary(['user_id', 'date']); // 複合主キーを設定
         });
     }

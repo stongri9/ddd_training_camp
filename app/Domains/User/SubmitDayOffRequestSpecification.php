@@ -18,9 +18,12 @@ class SubmitDayOffRequestSpecification
     {
         // 最新の確定したシフトよりも休みを希望する日付が後の場合はエラー
         $latest_shift = $this->shiftRepository->getLatestShift();
+        if (is_null($latest_shift)) {
+            return true;
+        }
 
         foreach ($day_off_requests as $day_off_request) {
-            if (isset($latest_shift) && $latest_shift->date->format('y-m-d') > (new DateTimeImmutable($day_off_request))->format('y-m-d')) {
+            if ($latest_shift->date->format('y-m-d') > (new DateTimeImmutable($day_off_request))->format('y-m-d')) {
                 return false;
             }
         }
