@@ -140,5 +140,8 @@
     "Showing": "表示中：",
     "Inquiry": "問合せ",
     "Shift": "シフト",
-    "DayOff": "休暇申請"
+    "DayOff": "休暇申請",
+    "Edit": "編集",
+    "Update": "更新",
+    "Delete": "削除"
 }
