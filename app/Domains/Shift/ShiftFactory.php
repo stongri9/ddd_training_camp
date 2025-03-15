@@ -2,25 +2,21 @@
 
 namespace app\Domains\Shift;
 
-use DateTimeInterface;
 use app\Domains\User\Role;
 use app\Domains\User\User;
+use DateTimeInterface;
 use Illuminate\Support\Collection;
 
 class ShiftFactory
 {
     /**
-     * @param DateTimeInterface $date
-     * @param Collection<int, User> $users
-     * @param Shift|null $previousShift
-     * @param Shift|null $confirmedNextShift
-     * @return Shift
+     * @param  Collection<int, User>  $users
      */
     public function create(DateTimeInterface $date, Collection $users, ?Shift $previousShift, ?Shift $confirmedNextShift): Shift
     {
         $canWorkUsers = $users->filter(
-            fn (User $user) => !in_array($date, $user->dayOffRequests, true)
-                && !in_array($user->id, $previousShift?->nightShiftUserIds ?? [], true)
+            fn (User $user) => ! in_array($date, $user->dayOffRequests, true)
+                && ! in_array($user->id, $previousShift->nightShiftUserIds ?? [], true)
         );
 
         $workDayShiftUsers = $this->determineDayShiftUsers($date, $canWorkUsers);
@@ -40,8 +36,7 @@ class ShiftFactory
     }
 
     /**
-     * @param DateTimeInterface $date
-     * @param Collection<int, User> $canWorkUsers
+     * @param  Collection<int, User>  $canWorkUsers
      * @return Collection<int, User>
      */
     private function determineDayShiftUsers(DateTimeInterface $date, Collection $canWorkUsers): Collection
@@ -61,8 +56,7 @@ class ShiftFactory
     }
 
     /**
-     * @param DateTimeInterface $date
-     * @param Collection<int, User> $canWorkUsers
+     * @param  Collection<int, User>  $canWorkUsers
      * @return Collection<int, User>
      */
     private function determineLateShiftUsers(DateTimeInterface $date, Collection $canWorkUsers): Collection
@@ -79,9 +73,7 @@ class ShiftFactory
     }
 
     /**
-     * @param DateTimeInterface $date
-     * @param Collection<int, User> $canWorkUsers
-     * @param Shift|null $confirmedNextShift
+     * @param  Collection<int, User>  $canWorkUsers
      * @return Collection<int, User>
      */
     private function determineNightShiftUsers(DateTimeInterface $date, Collection $canWorkUsers, ?Shift $confirmedNextShift): Collection
@@ -117,11 +109,6 @@ class ShiftFactory
         );
     }
 
-    /**
-     * @param DateTimeInterface $date
-     * @param string $workStyle
-     * @return int
-     */
     private function getNumberOfShiftUser(DateTimeInterface $date, string $workStyle): int
     {
         /** @var string[] */

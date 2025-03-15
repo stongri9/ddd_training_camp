@@ -4,7 +4,6 @@ namespace app\UseCases\User;
 
 use app\Domains\User\IUserRepository;
 use app\Domains\User\SubmitDayOffRequestSpecification;
-use app\Domains\User\User;
 use InvalidArgumentException;
 
 class SubmitDayOffRequestUseCase
@@ -17,17 +16,17 @@ class SubmitDayOffRequestUseCase
     public function __invoke(SubmitDayOffRequestUseCaseDto $dto): void
     {
         if (! $this->submitDayOffRequestSpecification->isSatisfied($dto->dayOffRequests)) {
-            throw new InvalidArgumentException('申請できない日付が含まれています');
+            throw new InvalidArgumentException('申請できない日付が含まれています。');
         }
 
-        $userModel = $this->userRepository->find($dto->userId);
-        if (! isset($userModel)) {
-            throw new InvalidArgumentException('ユーザーが見つかりません');
+        $user = $this->userRepository->find($dto->userId);
+
+        if (is_null($user)) {
+            throw new \InvalidArgumentException('存在しないユーザーです。');
         }
-        $user = User::reconstruct($userModel->id, $userModel->dayOffRequests);
 
         try {
-            $user->update($dto->dayOffRequests);
+            $user->updateDayOffRequests($dto->dayOffRequests);
             $this->userRepository->update($user);
         } catch (\Exception $e) {
             throw $e;

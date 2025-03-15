@@ -5,9 +5,8 @@ namespace app\Domains\User;
 class User
 {
     /**
-     * @param int|null $id
-     * @param DayOffRequest[] $dayOffRequests
-     * @param Role $role
+     * @param  DayOffRequest[]  $dayOffRequests
+     * @param  Role  $role
      */
     private function __construct(
         public readonly ?int $id,
@@ -16,15 +15,15 @@ class User
     ) {}
 
     /**
-     * @param string[] $dayOffRequests
-     * @param string $role
+     * @param  string[]  $dayOffRequests
      */
     public static function create(array $dayOffRequests, string $role): self
     {
         $role = Role::tryFrom($role);
-        if (is_null($role)){
+        if (is_null($role)) {
             throw new \InvalidArgumentException('不正なロールです。');
         }
+
         return new self(
             null,
             self::createDayOffRequests($dayOffRequests),
@@ -33,17 +32,11 @@ class User
     }
 
     /**
-     * @param string[] $newDayOffRequests
-     * @param string $role
+     * @param  string[]  $newDayOffRequests
      */
-    public function update(array $newDayOffRequests, string $role): void
+    public function updateDayOffRequests(array $newDayOffRequests): void
     {
         $this->dayOffRequests = $this->createDayOffRequests($newDayOffRequests);
-        $role = Role::tryFrom($role);
-        if (is_null($role)){
-            throw new \InvalidArgumentException('不正なロールです。');
-        }
-        $this->role = $role;
     }
 
     /**
@@ -59,19 +52,16 @@ class User
     }
 
     /**
-     * @param int $id
-     * @param string[] $dayOffRequests
-     * @param string $role
-     * @return self
+     * @param  string[]  $dayOffRequests
      */
     public static function reconstruct(
         int $id,
         array $dayOffRequests,
-        string $role,
+        Role $role,
     ): self {
         $dayOffRequestsObjects = self::createDayOffRequests($dayOffRequests);
 
-        return new self($id, $dayOffRequestsObjects, Role::from($role));
+        return new self($id, $dayOffRequestsObjects, $role);
     }
 
     /**

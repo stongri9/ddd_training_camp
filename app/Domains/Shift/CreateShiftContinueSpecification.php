@@ -63,7 +63,7 @@ class CreateShiftContinueSpecification
             } else {
                 $nextDayShift = $shiftCollection->where('date', $shift->date->modify('+1 day'))->first();
             }
-            if (isset($nextDayShift) && !empty(array_intersect($nextDayShift->userIds, $shift->nightShiftUserIds))) {
+            if (isset($nextDayShift) && ! empty(array_intersect($nextDayShift->userIds, $shift->nightShiftUserIds))) {
                 $violations[] = '夜勤の人は翌日は休みである必要があります。';
             }
         }

@@ -8,11 +8,10 @@ use DateTimeImmutable;
 class Shift
 {
     /**
-     * @param int|null $id
-     * @param \DateTimeImmutable  $date
-     * @param int[]  $dayShiftUserIds
-     * @param int[]  $lateShiftUserIds
-     * @param int[]  $nightShiftUserIds
+     * @param  \DateTimeImmutable  $date
+     * @param  int[]  $dayShiftUserIds
+     * @param  int[]  $lateShiftUserIds
+     * @param  int[]  $nightShiftUserIds
      */
     private function __construct(
         public readonly ?int $id,
@@ -80,11 +79,11 @@ class Shift
     }
 
     /**
-     * @param string $property
      * @return int[]
      */
-    public function __get(string $property) {
-        if ($property === "userIds") {
+    public function __get(string $property)
+    {
+        if ($property === 'userIds') {
             return [...$this->dayShiftUserIds, ...$this->lateShiftUserIds, ...$this->nightShiftUserIds];
         } else {
             throw new \DomainException('アクセス不能なプロパティです。');

@@ -11,7 +11,7 @@ interface IUserRepository
     public function update(User $user): void;
 
     /**
-     * @param int[] $ids
+     * @param  int[]  $ids
      * @return Collection<int, User>
      */
     public function getUsersByIds(array $ids): Collection;

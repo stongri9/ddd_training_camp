@@ -20,9 +20,6 @@ class ShiftRepository implements IShiftRepository
 
     /**
      * インサートする
-     * 
-     * @param Shift
-     * @return void
      */
     public function create(Shift $shift): void
     {
@@ -31,9 +28,8 @@ class ShiftRepository implements IShiftRepository
 
     /**
      * まとめてインサートする
-     * 
-     * @param Collection<int, Shift>
-     * @return void
+     *
+     * @param  Collection<int, Shift>  $shiftCollecton
      */
     public function insert(Collection $shiftCollecton): void
     {
@@ -43,8 +39,6 @@ class ShiftRepository implements IShiftRepository
     /**
      * 指定した期間のシフトを取得する
      *
-     * @param \DateTimeInterface $startDate
-     * @param \DateTimeInterface $endDate
      * @return Collection<int, Shift>
      */
     public function getShiftsByPeriod(\DateTimeInterface $startDate, \DateTimeInterface $endDate): Collection
@@ -55,9 +49,6 @@ class ShiftRepository implements IShiftRepository
 
     /**
      * 指定した日付のシフトを取得する
-     *
-     * @param  \DateTimeInterface $date
-     * @return Shift|null
      */
     public function getShiftByDate(\DateTimeInterface $date): ?Shift
     {
