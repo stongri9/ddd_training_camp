@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Livewire\Inquiry;
+namespace app\Livewire\Inquiry;
 
-use App\Livewire\Forms\Inquiry\UpdateForm;
-use App\UseCases\Inquiry\EditUseCase as InquiryEditUseCase;
-use App\UseCases\Inquiry\UpdateUseCase as InquiryUpdateUseCase;
-use App\UseCases\Inquiry\UpdateUseCaseDto;
+use app\Livewire\Forms\Inquiry\UpdateForm;
+use app\UseCases\Inquiry\EditUseCase as InquiryEditUseCase;
+use app\UseCases\Inquiry\UpdateUseCase as InquiryUpdateUseCase;
+use app\UseCases\Inquiry\UpdateUseCaseDto;
 use Illuminate\Contracts\View\View;
 use Livewire\Component;
 

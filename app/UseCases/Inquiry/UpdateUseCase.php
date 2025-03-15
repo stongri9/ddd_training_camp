@@ -1,9 +1,9 @@
 <?php
 
-namespace App\UseCases\Inquiry;
+namespace app\UseCases\Inquiry;
 
-use App\Domains\Inquiry\IInquiryRepository;
-use App\Domains\Inquiry\Inquiry;
+use app\Domains\Inquiry\IInquiryRepository;
+use app\Domains\Inquiry\Inquiry;
 
 class UpdateUseCase
 {

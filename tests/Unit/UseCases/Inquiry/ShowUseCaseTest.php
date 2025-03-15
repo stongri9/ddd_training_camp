@@ -2,9 +2,9 @@
 
 namespace Tests\Unit\UseCases\Inquiry;
 
-use App\Domains\Inquiry\IInquiryRepository;
-use App\Models\Inquiry as InquiryModel;
-use App\UseCases\Inquiry\ShowUseCase;
+use app\Domains\Inquiry\IInquiryRepository;
+use app\Models\Inquiry as InquiryModel;
+use app\UseCases\Inquiry\ShowUseCase;
 use Illuminate\Database\Eloquent\Collection;
 use PHPUnit\Framework\TestCase;
 

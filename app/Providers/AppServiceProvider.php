@@ -1,11 +1,13 @@
 <?php
 
-namespace App\Providers;
+namespace app\Providers;
 
-use App\Domains\Inquiry\IInquiryRepository;
-use App\Domains\User\IUserRepository;
-use App\Repositories\Inquiry\InquiryRepository;
-use App\Repositories\User\UserRepository;
+use app\Domains\Inquiry\IInquiryRepository;
+use app\Domains\Shift\IShiftRepository;
+use app\Domains\User\IUserRepository;
+use app\Repositories\Inquiry\InquiryRepository;
+use app\Repositories\Shift\ShiftRepository;
+use app\Repositories\User\UserRepository;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -16,6 +18,7 @@ class AppServiceProvider extends ServiceProvider
     public function register(): void
     {
         $this->app->singleton(IInquiryRepository::class, InquiryRepository::class);
+        $this->app->singleton(IShiftRepository::class, ShiftRepository::class);
         $this->app->singleton(IUserRepository::class, UserRepository::class);
     }
 

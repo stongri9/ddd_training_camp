@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Livewire\Inquiry;
+namespace app\Livewire\Inquiry;
 
-use App\Livewire\Forms\Inquiry\CreateForm;
-use App\UseCases\Inquiry\CreateUseCase;
-use App\UseCases\Inquiry\CreateUseCaseDto;
+use app\Livewire\Forms\Inquiry\CreateForm;
+use app\UseCases\Inquiry\CreateUseCase;
+use app\UseCases\Inquiry\CreateUseCaseDto;
 use Illuminate\Contracts\View\View;
 use Livewire\Component;
 

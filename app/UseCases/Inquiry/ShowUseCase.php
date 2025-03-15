@@ -1,8 +1,8 @@
 <?php
 
-namespace App\UseCases\Inquiry;
+namespace app\UseCases\Inquiry;
 
-use App\Domains\Inquiry\IInquiryRepository;
+use app\Domains\Inquiry\IInquiryRepository;
 use Illuminate\Database\Eloquent\Collection;
 
 class ShowUseCase
@@ -12,7 +12,7 @@ class ShowUseCase
     ) {}
 
     /**
-     * @return Collection<int, \App\Models\Inquiry>
+     * @return Collection<int, \app\Models\Inquiry>
      */
     public function __invoke(): Collection
     {

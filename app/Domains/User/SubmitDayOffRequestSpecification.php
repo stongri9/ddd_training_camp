@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Domains\User;
+namespace app\Domains\User;
 
-use App\Domains\Shift\IShiftRepository;
+use app\Domains\Shift\IShiftRepository;
 use DateTimeImmutable;
 
 class SubmitDayOffRequestSpecification
