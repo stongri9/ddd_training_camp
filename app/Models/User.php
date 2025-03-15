@@ -55,11 +55,11 @@ class User extends Authenticatable
     /**
      * ユーザーに紐づく休み希望の取得
      *
-     * @return HasMany<DayOffRequest, User>
+     * @return HasMany<DayOffRequest, $this>
      */
     public function dayOffRequests(): HasMany
     {
-        return $this->hasMany(DayOffRequest::class);
+        return $this->hasMany(DayOffRequest::class, 'user_id', 'id');
     }
 
     /**

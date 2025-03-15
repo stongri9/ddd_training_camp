@@ -8,8 +8,6 @@ use DateTimeImmutable;
 class DayOffRequest
 {
     /**
-     * @param  int|null  $id
-     * @param  int|null  $user_id
      * @param  DateTimeImmutable  $date
      */
     private function __construct(

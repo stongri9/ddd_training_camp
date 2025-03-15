@@ -7,16 +7,8 @@ use Illuminate\Support\Collection;
 
 interface IUserRepository
 {
-    /**
-     * @param  int  $id
-     * @return UserModel|null
-     */
     public function find(int $id): ?UserModel;
 
-    /**
-     * @param  User  $user
-     * @return void
-     */
     public function update(User $user): void;
 
     /**

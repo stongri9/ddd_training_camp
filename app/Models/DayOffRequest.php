@@ -13,6 +13,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 class DayOffRequest extends Model
 {
+    // @phpstan-ignore-next-line
     use HasFactory;
 
     /**
@@ -43,10 +44,7 @@ class DayOffRequest extends Model
      */
     protected $fillable = ['user_id', 'date'];
 
-    /**
-     * @return \Database\Factories\DayOffRequestFactory
-     */
-    protected static function newFactory()
+    protected static function newFactory(): DayOffRequestFactory
     {
         return DayOffRequestFactory::new();
     }

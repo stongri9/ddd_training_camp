@@ -2,10 +2,10 @@
 
 namespace Tests\Feature\App\UseCases;
 
-use App\Models\DayOffRequest as ModelsDayOffRequest;
-use App\Models\User as UserModel;
-use App\UseCases\User\SubmitDayOffRequestUseCase;
-use App\UseCases\User\SubmitDayOffRequestUseCaseDto;
+use app\Models\DayOffRequest as ModelsDayOffRequest;
+use app\Models\User as UserModel;
+use app\UseCases\User\SubmitDayOffRequestUseCase;
+use app\UseCases\User\SubmitDayOffRequestUseCaseDto;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;

@@ -20,7 +20,7 @@ class SubmitDayOffRequestSpecification
         $latestShift = $this->shiftRepository->getLatestShift();
 
         foreach ($dayOffRequests as $dayOffRequest) {
-            if ($latestShift->date->format('y-m-d') > (new DateTimeImmutable($dayOffRequest))->format('y-m-d')) {
+            if (isset($latestShift) && $latestShift->date->format('y-m-d') > (new DateTimeImmutable($dayOffRequest))->format('y-m-d')) {
                 return false;
             }
         }

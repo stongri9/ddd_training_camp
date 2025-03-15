@@ -10,15 +10,11 @@ use Illuminate\Support\Collection;
 
 class UserRepository implements IUserRepository
 {
-    /**
-     * @param  int  $id
-     * @return UserModel|null
-     */
     public function find(int $id): ?UserModel
     {
         return UserModel::find($id);
     }
-    
+
     /**
      * @param  int[]  $ids
      * @return Collection<int, UserModel>
@@ -36,10 +32,6 @@ class UserRepository implements IUserRepository
         return UserModel::all();
     }
 
-    /**
-     * @param  User  $user
-     * @return void
-     */
     public function update(User $user): void
     {
         $userModel = UserModel::find($user->id);
