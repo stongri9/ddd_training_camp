@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Unit\Domains;
+namespace Tests\Unit\Domains\User;
 
 use App\Domains\User\User;
 use PHPUnit\Framework\Attributes\Test;
