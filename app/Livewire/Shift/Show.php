@@ -4,7 +4,7 @@ namespace app\Livewire\Shift;
 
 use app\UseCases\Shift\ShowUseCase;
 use Illuminate\Contracts\View\View;
-use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Support\Collection;
 use Livewire\Component;
 
 class Show extends Component
