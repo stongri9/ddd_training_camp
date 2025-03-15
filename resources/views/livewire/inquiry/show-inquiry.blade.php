@@ -18,7 +18,7 @@
                         <td class="px-6 py-4 whitespace-nowrap text-sm">{{ $inquiry->last_name }} {{ $inquiry->first_name }}</td>
                         <td class="px-6 py-4 whitespace-nowrap text-sm">{{ $inquiry->tel }}</td>
                         <td class="px-6 py-4 text-sm">{{ $inquiry->zip_code }}<br>{{ $inquiry->address }}</td>
-                        <td class="px-6 py-4 text-sm">{{ $inquiry->content }}</td>
+                        <td class="px-6 py-4 text-sm" style="white-space: pre-wrap;">{{ $inquiry->content }}</td>
                         <td class="px-6 py-4 whitespace-nowrap text-sm">
                             <livewire:inquiry.update-inquiry :id="$inquiry->id" />
                         </td>
