@@ -6,9 +6,6 @@ use DateTimeImmutable;
 
 class DayOffRequest
 {
-    /**
-     * @param  DateTimeImmutable  $date
-     */
     private function __construct(
         public readonly ?int $id,
         public readonly DateTimeImmutable $date
