@@ -27,8 +27,8 @@ class DatabaseSeeder extends Seeder
             ],
             [
                 'date' => '2025-01-14',
-            ]
+            ],
         ]
-    );
+        );
     }
 }

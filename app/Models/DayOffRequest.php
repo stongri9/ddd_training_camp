@@ -6,6 +6,11 @@ use Database\Factories\DayOffRequestFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * @property int $id
+ * @property int $user_id
+ * @property string $date
+ */
 class DayOffRequest extends Model
 {
     use HasFactory;
@@ -38,6 +43,9 @@ class DayOffRequest extends Model
      */
     protected $fillable = ['user_id', 'date'];
 
+    /**
+     * @return \Database\Factories\DayOffRequestFactory
+     */
     protected static function newFactory()
     {
         return DayOffRequestFactory::new();

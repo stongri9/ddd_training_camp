@@ -24,7 +24,7 @@ class User
     }
 
     /**
-     * @param  string[] $newDayOffRequests
+     * @param  string[]  $newDayOffRequests
      */
     public function update(array $newDayOffRequests): void
     {

@@ -2,14 +2,11 @@
 
 namespace App\Domains\User;
 
-use DateTimeImmutable;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Database\Factories\DayOffRequestFactory;
+use DateTimeImmutable;
 
 class DayOffRequest
 {
-    use HasFactory;
-    
     private function __construct(public DateTimeImmutable $date) {}
 
     public static function create(string $date): self
@@ -22,6 +19,9 @@ class DayOffRequest
         return new self(new DateTimeImmutable($date));
     }
 
+    /**
+     * @return \Database\Factories\DayOffRequestFactory
+     */
     protected static function newFactory()
     {
         return DayOffRequestFactory::new();
