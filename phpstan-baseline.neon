@@ -1,6 +1,24 @@
 parameters:
 	ignoreErrors:
 		-
+			message: '#^Parameter \#2 \$dayShiftUserIds of static method app\\Domains\\Shift\\Shift\:\:create\(\) expects array\<int\>, array\<TKey of \(int\|string\), TValue\> given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Domains/Shift/ShiftFactory.php
+
+		-
+			message: '#^Parameter \#3 \$lateShiftUserIds of static method app\\Domains\\Shift\\Shift\:\:create\(\) expects array\<int\>, array\<TKey of \(int\|string\), TValue\> given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Domains/Shift/ShiftFactory.php
+
+		-
+			message: '#^Parameter \#4 \$nightShiftUserIds of static method app\\Domains\\Shift\\Shift\:\:create\(\) expects array\<int\>, array\<TKey of \(int\|string\), TValue\> given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Domains/Shift/ShiftFactory.php
+
+		-
 			message: '#^Cannot call method hasVerifiedEmail\(\) on mixed\.$#'
 			identifier: method.nonObject
 			count: 1

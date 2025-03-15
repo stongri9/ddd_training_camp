@@ -10,7 +10,7 @@ use Illuminate\Support\Collection;
 class ShiftRepository implements IShiftRepository
 {
     /**
-     * 最新のシフトを1件取得
+     * 最新のシフトを1件取得する
      */
     public function getLatestShift(): ?Shift
     {
@@ -19,7 +19,7 @@ class ShiftRepository implements IShiftRepository
     }
 
     /**
-     * インサート処理
+     * インサートする
      */
     public function create(Shift $shift): void
     {
@@ -27,7 +27,9 @@ class ShiftRepository implements IShiftRepository
     }
 
     /**
-     * まとめてインサート
+     * まとめてインサートする
+     *
+     * @param  Collection<int, Shift>  $shiftCollecton
      */
     public function insert(Collection $shiftCollecton): void
     {
@@ -35,10 +37,9 @@ class ShiftRepository implements IShiftRepository
     }
 
     /**
-     * 指定した期間のシフトを返却します
+     * 指定した期間のシフトを取得する
      *
-     * @param  DateTimeInterface  $startDate
-     * @param  DateTimeInterface  $endDate
+     * @return Collection<int, Shift>
      */
     public function getShiftsByPeriod(\DateTimeInterface $startDate, \DateTimeInterface $endDate): Collection
     {
@@ -47,13 +48,11 @@ class ShiftRepository implements IShiftRepository
     }
 
     /**
-     * 指定した日付のシフトを返却します
-     *
-     * @param  DateTimeInterface  $date
+     * 指定した日付のシフトを取得する
      */
     public function getShiftByDate(\DateTimeInterface $date): ?Shift
     {
         return ShiftModel::where('date', $date)
-            ->get();
+            ->first();
     }
 }
