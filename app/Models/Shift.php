@@ -5,7 +5,7 @@ namespace app\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Inquiry extends Model
+class Shift extends Model
 {
     use SoftDeletes;
 
@@ -14,10 +14,10 @@ class Inquiry extends Model
      *
      * @var string
      */
-    protected $table = 'inquiries';
+    protected $table = 'shifts';
 
     /**
-     * @var string[]
+     * @var array
      */
     protected $guarded = ['id'];
 }

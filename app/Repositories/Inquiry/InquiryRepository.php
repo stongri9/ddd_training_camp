@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Repositories\Inquiry;
+namespace app\Repositories\Inquiry;
 
-use App\Domains\Inquiry\IInquiryRepository;
-use App\Domains\Inquiry\Inquiry;
-use App\Models\Inquiry as InquiryModel;
+use app\Domains\Inquiry\IInquiryRepository;
+use app\Domains\Inquiry\Inquiry;
+use app\Models\Inquiry as InquiryModel;
 
 class InquiryRepository implements IInquiryRepository
 {

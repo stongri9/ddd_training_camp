@@ -1,9 +1,9 @@
 <?php
 
-namespace App\UseCases\Inquiry;
+namespace app\UseCases\Inquiry;
 
-use App\Domains\Inquiry\IInquiryRepository;
-use App\Models\Inquiry;
+use app\Domains\Inquiry\IInquiryRepository;
+use app\Models\Inquiry;
 
 class EditUseCase
 {

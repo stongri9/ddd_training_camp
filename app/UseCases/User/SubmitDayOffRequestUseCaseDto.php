@@ -1,6 +1,6 @@
 <?php
 
-namespace App\UseCases\User;
+namespace app\UseCases\User;
 
 class SubmitDayOffRequestUseCaseDto
 {

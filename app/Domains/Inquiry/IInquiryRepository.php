@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Domains\Inquiry;
+namespace app\Domains\Inquiry;
 
-use App\Models\Inquiry as InquiryModel;
+use app\Models\Inquiry as InquiryModel;
 
 interface IInquiryRepository
 {

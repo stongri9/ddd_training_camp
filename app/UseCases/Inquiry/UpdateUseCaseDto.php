@@ -1,6 +1,6 @@
 <?php
 
-namespace App\UseCases\Inquiry;
+namespace app\UseCases\Inquiry;
 
 class UpdateUseCaseDto
 {
