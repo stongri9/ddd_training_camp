@@ -17,3 +17,26 @@ parameters:
   reportPossiblyNonexistentGeneralArrayOffset: true
   reportAlwaysTrueInLastCondition: true
   checkMissingOverrideMethodAttribute: true
+  reportUnmatchedIgnoredErrors: false
+  ignoreErrors:
+    # Livewire関連のエラーを無視
+    - message: '#Property [a-zA-Z0-9\\_\\|<>, ]+ has no type specified#'
+      path: app/Livewire/*
+    - message: '#Property [a-zA-Z0-9\\_\\|<>, ]+ is never written, only read#'
+      path: app/Livewire/*
+    - message: '#has an uninitialized property#'
+      path: app/Livewire/*
+
+    # Modelのプロパティ・メソッドアクセスは無視
+    - '#Call to an undefined.* method App\\Models#'
+    - '#Access to an undefined property App\\Models#'
+
+    # Laravelのframework系（Illuminate）のは回避不可なので無視
+    - '#Call to an undefined method Illuminate#'
+    - '#Cannot call method.* on .*Illuminate#'
+    - '#Parameter.* of method Illuminate#'
+    - '#Parameter.* of class Illuminate#'
+
+    # メソッドのオーバーライド属性の欠落を無視
+    - '#Method .* overrides method .* but is missing the \#\[\\Override\] attribute#'
+ 

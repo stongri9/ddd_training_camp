@@ -6,13 +6,13 @@ Route::view('/', 'welcome');
 
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::view('dashboard', 'pages.dashboard')->name('dashboard');
-    
+
     Route::view('shift', 'pages.shift')->name('shift');
 
     Route::view('dayoff', 'pages.dayoff')->name('dayoff');
 
     Route::view('profile', 'pages.profile')->name('profile');
-    
+
     Route::view('inquiry', 'pages.inquiry')->name('inquiry');
 });
 
