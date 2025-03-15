@@ -2,19 +2,21 @@
 
 namespace app\Domains\Inquiry;
 
-use app\Models\Inquiry as InquiryModel;
-use Illuminate\Database\Eloquent\Collection;
+use App\Models\Inquiry as InquiryModel;
 
 interface IInquiryRepository
 {
     public function find(int $id): ?InquiryModel;
 
     /**
-     * @return Collection<int, InquiryModel>
+     * @return \Illuminate\Database\Eloquent\Collection<int, InquiryModel>
      */
-    public function findAll(): Collection;
+    public function findAll(): \Illuminate\Database\Eloquent\Collection;
 
     public function create(Inquiry $inquiry): void;
 
+    /**
+     * @throws \Exception
+     */
     public function update(Inquiry $inquiry): void;
 }
