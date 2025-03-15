@@ -90,6 +90,11 @@ class Shift
         }
     }
 
+    /**
+     * @param  list<int>  $dayShiftUserIds
+     * @param  list<int>  $lateShiftUserIds
+     * @param  list<int>  $nightShiftUserIds
+     */
     public static function reconstruct(
         int $id,
         DateTimeImmutable $date,

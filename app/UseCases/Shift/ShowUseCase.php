@@ -19,12 +19,12 @@ class ShowUseCase
     {
         try {
             $firstDayOfMonth = new DateTimeImmutable("{$getUseCaseDto->year}-{$getUseCaseDto->month}-01");
-        }   catch (\Exception $e) {
+        } catch (\Exception $e) {
             throw new \InvalidArgumentException('正しい形式の日付を指定してください。');
         }
         $lastDayOfMonth = $firstDayOfMonth
-        ->modify('first day of next month')
-        ->modify('-1 day');
+            ->modify('first day of next month')
+            ->modify('-1 day');
 
         $shiftCollection = $this->shiftRepository->getShiftsByPeriod($firstDayOfMonth, $lastDayOfMonth);
 
