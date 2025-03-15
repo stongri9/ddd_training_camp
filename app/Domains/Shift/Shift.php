@@ -1,4 +1,5 @@
-<?php 
+<?php
+
 namespace app\Domains\Shift;
 
 use DateTimeImmutable;
@@ -62,14 +63,13 @@ class Shift
         return $shiftEntity;
     }
 
-    public function getUserIdsAttribute(): array{
+    public function getUserIdsAttribute(): array
+    {
         return [...$this->dayShiftUserIds, ...$this->lateShiftUserIds, ...$this->nightShiftUserIds];
     }
 
-    /**
-     * @return array
-     */
-    public function convertParams():array {
+    public function convertParams(): array
+    {
         return [
             'id' => $this->id,
             'date' => $this->date->value,

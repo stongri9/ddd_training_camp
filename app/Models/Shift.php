@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Shift extends Model
 {
     use SoftDeletes;
+
     /**
      * モデルに関連付けるテーブル
      *
@@ -19,5 +20,4 @@ class Shift extends Model
      * @var array
      */
     protected $guarded = ['id'];
-
 }

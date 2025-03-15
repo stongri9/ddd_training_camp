@@ -2,18 +2,17 @@
 
 namespace app\UseCases\Shift;
 
-class CreateUseCaseDto {
+class CreateUseCaseDto
+{
     private function __construct(
         public readonly string $startDate,
         public readonly string $endDate,
-    ) {
-    }
+    ) {}
 
     public static function create(
         string $startDate,
         string $endDate,
-    ): self
-    {
+    ): self {
         return new CreateUseCaseDto(
             $startDate,
             $endDate,

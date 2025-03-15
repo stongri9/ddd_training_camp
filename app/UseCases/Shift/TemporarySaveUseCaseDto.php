@@ -4,22 +4,21 @@ namespace app\UseCases\Shift;
 
 use DateTimeImmutable;
 
-class TemporarySaveUseCaseDto {
+class TemporarySaveUseCaseDto
+{
     private function __construct(
         public readonly DateTimeImmutable $date,
         public readonly array $dayShiftUserIds,
         public readonly array $lateShiftUserIds,
         public readonly array $nightShiftUserIds,
-    ) {
-    }
+    ) {}
 
     public static function create(
         DateTimeImmutable $date,
         array $dayShiftUserIds,
         array $lateShiftUserIds,
         array $nightShiftUserIds,
-    ): self
-    {
+    ): self {
         return new self(
             $date,
             $dayShiftUserIds,

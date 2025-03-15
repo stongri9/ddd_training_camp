@@ -3,8 +3,8 @@
 namespace app\Providers;
 
 use App\Domains\Inquiry\IInquiryRepository;
-use App\Repositories\Inquiry\InquiryRepository;
 use App\Domains\Shift\IShiftRepository;
+use App\Repositories\Inquiry\InquiryRepository;
 use App\Repositories\Shift\ShiftRepository;
 use Illuminate\Support\ServiceProvider;
 
