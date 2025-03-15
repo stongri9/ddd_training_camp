@@ -19,7 +19,7 @@ class User
     {
         return new self(
             null,
-            self::createDayOffRequests($dayOffRequests),
+            self::createDayOffRequests($dayOffRequests, null)
         );
     }
 
@@ -28,7 +28,10 @@ class User
      */
     public function update(array $newDayOffRequests): void
     {
-        $this->dayOffRequests = $this->createDayOffRequests($newDayOffRequests);
+        $this->dayOffRequests = $this->createDayOffRequests(
+            $newDayOffRequests,
+            $this->id
+        );
     }
 
     /**
@@ -49,7 +52,10 @@ class User
         int $id,
         array $dayOffRequests
     ): self {
-        $dayOffRequestsObjects = self::createDayOffRequests($dayOffRequests);
+        $dayOffRequestsObjects = self::createDayOffRequests(
+            $dayOffRequests,
+            $id
+        );
 
         return new self($id, $dayOffRequestsObjects);
     }
@@ -58,10 +64,15 @@ class User
      * @param  string[]  $dayOffRequests
      * @return DayOffRequest[]
      */
-    private static function createDayOffRequests(array $dayOffRequests): array
-    {
+    private static function createDayOffRequests(
+        array $dayOffRequests,
+        ?int $user_id = null
+    ): array {
         return array_map(
-            fn ($dayOffRequest) => DayOffRequest::create($dayOffRequest),
+            fn ($dayOffRequest) => DayOffRequest::create(
+                $user_id,
+                $dayOffRequest
+            ),
             $dayOffRequests
         );
     }
