@@ -39,7 +39,7 @@ class UserRepository implements IUserRepository
         // 休み希望の洗い替えのため既存データを削除
         DayOffRequest::where('user_id', $userModel->id)->delete();
         // 新しい休み希望を登録
-        foreach ($user->dayOffRequests as $dayOffRequest) {
+        foreach ($user->day_off_requests as $dayOffRequest) {
             DayOffRequest::create([
                 'user_id' => $userModel->id,
                 'date' => $dayOffRequest->date,

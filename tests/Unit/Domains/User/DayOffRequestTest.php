@@ -11,24 +11,24 @@ class DayOffRequestTest extends TestCase
     #[Test]
     public function createが実行されることでインスタンスが生成される(): void
     {
-        $dayOffRequest = DayOffRequest::create(1, '2025-01-01');
-        $this->assertInstanceOf(DayOffRequest::class, $dayOffRequest);
-        $this->assertNull($dayOffRequest->id);
-        $this->assertEquals(1, $dayOffRequest->user_id);
-        $this->assertEquals('2025-01-01', $dayOffRequest->date->format('Y-m-d'));
+        $day_off_request = DayOffRequest::create(1, '2025-01-01');
+        $this->assertInstanceOf(DayOffRequest::class, $day_off_request);
+        $this->assertNull($day_off_request->id);
+        $this->assertEquals(1, $day_off_request->user_id);
+        $this->assertEquals('2025-01-01', $day_off_request->date->format('Y-m-d'));
     }
 
     #[Test]
     public function reconstructが実行されることでインスタンスが生成される(): void
     {
-        $dayOffRequest = DayOffRequest::reconstruct(
+        $day_off_request = DayOffRequest::reconstruct(
             1,
             1,
             '2025-01-01'
         );
-        $this->assertInstanceOf(DayOffRequest::class, $dayOffRequest);
-        $this->assertEquals(1, $dayOffRequest->id);
-        $this->assertEquals(1, $dayOffRequest->user_id);
-        $this->assertEquals('2025-01-01', $dayOffRequest->date->format('Y-m-d'));
+        $this->assertInstanceOf(DayOffRequest::class, $day_off_request);
+        $this->assertEquals(1, $day_off_request->id);
+        $this->assertEquals(1, $day_off_request->user_id);
+        $this->assertEquals('2025-01-01', $day_off_request->date->format('Y-m-d'));
     }
 }

@@ -17,11 +17,11 @@ class SubmitDayOffRequestUseCase
     public function __invoke(SubmitDayOffRequestUseCaseDto $dto): void
     {
         // TODO: Shiftモデルを取り込んだらコメントアウトを外す
-        // if (! $this->submitDayOffRequestSpecification->isSatisfied($dto->dayOffRequests)) {
+        // if (! $this->submitDayOffRequestSpecification->isSatisfied($dto->day_off_requests)) {
         //     throw new InvalidArgumentException('申請できない日付が含まれています');
         // }
 
-        $userModel = $this->userRepository->find($dto->userId);
+        $userModel = $this->userRepository->find($dto->user_id);
         if (! isset($userModel)) {
             throw new InvalidArgumentException('ユーザーが見つかりません');
         }
@@ -31,7 +31,7 @@ class SubmitDayOffRequestUseCase
         );
 
         try {
-            $user->update($dto->dayOffRequests);
+            $user->update($dto->day_off_requests);
             $this->userRepository->update($user);
         } catch (\Exception $e) {
             throw $e;

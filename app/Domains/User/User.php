@@ -5,55 +5,55 @@ namespace app\Domains\User;
 class User
 {
     /**
-     * @param  DayOffRequest[]  $dayOffRequests
+     * @param  DayOffRequest[]  $day_off_requests
      */
     private function __construct(
         public readonly ?int $id,
-        public private(set) array $dayOffRequests,
+        public private(set) array $day_off_requests,
     ) {}
 
     /**
-     * @param  string[]  $dayOffRequests
+     * @param  string[]  $day_off_requests
      */
-    public static function create(array $dayOffRequests): self
+    public static function create(array $day_off_requests): self
     {
         return new self(
             null,
-            self::createDayOffRequests($dayOffRequests, null)
+            self::createDayOffRequests($day_off_requests, null)
         );
     }
 
     /**
-     * @param  string[]  $newDayOffRequests
+     * @param  string[]  $new_day_off_requests
      */
-    public function update(array $newDayOffRequests): void
+    public function update(array $new_day_off_requests): void
     {
-        $this->dayOffRequests = $this->createDayOffRequests(
-            $newDayOffRequests,
+        $this->day_off_requests = $this->createDayOffRequests(
+            $new_day_off_requests,
             $this->id
         );
     }
 
     /**
-     * @return array{dayOffRequests: DayOffRequest[], id: int|null}
+     * @return array{day_off_requests: DayOffRequest[], id: int|null}
      */
     public function convertParams(): array
     {
         return [
             'id' => $this->id,
-            'dayOffRequests' => $this->dayOffRequests,
+            'day_off_requests' => $this->day_off_requests,
         ];
     }
 
     /**
-     * @param  string[]  $dayOffRequests
+     * @param  string[]  $day_off_requests
      */
     public static function reconstruct(
         int $id,
-        array $dayOffRequests
+        array $day_off_requests
     ): self {
         $dayOffRequestsObjects = self::createDayOffRequests(
-            $dayOffRequests,
+            $day_off_requests,
             $id
         );
 
@@ -61,19 +61,19 @@ class User
     }
 
     /**
-     * @param  string[]  $dayOffRequests
+     * @param  string[]  $day_off_requests
      * @return DayOffRequest[]
      */
     private static function createDayOffRequests(
-        array $dayOffRequests,
+        array $day_off_requests,
         ?int $user_id = null
     ): array {
         return array_map(
-            fn ($dayOffRequest) => DayOffRequest::create(
+            fn ($day_off_request) => DayOffRequest::create(
                 $user_id,
-                $dayOffRequest
+                $day_off_request
             ),
-            $dayOffRequests
+            $day_off_requests
         );
     }
 }

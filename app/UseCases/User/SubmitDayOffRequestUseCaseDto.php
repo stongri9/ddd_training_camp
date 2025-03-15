@@ -5,25 +5,25 @@ namespace app\UseCases\User;
 class SubmitDayOffRequestUseCaseDto
 {
     /**
-     * @param  string[]  $dayOffRequests
+     * @param  string[]  $day_off_requests
      */
     private function __construct(
-        public readonly int $userId,
-        public readonly array $dayOffRequests,
+        public readonly int $user_id,
+        public readonly array $day_off_requests,
     ) {}
 
     /**
      * Summary of create
      *
-     * @param  string[]  $dayOffRequests
+     * @param  string[]  $day_off_requests
      */
     public static function create(
-        int $userId,
-        array $dayOffRequests,
+        int $user_id,
+        array $day_off_requests,
     ): self {
         return new self(
-            $userId,
-            $dayOffRequests,
+            $user_id,
+            $day_off_requests,
         );
     }
 }
