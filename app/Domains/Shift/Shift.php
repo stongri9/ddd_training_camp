@@ -4,13 +4,15 @@ namespace app\Domains\Shift;
 
 use DateTimeImmutable;
 
+/** @property int[] $userIds */
 class Shift
 {
     /**
-     * @param  \DateTimeImmutable  $date
-     * @param  int[]  $dayShiftUserIds
-     * @param  int[]  $lateShiftUserIds
-     * @param  int[]  $nightShiftUserIds
+     * @param int|null $id
+     * @param \DateTimeImmutable  $date
+     * @param int[]  $dayShiftUserIds
+     * @param int[]  $lateShiftUserIds
+     * @param int[]  $nightShiftUserIds
      */
     private function __construct(
         public readonly ?int $id,
@@ -63,19 +65,29 @@ class Shift
         return $shiftEntity;
     }
 
-    public function getUserIdsAttribute(): array
-    {
-        return [...$this->dayShiftUserIds, ...$this->lateShiftUserIds, ...$this->nightShiftUserIds];
-    }
-
+    /**
+     * @return array{ id: int|null, date: string, dayShiftUserIds: int[], lateShiftUserIds: int[] , nightShiftUserIds: int[] }
+     */
     public function convertParams(): array
     {
         return [
             'id' => $this->id,
-            'date' => $this->date->value,
+            'date' => $this->date->format('Y-m-d'),
             'dayShiftUserIds' => $this->dayShiftUserIds,
             'lateShiftUserIds' => $this->lateShiftUserIds,
             'nightShiftUserIds' => $this->nightShiftUserIds,
         ];
+    }
+
+    /**
+     * @param string $property
+     * @return int[]
+     */
+    public function __get(string $property) {
+        if ($property === "userIds") {
+            return [...$this->dayShiftUserIds, ...$this->lateShiftUserIds, ...$this->nightShiftUserIds];
+        } else {
+            throw new \DomainException('アクセス不能なプロパティです。');
+        }
     }
 }

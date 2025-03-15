@@ -19,7 +19,9 @@ class CreateShiftContinueSpecification
     ): array {
         $violations = [];
         // ７連勤以上できない
+        /** @var \DateTimeImmutable */
         $maxDate = $shiftCollection->max('date');
+        /** @var \DateTimeImmutable */
         $minDate = $shiftCollection->min('date');
         $before6dayshifts = $this->shiftRepository->getShiftsByPeriod($minDate->modify('-7 day'), $minDate->modify('-1 day'));
         $after6dayshifts = $this->shiftRepository->getShiftsByPeriod($maxDate->modify('+1 day'), $maxDate->modify('+7 day'));
@@ -59,9 +61,9 @@ class CreateShiftContinueSpecification
             if ($shift->date === $maxDate) {
                 $nextDayShift = $this->shiftRepository->getShiftByDate($maxDate->modify('+1 day'));
             } else {
-                $nextDayShift = $shiftCollection->where('date', $shift->date->modify('+1 day'));
+                $nextDayShift = $shiftCollection->where('date', $shift->date->modify('+1 day'))->first();
             }
-            if (! empty(array_intersect($nextDayShift->UserIds, $shift->nightShiftUserIds))) {
+            if (isset($nextDayShift) && !empty(array_intersect($nextDayShift->userIds, $shift->nightShiftUserIds))) {
                 $violations[] = '夜勤の人は翌日は休みである必要があります。';
             }
         }
