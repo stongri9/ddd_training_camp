@@ -5,18 +5,23 @@ namespace App\UseCases\Inquiry;
 use App\Domains\Inquiry\IInquiryRepository;
 use App\Domains\Inquiry\Inquiry;
 
-class UpdateUseCase {
-    public function __construct(
-        private readonly IInquiryRepository $inquiryRepository,
-    )
-    {}
+class UpdateUseCase
+{
+    public function __construct(private readonly IInquiryRepository $inquiryRepository) {}
 
+    /**
+     * @throws \Exception
+     */
     public function __invoke(UpdateUseCaseDto $updateUseCaseDto): void
     {
         $model = $this->inquiryRepository->find($updateUseCaseDto->id);
 
+        if (! $model) {
+            throw new \Exception('問合せデータが登録されていません');
+        }
+
         try {
-            $inquiry = Inquiry::recontract(
+            $inquiry = Inquiry::reconstract(
                 $model->id,
                 $model->last_name,
                 $model->first_name,
@@ -35,7 +40,7 @@ class UpdateUseCase {
             );
             $this->inquiryRepository->update($inquiry);
         } catch (\Exception $e) {
-            throw new $e;
+            throw $e;
         }
     }
 }

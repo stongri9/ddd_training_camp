@@ -2,7 +2,8 @@
 
 namespace App\UseCases\Inquiry;
 
-class CreateUseCaseDto {
+class CreateUseCaseDto
+{
     private function __construct(
         public readonly string $last_name,
         public readonly string $first_name,
@@ -10,8 +11,7 @@ class CreateUseCaseDto {
         public readonly string $zip_code,
         public readonly string $address,
         public readonly string $content,
-    ) {
-    }
+    ) {}
 
     public static function create(
         string $last_name,
@@ -20,8 +20,7 @@ class CreateUseCaseDto {
         string $zip_code,
         string $address,
         string $content,
-    ): self
-    {
+    ): self {
         return new CreateUseCaseDto(
             $last_name,
             $first_name,

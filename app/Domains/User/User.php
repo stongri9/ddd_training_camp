@@ -2,75 +2,67 @@
 
 namespace App\Domains\User;
 
-use App\Attributes\Getter;
-use App\Domains\DomainEntity;
-use App\Domains\User\DayOffRequest;
-
-class User extends DomainEntity
+class User
 {
     /**
-     * @param int|null $idß
-     * @param DayOffRequest[] $dayOffRequests
+     * @param int|null $id
+     * @param  DayOffRequest[]  $dayOffRequests
      */
     private function __construct(
-        public private(set) int|null $id,
-        public private(set) array $dayOffRequests
-    ) {
-        $this->dayOffRequests = $this->createDayOffRequests($dayOffRequests);
-    }
+        public readonly ?int $id,
+        public private(set) array $dayOffRequests,
+    ) {}
 
     /**
-     * @return App\Domains\DomainEntity\User
+     * @param  string[]  $dayOffRequests
      */
-    public static function create(): self
+    public static function create(array $dayOffRequests): self
     {
         return new self(
             null,
-            [],
+            self::createDayOffRequests($dayOffRequests),
         );
     }
 
     /**
-     * @param array $newDayOffRequests
-     * @return void
+     * @param  string[]  $newDayOffRequests
      */
-    public function update(
-        array $newDayOffRequests
-    ): void {
+    public function update(array $newDayOffRequests): void
+    {
         $this->dayOffRequests = $this->createDayOffRequests($newDayOffRequests);
     }
 
     /**
-     * @return array
+     * @return array{dayOffRequests: DayOffRequest[], id: int|null}
      */
     public function convertParams(): array
     {
         return [
             'id' => $this->id,
-            'dayOffRequests' => $this->dayOffRequests
+            'dayOffRequests' => $this->dayOffRequests,
         ];
     }
 
     /**
-     * @param int $id
-     * @param string[] $dayOffRequests
+     * @param  string[]  $dayOffRequests
      */
     public static function reconstruct(
         int $id,
         array $dayOffRequests
     ): self {
         $dayOffRequestsObjects = self::createDayOffRequests($dayOffRequests);
+
         return new self($id, $dayOffRequestsObjects);
     }
 
     /**
-     * @param string[] $dayOffRequest
+     * @param  string[]  $dayOffRequests
      * @return DayOffRequest[]
      */
     private static function createDayOffRequests(array $dayOffRequests): array
     {
         return array_map(
-            fn($dayOffRequest) => DayOffRequest::create($dayOffRequest),
+            fn ($dayOffRequest) => DayOffRequest::create($dayOffRequest),
             $dayOffRequests
         );
     }

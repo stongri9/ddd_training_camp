@@ -2,51 +2,37 @@
 
 namespace App\Livewire\Inquiry;
 
-use App\Livewire\Forms\Inquiry\CreateInquiryForm;
-use App\UseCases\Inquiry\CreateUseCase as InquiryCreateUseCase;
+use App\Livewire\Forms\Inquiry\CreateForm;
+use App\UseCases\Inquiry\CreateUseCase;
 use App\UseCases\Inquiry\CreateUseCaseDto;
-use Illuminate\View\View;
+use Illuminate\Contracts\View\View;
 use Livewire\Component;
 
 class CreateInquiry extends Component
 {
-    /**
-     * @var CreateInquiryForm
-     */
-    public CreateInquiryForm $form;
+    public CreateForm $form;
 
-    /**
-     * @var InquiryCreateUseCase
-     */
-    private InquiryCreateUseCase $inquiryCreateUseCase;
+    private CreateUseCase $createUseCase;
 
-    /**
-     * @param \App\UseCases\Inquiry\CreateUseCase $inquiryCreateUseCase
-     * @return void
-     */
-    public function boot(InquiryCreateUseCase $inquiryCreateUseCase): void {
-        $this->inquiryCreateUseCase = $inquiryCreateUseCase;
+    public function boot(CreateUseCase $createUseCase): void
+    {
+        $this->createUseCase = $createUseCase;
     }
 
-    /**
-     * @return void
-     */
-    public function execute(): void {
+    public function execute(): void
+    {
         $this->validate();
 
         $dto = CreateUseCaseDto::create(
             ...$this->form->all(),
         );
-        ($this->inquiryCreateUseCase)($dto);
+        ($this->createUseCase)($dto);
 
         session()->flash('status', 'Post successfully updated.');
 
         $this->redirect('/inquiry');
     }
 
-    /**
-     * @return \Illuminate\View\View
-     */
     public function render(): View
     {
         return view('livewire.inquiry.create-inquiry');
