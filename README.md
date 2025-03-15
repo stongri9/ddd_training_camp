@@ -60,11 +60,11 @@ http://localhost
 
 ## テスト実行
 ```
-# DB接続を含まないテスト
-php artisan test
-
-# DB接続を含むテスト
 ./vendor/bin/sail artisan test
+
+// エイリアス
+composer unit-test
+composer integration-test
 ```
 
 # 各種ツール

@@ -62,7 +62,9 @@
         ],
         "format": "./vendor/bin/pint",
         "analize": "./vendor/bin/phpstan analyze --memory-limit=1G",
-        "check": "./vendor/bin/pint && ./vendor/bin/phpstan analyze --memory-limit=1G"
+        "check": "./vendor/bin/pint && ./vendor/bin/phpstan analyze --memory-limit=1G",
+        "unit-test": "./vendor/bin/sail test tests/Unit",
+        "integration-test": "./vendor/bin/sail test tests/Feature"
     },
     "extra": {
         "laravel": {
