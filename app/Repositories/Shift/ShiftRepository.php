@@ -11,8 +11,6 @@ class ShiftRepository implements IShiftRepository
 {
     /**
      * 最新のシフトを1件取得
-     *
-     * @return Shift
      */
     public function getLatestShift(): ?Shift
     {

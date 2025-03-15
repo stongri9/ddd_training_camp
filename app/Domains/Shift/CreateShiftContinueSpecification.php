@@ -11,7 +11,7 @@ class CreateShiftContinueSpecification
     ) {}
 
     /**
-     * @param  Collection<Shift>  $shiftCollection
+     * @param  Collection<int, Shift>  $shiftCollection
      * @return string[]
      */
     public function getViolations(

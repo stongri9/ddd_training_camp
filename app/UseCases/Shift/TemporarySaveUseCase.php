@@ -2,12 +2,12 @@
 
 namespace app\UseCases\Shift;
 
+use app\Domains\Shift\CreateShiftContinueSpecification;
+use app\Domains\Shift\CreateShiftUserRoleSpecification;
+use app\Domains\Shift\IShiftRepository;
 use app\Domains\Shift\Shift;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
-use app\Domains\Shift\IShiftRepository;
-use app\Domains\Shift\CreateShiftContinueSpecification;
-use app\Domains\Shift\CreateShiftUserRoleSpecification;
 
 class TemporarySaveUseCase
 {
@@ -18,8 +18,7 @@ class TemporarySaveUseCase
     ) {}
 
     /**
-     * @param \app\UseCases\Shift\TemporarySaveUseCaseDto[] $temporarySaveUseCaseDtos
-     * @return void
+     * @param  \app\UseCases\Shift\TemporarySaveUseCaseDto[]  $temporarySaveUseCaseDtos
      */
     public function __invoke(array $temporarySaveUseCaseDtos): void
     {

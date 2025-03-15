@@ -7,10 +7,9 @@ use DateTimeImmutable;
 class TemporarySaveUseCaseDto
 {
     /**
-     * @param DateTimeImmutable $date
-     * @param int[] $dayShiftUserIds
-     * @param int[] $lateShiftUserIds
-     * @param int[] $nightShiftUserIds
+     * @param  int[]  $dayShiftUserIds
+     * @param  int[]  $lateShiftUserIds
+     * @param  int[]  $nightShiftUserIds
      */
     private function __construct(
         public readonly DateTimeImmutable $date,
@@ -20,11 +19,9 @@ class TemporarySaveUseCaseDto
     ) {}
 
     /**
-     * @param DateTimeImmutable $date
-     * @param int[] $dayShiftUserIds
-     * @param int[] $lateShiftUserIds
-     * @param int[] $nightShiftUserIds
-     * @return self
+     * @param  int[]  $dayShiftUserIds
+     * @param  int[]  $lateShiftUserIds
+     * @param  int[]  $nightShiftUserIds
      */
     public static function create(
         DateTimeImmutable $date,

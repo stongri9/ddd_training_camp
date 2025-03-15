@@ -22,7 +22,6 @@ class CreateUseCase
     ) {}
 
     /**
-     * @param CreateUseCaseDto $createUseCaseDto
      * @return Collection<int, \app\Domains\Shift\Shift>
      */
     public function __invoke(CreateUseCaseDto $createUseCaseDto): Collection

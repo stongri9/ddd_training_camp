@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire\Shift;
+namespace app\Livewire\Shift;
 
 use Illuminate\Contracts\View\View;
 use Livewire\Component;
