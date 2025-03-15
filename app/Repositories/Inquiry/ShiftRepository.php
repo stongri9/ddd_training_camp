@@ -36,7 +36,7 @@ class ShiftRepository implements IShiftRepository
      * @param Collection $shiftCollecton
      * @return void
      */
-    public function createAll(Collection $shiftCollecton): void {
+    public function insert(Collection $shiftCollecton): void {
         ShiftModel::insert($shiftCollecton->toArray());
     }
 

@@ -46,7 +46,7 @@ class TemporarySaveUseCase {
             if ($errors) {
                 throw new \InvalidArgumentException(implode(PHP_EOL, $errors));
             }
-            $this->shiftRepository->createAll($shiftCollection);
+            $this->shiftRepository->insert($shiftCollection);
             DB::commit();
         } catch (\Exception $e) {
             DB::rollback();
