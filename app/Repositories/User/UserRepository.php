@@ -9,19 +9,11 @@ use App\Models\User as UserModel;
 
 class UserRepository implements IUserRepository
 {
-    /**
-     * @param int $id
-     * @return UserModel|null
-     */
     public function find(int $id): ?UserModel
     {
         return UserModel::find($id);
     }
 
-    /**
-     * @param User $user
-     * @return void
-     */
     public function update(User $user): void
     {
         $userModel = UserModel::find($user->id);
