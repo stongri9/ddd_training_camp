@@ -5,7 +5,6 @@ namespace App\Domains\User;
 class User
 {
     /**
-     * @param int|null $id
      * @param  DayOffRequest[]  $dayOffRequests
      */
     private function __construct(
@@ -25,7 +24,7 @@ class User
     }
 
     /**
-     * @param  string[]  $newDayOffRequests
+     * @param  string[] $newDayOffRequests
      */
     public function update(array $newDayOffRequests): void
     {
