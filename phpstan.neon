@@ -1,0 +1,19 @@
+includes:
+  - phpstan-baseline.neon
+
+parameters:
+  level: 9
+  paths:
+    - app
+    - tests
+  polluteScopeWithLoopInitialAssignments: true
+  polluteScopeWithBlock: true
+  checkExplicitMixedMissingReturn: true
+  checkFunctionNameCase: true
+  reportMaybesInPropertyPhpDocTypes: false
+  reportStaticMethodSignatures: true
+  checkTooWideReturnTypesInProtectedAndPublicMethods: true
+  checkUninitializedProperties: true
+  reportPossiblyNonexistentGeneralArrayOffset: true
+  reportAlwaysTrueInLastCondition: true
+  checkMissingOverrideMethodAttribute: true

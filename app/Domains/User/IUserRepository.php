@@ -1,9 +1,10 @@
-<?php 
+<?php
 
 namespace app\Domains\User;
 
 use App\Models\User as UserModel;
-use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Support\Collection;
+
 
 interface IUserRepository {
     public function find(int $id): UserModel|null;

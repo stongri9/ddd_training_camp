@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Inquiry extends Model
 {
     use SoftDeletes;
+
     /**
      * モデルに関連付けるテーブル
      *
@@ -16,7 +17,7 @@ class Inquiry extends Model
     protected $table = 'inquiries';
 
     /**
-     * @var array
+     * @var string[]
      */
     protected $guarded = ['id'];
 }

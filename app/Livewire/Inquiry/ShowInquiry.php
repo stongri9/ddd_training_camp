@@ -2,40 +2,30 @@
 
 namespace app\Livewire\Inquiry;
 
-use App\UseCases\Inquiry\CreateUseCaseDto;
-use App\UseCases\Inquiry\ShowUseCase as InquiryShowUseCase;
+use App\UseCases\Inquiry\ShowUseCase;
+use Illuminate\Contracts\View\View;
 use Illuminate\Database\Eloquent\Collection;
-use Illuminate\View\View;
 use Livewire\Component;
 
 class ShowInquiry extends Component
 {
     /**
-     * @var Collection
+     * @var Collection<int, \App\Models\Inquiry>
      */
     public Collection $inquiries;
 
-    /**
-     * @var InquiryShowUseCase
-     */
-    private InquiryShowUseCase $inquiryShowUseCase;
+    private ShowUseCase $showUseCase;
 
-    /**
-     * @param \App\UseCases\Inquiry\ShowUseCase $inquiryShowUseCase
-     * @return void
-     */
-    public function boot(InquiryShowUseCase $inquiryShowUseCase): void {
-        $this->inquiryShowUseCase = $inquiryShowUseCase;
-    }
-
-    public function mount(): void 
+    public function boot(ShowUseCase $showUseCase): void
     {
-        $this->inquiries = ($this->inquiryShowUseCase)();
+        $this->showUseCase = $showUseCase;
     }
 
-    /**
-     * @return \Illuminate\View\View
-     */
+    public function mount(): void
+    {
+        $this->inquiries = ($this->showUseCase)();
+    }
+
     public function render(): View
     {
         return view('livewire.inquiry.show-inquiry');
