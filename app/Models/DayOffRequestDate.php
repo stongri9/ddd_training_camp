@@ -2,12 +2,16 @@
 
 namespace app\Models;
 
-use Database\Factories\DayOffRequestFactory;
+use Database\Factories\DayOffRequestDateFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class DayOffRequest extends Model
+/**
+ * @property int $id
+ * @property int $user_id
+ * @property string $date
+ */
+class DayOffRequestDate extends Model
 {
     // @phpstan-ignore-next-line
     use HasFactory;
@@ -43,20 +47,15 @@ class DayOffRequest extends Model
      *
      * @var array<int, string>
      */
-    protected $fillable = ['user_id'];
+    protected $fillable = ['date'];
 
     /**
-     * 休み希望日とのリレーション
+     * ファクトリー
      *
-     * @return HasMany<DayOffRequestDate, self>
+     * @return DayOffRequestDateFactory
      */
-    public function dayOffRequestDates(): HasMany
+    protected static function newFactory(): DayOffRequestDateFactory
     {
-        return $this->hasMany(DayOffRequestDate::class, 'day_off_request_id');
-    }
-
-    protected static function newFactory(): DayOffRequestFactory
-    {
-        return DayOffRequestFactory::new();
+        return DayOffRequestDateFactory::new();
     }
 }

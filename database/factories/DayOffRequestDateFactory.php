@@ -10,20 +10,19 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 class DayOffRequestFactory extends Factory
 {
     /**
-     * Define the model's default state.
+     * 休み希望日のファクトリー
      *
+     * @param int $id
+     * @param int $dayOffRequestId
+     * @param string $date
      * @return array<string, mixed>
      */
     public function definition(): array
     {
         return [
             'id' => 1,
-            'user_id' => 1,
-            'day_off_request_date_collection' => [
-                date('Y-m-d', strtotime('2025-01-01')),
-                date('Y-m-d', strtotime('2025-01-02')),
-                date('Y-m-d', strtotime('2025-01-03')),
-            ],
+            'day_off_request_id' => 1,
+            'date' => date('Y-m-d', strtotime('2025-01-01')),
         ];
     }
 }
