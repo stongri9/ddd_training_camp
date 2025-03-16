@@ -28,7 +28,12 @@ class UserRepository implements IUserRepository
      */
     public function findAll(): Collection
     {
-        return UserModel::all();
+        return UserModel::all()->map(function (UserModel $userModel) {
+            return User::reconstruct(
+                $userModel->id,
+                $userModel->role
+            );
+        });
     }
 
     public function update(User $user): void
