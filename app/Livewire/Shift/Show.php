@@ -33,7 +33,7 @@ class Show extends Component
         $this->current_start_date = $now->format('Y-m-01');
         $this->current_end_date = $now->format('Y-m-t');
 
-        $dto = ShowUseCaseDto::create($this->current_start_date, $this->current_end_date);
+        $dto = ShowUseCaseDto::create($this->current_start_date, $this->current_end_date, true);
 
         $this->shifts = ($this->showUseCase)($dto);
     }

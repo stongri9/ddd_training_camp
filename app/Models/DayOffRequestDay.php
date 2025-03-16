@@ -2,6 +2,8 @@
 
 namespace app\Models;
 
+use Database\Factories\DayOffRequestDayFactory;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
@@ -12,6 +14,9 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  */
 class DayOffRequestDay extends Model
 {
+    /** @use HasFactory<\Database\Factories\DayOffRequestDayFactory> */
+    use HasFactory;
+
     /**
      * モデルに関連付けるテーブル
      *
@@ -33,5 +38,10 @@ class DayOffRequestDay extends Model
     {
         /** @var BelongsTo<DayOffRequest, DayOffRequestDay> */
         return $this->belongsTo(DayOffRequest::class, 'day_off_request_id', 'id');
+    }
+
+    protected static function newFactory(): DayOffRequestDayFactory
+    {
+        return DayOffRequestDayFactory::new();
     }
 }

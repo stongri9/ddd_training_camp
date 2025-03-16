@@ -3,6 +3,7 @@
 namespace app\Repositories\User;
 
 use app\Domains\User\IUserRepository;
+use app\Domains\User\Role;
 use app\Domains\User\User;
 use app\Models\User as UserModel;
 use Illuminate\Support\Collection;
@@ -31,7 +32,7 @@ class UserRepository implements IUserRepository
         return UserModel::all()->map(function (UserModel $userModel) {
             return User::reconstruct(
                 $userModel->id,
-                $userModel->role
+                Role::from($userModel->role)
             );
         });
     }
