@@ -14,7 +14,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  */
 class DayOffRequest extends Model
 {
-    // @phpstan-ignore-next-line
+    /** @use HasFactory<\Database\Factories\DayOffRequestFactory> */
     use HasFactory;
 
     /**

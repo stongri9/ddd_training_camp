@@ -18,7 +18,6 @@ class DayOffRequestFactory extends Factory
     {
         return [
             'user_id' => 1,
-            'date' => fake()->date(),
         ];
     }
 }
