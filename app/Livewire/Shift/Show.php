@@ -19,6 +19,7 @@ class Show extends Component
     public string $current_start_date;
 
     public string $current_end_date;
+
     private ShowUseCase $showUseCase;
 
     public function boot(ShowUseCase $showUseCase): void

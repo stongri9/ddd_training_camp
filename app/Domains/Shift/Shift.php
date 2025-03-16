@@ -110,4 +110,9 @@ class Shift
             $nightShiftUserIds
         );
     }
+
+    public function convertShiftChangeOriginAssignment():ShiftChangeOriginAssignment
+    {
+        return ShiftChangeOriginAssignment::createFromShift($this);
+    }
 }
