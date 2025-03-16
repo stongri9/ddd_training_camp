@@ -19,6 +19,7 @@ class Show extends Component
     public string $current_start_date;
 
     public string $current_end_date;
+
     private ShowUseCase $showUseCase;
 
     public function boot(ShowUseCase $showUseCase): void
@@ -32,7 +33,7 @@ class Show extends Component
         $this->current_start_date = $now->format('Y-m-01');
         $this->current_end_date = $now->format('Y-m-t');
 
-        $dto = ShowUseCaseDto::create($this->current_start_date, $this->current_end_date);
+        $dto = ShowUseCaseDto::create($this->current_start_date, $this->current_end_date, true);
 
         $this->shifts = ($this->showUseCase)($dto);
     }
