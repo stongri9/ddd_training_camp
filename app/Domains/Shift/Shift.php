@@ -93,4 +93,25 @@ class Shift
             throw new \DomainException('アクセス不能なプロパティです。');
         }
     }
+
+    /**
+     * @param  list<int>  $dayShiftUserIds
+     * @param  list<int>  $lateShiftUserIds
+     * @param  list<int>  $nightShiftUserIds
+     */
+    public static function reconstruct(
+        int $id,
+        DateTimeImmutable $date,
+        array $dayShiftUserIds,
+        array $lateShiftUserIds,
+        array $nightShiftUserIds
+    ): self {
+        return new self(
+            $id,
+            $date,
+            $dayShiftUserIds,
+            $lateShiftUserIds,
+            $nightShiftUserIds
+        );
+    }
 }
