@@ -7,7 +7,7 @@ use Illuminate\Contracts\View\View;
 use Livewire\Component;
 
 class Apply extends Component
-{    
+{
     public ApplyForm $form;
 
     // private ShiftEditUseCase $shiftEditUseCase;
@@ -48,6 +48,7 @@ class Apply extends Component
 
         $this->redirect('/shift');
     }
+
     public function render(): View
     {
         return view('livewire.shift.apply');

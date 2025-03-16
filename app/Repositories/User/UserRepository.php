@@ -24,7 +24,7 @@ class UserRepository implements IUserRepository
     }
 
     /**
-     * @return Collection<int, UserModel>
+     * @return Collection<int, User>
      */
     public function findAll(): Collection
     {
