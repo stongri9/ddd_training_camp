@@ -5,17 +5,17 @@ namespace app\UseCases\Shift;
 class ShowUseCaseDto
 {
     private function __construct(
-        public readonly int $year,
-        public readonly int $month
+        public readonly string $start_date,
+        public readonly string $end_date
     ) {}
 
     public static function create(
-        int $year,
-        int $month
+        string $start_date,
+        string $end_date,
     ): self {
         return new ShowUseCaseDto(
-            $year,
-            $month
+            $start_date,
+            $end_date,
         );
     }
 }

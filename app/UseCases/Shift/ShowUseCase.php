@@ -15,19 +15,18 @@ class ShowUseCase
     /**
      * @return Collection<int, \app\Domains\Shift\Shift>
      */
-    public function __invoke(ShowUseCaseDto $getUseCaseDto): Collection
+    public function __invoke(ShowUseCaseDto $showUseCaseDto): Collection
     {
         try {
-            $firstDayOfMonth = new DateTimeImmutable("{$getUseCaseDto->year}-{$getUseCaseDto->month}-01");
+            $firstDayOfMonth = new DateTimeImmutable($showUseCaseDto->start_date);
+            $endDayOfMonth = new DateTimeImmutable($showUseCaseDto->end_date);
         } catch (\Exception $e) {
             throw new \InvalidArgumentException('正しい形式の日付を指定してください。');
         }
-        $lastDayOfMonth = $firstDayOfMonth
-            ->modify('first day of next month')
-            ->modify('-1 day');
 
-        $shiftCollection = $this->shiftRepository->getShiftsByPeriod($firstDayOfMonth, $lastDayOfMonth);
-
-        return $shiftCollection;
+        return $this->shiftRepository->getShiftsByPeriod(
+            $firstDayOfMonth,
+            $endDayOfMonth,
+        );
     }
 }

@@ -26,24 +26,24 @@ class CreateUseCase
      */
     public function __invoke(CreateUseCaseDto $createUseCaseDto): Collection
     {
-        $shiftCollection = new Collection;
+        $shift_collection = new Collection;
         $users = $this->userRepository->findAll();
-        $date = new DateTime($createUseCaseDto->startDate);
-        $endDate = new DateTimeImmutable($createUseCaseDto->endDate);
-        $previousShift = $this->shiftRepository->getShiftByDate($date->modify('-1 day'));
-        $confirmedNextShift = null;
+        $date = new DateTime($createUseCaseDto->start_date);
+        $end_date = new DateTimeImmutable($createUseCaseDto->end_date);
+        $previous_shift = $this->shiftRepository->getShiftByDate($date->modify('-1 day'));
+        $confirmed_next_shift = null;
         // 開始日〜終了日まで1日ずつ加算しながら日ごとのシフトを作成する
-        for (; $date->diff($endDate)->d !== 0; $date->modify('+1 day')) {
-            if ($date->format('Y-m-d') === $endDate->format('Y-m-d')) {
-                $confirmedNextShift = $this->shiftRepository->getShiftByDate($date->modify('+1 day'));
+        for (; $date->diff($end_date)->d !== 0; $date->modify('+1 day')) {
+            if ($date->format('Y-m-d') === $end_date->format('Y-m-d')) {
+                $confirmed_next_shift = $this->shiftRepository->getShiftByDate($date->modify('+1 day'));
             }
-            $entity = $this->shiftFactory->create($date, $users, $previousShift, $confirmedNextShift);
-            $shiftCollection->add($entity);
-            $previousShift = $entity;
+            $entity = $this->shiftFactory->create($date, $users, $previous_shift, $confirmed_next_shift);
+            $shift_collection->add($entity);
+            $previous_shift = $entity;
         }
 
         $errors = [];
-        foreach ($shiftCollection as $shift) {
+        foreach ($shift_collection as $shift) {
             $errors = [
                 ...$errors,
                 ...$this->createShiftUserRoleSpecification->getViolations(
@@ -55,12 +55,12 @@ class CreateUseCase
         }
         $errors = [
             ...$errors,
-            ...$this->createShiftContinueSpecification->getViolations($shiftCollection),
+            ...$this->createShiftContinueSpecification->getViolations($shift_collection),
         ];
         if ($errors) {
             throw new \InvalidArgumentException(implode(PHP_EOL, $errors));
         }
 
-        return $shiftCollection;
+        return $shift_collection;
     }
 }

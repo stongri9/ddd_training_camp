@@ -4,7 +4,7 @@ namespace app\Livewire\Shift;
 
 use app\UseCases\Shift\ShowUseCase;
 use app\UseCases\Shift\ShowUseCaseDto;
-use DateTimeImmutable;
+use DateTime;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Collection;
 use Livewire\Component;
@@ -16,10 +16,9 @@ class Show extends Component
      */
     public Collection $shifts;
 
-    public int $year;
+    public string $current_start_date;
 
-    public int $month;
-
+    public string $current_end_date;
     private ShowUseCase $showUseCase;
 
     public function boot(ShowUseCase $showUseCase): void
@@ -29,11 +28,11 @@ class Show extends Component
 
     public function mount(): void
     {
-        $now = new DateTimeImmutable;
-        $this->year = $this->year ?? (int) $now->format('Y');
-        $this->month = $this->month ?? (int) $now->format('m');
+        $now = new DateTime;
+        $this->current_start_date = $now->format('Y-m-01');
+        $this->current_end_date = $now->format('Y-m-t');
 
-        $dto = ShowUseCaseDto::create($this->year, $this->month);
+        $dto = ShowUseCaseDto::create($this->current_start_date, $this->current_end_date);
 
         $this->shifts = ($this->showUseCase)($dto);
     }
