@@ -10,12 +10,12 @@ class CreateForm extends Form
     /**
      * @var string
      */
-    #[Validate('required')]
+    #[Validate('required|date')]
     public $start_date = '';
 
     /**
      * @var string
      */
-    #[Validate('required')]
+    #[Validate('required|date')]
     public $end_date = '';
 }
