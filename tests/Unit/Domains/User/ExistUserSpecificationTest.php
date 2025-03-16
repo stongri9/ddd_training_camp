@@ -25,7 +25,6 @@ class ExistUserSpecificationTest extends TestCase
     {
         parent::setUp();
         $this->mockUserRepository = Mockery::mock(IUserRepository::class);
-        // @phpstan-ignore-next-line
         $this->existUserSpecification = new ExistUserSpecification($this->mockUserRepository);
     }
 
@@ -34,7 +33,6 @@ class ExistUserSpecificationTest extends TestCase
         // Arrange
         $userId = 1;
         $user = Mockery::mock(User::class);
-        // @phpstan-ignore-next-line
         $this->mockUserRepository->shouldReceive('find')->with($userId)->andReturn($user);
 
         // Act
@@ -48,7 +46,6 @@ class ExistUserSpecificationTest extends TestCase
     {
         // Arrange
         $userId = 1;
-        // @phpstan-ignore-next-line
         $this->mockUserRepository->shouldReceive('find')->with($userId)->andReturn(null);
 
         // Act
