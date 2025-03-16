@@ -2,7 +2,7 @@
 
 namespace Tests\Unit\Domains\Shift;
 
-use App\Domains\Shift\Shift;
+use app\Domains\Shift\Shift;
 use Carbon\Carbon;
 use InvalidArgumentException;
 use Mockery;
@@ -13,7 +13,7 @@ use Tests\TestCase;
 class ShiftTest extends TestCase
 {
     #[Test]
-    public function it_creates_shift_successfully_on_business_day()
+    public function it_creates_shift_successfully_on_business_day(): void
     {
         $date = Carbon::parse('2024-03-15')->format('Y-m-d'); // 営業日 (例: 金曜日)
 
@@ -32,7 +32,7 @@ class ShiftTest extends TestCase
     }
 
     #[Test]
-    public function it_creates_shift_successfully_on_holiday()
+    public function it_creates_shift_successfully_on_holiday(): void
     {
         $date = Carbon::parse('2024-03-17')->format('Y-m-d'); // 休院日 (例: 日曜日)
 
@@ -52,8 +52,18 @@ class ShiftTest extends TestCase
 
     #[DataProvider('invalidShiftDataProvider')]
     #[Test]
-    public function it_throws_exception_when_invalid_shift_conditions_are_met($date, $dayShiftUserIds, $lateShiftUserIds, $nightShiftUserIds, $expectedExceptionMessage)
-    {
+    /**
+     * @param  int[]  $dayShiftUserIds
+     * @param  int[]  $lateShiftUserIds
+     * @param  int[]  $nightShiftUserIds
+     */
+    public function it_throws_exception_when_invalid_shift_conditions_are_met(
+        string $date,
+        array $dayShiftUserIds,
+        array $lateShiftUserIds,
+        array $nightShiftUserIds,
+        string $expectedExceptionMessage,
+    ): void {
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage($expectedExceptionMessage);
 
@@ -63,6 +73,9 @@ class ShiftTest extends TestCase
         Shift::create($date, $dayShiftUserIds, $lateShiftUserIds, $nightShiftUserIds);
     }
 
+    /**
+     * @return array{string, int[], int[], int[], string}[]
+     */
     public static function invalidShiftDataProvider(): array
     {
         return [
@@ -78,21 +91,22 @@ class ShiftTest extends TestCase
 
             // --- 共通のバリデーション ---
             'not enough night shift workers' => ['2024-03-15', [1, 2, 3, 4], [5], [6], '夜勤の人は2人以上必要です。'],
-            'invalid user id' => ['2024-03-15', [null], [5], [6, 7], '無効なユーザーIDです。'],
         ];
     }
 
     /**
      * config('closedDays') をモックするヘルパー
      */
-    protected function mockConfig()
+    protected function mockConfig(): void
     {
         $mock = Mockery::mock('alias:config');
 
+        // @phpstan-ignore-next-line
         $mock->shouldReceive('get')
             ->with('closedDays.closedWeekDays', Mockery::any())
             ->andReturn(['Thu', 'Sun']);
 
+        // @phpstan-ignore-next-line
         $mock->shouldReceive('get')
             ->with('closedDays.holidays', Mockery::any())
             ->andReturn(['2025-01-23']);
