@@ -111,7 +111,7 @@ class Shift
         );
     }
 
-    public function convertShiftChangeOriginAssignment():ShiftChangeOriginAssignment
+    public function convertShiftChangeOriginAssignment(): ShiftChangeOriginAssignment
     {
         return ShiftChangeOriginAssignment::createFromShift($this);
     }

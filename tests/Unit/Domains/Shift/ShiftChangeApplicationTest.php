@@ -5,9 +5,9 @@ namespace Tests\Unit\Domains\Shift;
 use app\Domains\Shift\ShiftChangeApplication;
 use app\Domains\Shift\ShiftChangeOriginAssignment;
 use app\Domains\Shift\ShiftChangeRequestAssignment;
+use DateTimeImmutable;
 use Tests\Factories\ShiftTestFactory;
 use Tests\TestCase;
-use DateTimeImmutable;
 
 class ShiftChangeApplicationTest extends TestCase
 {

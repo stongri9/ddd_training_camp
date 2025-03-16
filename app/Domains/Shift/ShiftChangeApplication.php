@@ -23,13 +23,9 @@ class ShiftChangeApplication
     ) {}
 
     /**
-     * @param  Shift  $shift
-     * @param  DateTimeImmutable  $date
      * @param  int[]  $requestDayShiftUserIds
      * @param  int[]  $requestLateShiftUserIds
      * @param  int[]  $requestNightShiftUserIds
-     * @param  int  $userId
-     * @param  string  $comment
      * @return ShiftChangeApplication
      */
     public static function create(Shift $shift, DateTimeImmutable $date, array $requestDayShiftUserIds, array $requestLateShiftUserIds, array $requestNightShiftUserIds, int $userId, string $comment)
