@@ -26,6 +26,6 @@ class UserRepositoryTest extends TestCase
         $this->assertSame($userModel->id, $user->id);
 
         $this->assertInstanceOf(Role::class, $user->role);
-        $this->assertSame('看護師', $user->role->label());
+        $this->assertSame(Role::Nurse->value, $user->role->value);
     }
 }
