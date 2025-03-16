@@ -3,10 +3,16 @@
 namespace app\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+
+use Database\Factories\UserFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
+/**
+ * @property int $id
+ */
 class User extends Authenticatable
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
@@ -44,5 +50,23 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    /**
+     * ユーザーに紐づく休み希望の取得
+     *
+     * @return HasMany<DayOffRequest, $this>
+     */
+    public function dayOffRequests(): HasMany
+    {
+        return $this->hasMany(DayOffRequest::class, 'user_id', 'id');
+    }
+
+    /**
+     * @return UserFactory
+     */
+    protected static function newFactory()
+    {
+        return UserFactory::new();
     }
 }

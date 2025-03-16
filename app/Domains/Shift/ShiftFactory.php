@@ -15,8 +15,7 @@ class ShiftFactory
     public function create(DateTimeInterface $date, Collection $users, ?Shift $previousShift, ?Shift $confirmedNextShift): Shift
     {
         $canWorkUsers = $users->filter(
-            fn (User $user) => ! in_array($date, $user->dayOffRequests, true)
-                && ! in_array($user->id, $previousShift->nightShiftUserIds ?? [], true)
+            fn (User $user) => ! in_array($user->id, $previousShift->nightShiftUserIds ?? [], true)
         );
 
         $workDayShiftUsers = $this->determineDayShiftUsers($date, $canWorkUsers);
