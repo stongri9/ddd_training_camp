@@ -16,8 +16,8 @@ class ShiftFactoryTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
-        $this->shiftFactory = new ShiftFactory();
-        
+        $this->shiftFactory = new ShiftFactory;
+
         // 設定ファイルのモック - 明示的に日付を指定
         config(['closedDays.closedWeekDays' => ['Sat', 'Sun']]);
         config(['closedDays.holidays' => ['2023-01-01', '2023-01-09']]);
@@ -147,7 +147,7 @@ class ShiftFactoryTest extends TestCase
         }
         $this->assertTrue($hasNurse, '看護師が含まれていません');
     }
-    
+
     private function assertShiftDoesNotContainRole(\Illuminate\Support\Collection $users, array $shiftUserIds, Role $role): void
     {
         $containsRole = false;
@@ -158,6 +158,6 @@ class ShiftFactoryTest extends TestCase
                 break;
             }
         }
-        $this->assertFalse($containsRole, $role->name . 'が含まれています');
+        $this->assertFalse($containsRole, $role->name.'が含まれています');
     }
 }
