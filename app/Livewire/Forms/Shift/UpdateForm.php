@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire\Forms\Shift;
+namespace app\Livewire\Forms\Shift;
 
 // use App\Models\Shift;
 use Livewire\Attributes\Validate;

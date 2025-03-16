@@ -3,8 +3,8 @@
 namespace Tests\Unit\Domains\Shift;
 
 use app\Domains\Shift\ShiftChangeRequestAssignment;
-use Tests\TestCase;
 use DateTimeImmutable;
+use Tests\TestCase;
 
 class ShiftChangeRequestAssignmentTest extends TestCase
 {
