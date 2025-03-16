@@ -91,9 +91,9 @@ class Shift
     }
 
     /**
-     * @param  list<int>  $dayShiftUserIds
-     * @param  list<int>  $lateShiftUserIds
-     * @param  list<int>  $nightShiftUserIds
+     * @param  int[]  $dayShiftUserIds
+     * @param  int[]  $lateShiftUserIds
+     * @param  int[]  $nightShiftUserIds
      */
     public static function reconstruct(
         int $id,

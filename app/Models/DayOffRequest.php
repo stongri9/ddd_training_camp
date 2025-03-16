@@ -36,7 +36,7 @@ class DayOffRequest extends Model
      *
      * @return HasMany<DayOffRequestDay, DayOffRequest>
      */
-    public function day_off_request_days(): HasMany
+    public function dayOffRequestDays(): HasMany
     {
         /** @var HasMany<DayOffRequestDay, DayOffRequest> */
         return $this->hasMany(DayOffRequestDay::class, 'day_off_request_id', 'id');
