@@ -8,6 +8,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::view('dashboard', 'pages.dashboard')->name('dashboard');
 
     Route::view('shift', 'pages.shift')->name('shift');
+    Route::view('shift/edit', 'pages.edit-shift')->name('shift.edit');
 
     Route::view('dayoff', 'pages.dayoff')->name('dayoff');
 

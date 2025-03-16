@@ -140,8 +140,13 @@
     "Showing": "表示中：",
     "Inquiry": "問合せ",
     "Shift": "シフト",
-    "DayOff": "休暇申請",
+    "DayOff": "休暇",
     "Edit": "編集",
     "Update": "更新",
-    "Delete": "削除"
+    "Delete": "削除",
+    "List": "一覧",
+    "Apply": "申請",
+    "Published": "公開中の",
+    "Monthly": "月の",
+    "Weekly": "週の"
 }

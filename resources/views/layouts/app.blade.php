@@ -17,6 +17,8 @@
     <body class="font-sans antialiased">
         <div class="min-h-screen bg-gray-100 dark:bg-gray-900">
             <livewire:layout.navigation />
+            <x-success-session-message :success="session('success')" />
+            <x-error-session-message :error="session('error')" />
             <main>
                 {{ $slot }}
             </main>
