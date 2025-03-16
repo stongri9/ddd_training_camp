@@ -3,8 +3,6 @@
 namespace app\Repositories\User;
 
 use app\Domains\User\IUserRepository;
-use app\Domains\User\User;
-use app\Models\DayOffRequest;
 use app\Models\User as UserModel;
 use Illuminate\Support\Collection;
 

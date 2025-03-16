@@ -3,8 +3,8 @@
 namespace Tests\Feature\App\UseCases;
 
 use app\Models\User as UserModel;
-use app\UseCases\DayOffRequest\SubmitDayOffRequestUseCaseDto;
 use app\UseCases\DayOffRequest\SubmitDayOffRequestUseCase;
+use app\UseCases\DayOffRequest\SubmitDayOffRequestUseCaseDto;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;

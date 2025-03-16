@@ -6,6 +6,7 @@ use Database\Factories\DayOffRequestFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+
 /**
  * @property int $id
  * @property int $user_id
@@ -37,7 +38,7 @@ class DayOffRequest extends Model
      */
     public function day_off_request_days(): HasMany
     {
-         /** @var HasMany<DayOffRequestDay, DayOffRequest> */
+        /** @var HasMany<DayOffRequestDay, DayOffRequest> */
         return $this->hasMany(DayOffRequestDay::class, 'day_off_request_id', 'id');
     }
 

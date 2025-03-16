@@ -3,9 +3,10 @@
 namespace Tests\Unit\Domains\DayOffRequest;
 
 use app\Domains\DayOffRequest\DayOffRequestDay;
+use DateTimeImmutable;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
-use DateTimeImmutable;
+
 class DayOffRequestDayTest extends TestCase
 {
     #[Test]

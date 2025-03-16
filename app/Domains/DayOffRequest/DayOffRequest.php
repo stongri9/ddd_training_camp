@@ -5,9 +5,7 @@ namespace app\Domains\DayOffRequest;
 class DayOffRequest
 {
     /**
-     * @param  DayOffRequestDay[] $day_off_request_days
-     * @param  int $user_id
-     * @param  int|null $id
+     * @param  DayOffRequestDay[]  $day_off_request_days
      */
     private function __construct(
         public private(set) array $day_off_request_days,
@@ -16,8 +14,7 @@ class DayOffRequest
     ) {}
 
     /**
-     * @param  string[] $day_off_request_days
-     * @param int $user_id
+     * @param  string[]  $day_off_request_days
      */
     public static function create(
         array $day_off_request_days,
@@ -27,7 +24,7 @@ class DayOffRequest
             fn (string $date) => DayOffRequestDay::create($date),
             $day_off_request_days
         );
-    
+
         return new self(
             day_off_request_days: $dayOffRequestDays,
             user_id: $user_id,
@@ -35,9 +32,7 @@ class DayOffRequest
     }
 
     /**
-     * @param  int $id
-     * @param  string[] $day_off_request_days
-     * @param int $user_id
+     * @param  string[]  $day_off_request_days
      */
     public static function reconstruct(
         int $id,
@@ -57,7 +52,7 @@ class DayOffRequest
     }
 
     /**
-     * @param  string[] $day_off_request_days
+     * @param  string[]  $day_off_request_days
      */
     public function update(
         array $day_off_request_days,

@@ -2,14 +2,14 @@
 
 namespace app\Providers;
 
+use app\Domains\DayOffRequest\IDayOffRequestRepository;
 use app\Domains\Inquiry\IInquiryRepository;
 use app\Domains\Shift\IShiftRepository;
 use app\Domains\User\IUserRepository;
-use app\Domains\DayOffRequest\IDayOffRequestRepository;
+use app\Repositories\DayOffRequest\DayOffRequestRepository;
 use app\Repositories\Inquiry\InquiryRepository;
 use app\Repositories\Shift\ShiftRepository;
 use app\Repositories\User\UserRepository;
-use app\Repositories\DayOffRequest\DayOffRequestRepository;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider

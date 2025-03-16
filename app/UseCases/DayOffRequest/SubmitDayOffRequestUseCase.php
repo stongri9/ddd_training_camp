@@ -2,10 +2,9 @@
 
 namespace app\UseCases\DayOffRequest;
 
-use app\Domains\DayOffRequest\IDayOffRequestRepository;
-// use app\Domains\User\SubmitDayOffRequestSpecification;
 use app\Domains\DayOffRequest\DayOffRequest;
-use InvalidArgumentException;
+// use app\Domains\User\SubmitDayOffRequestSpecification;
+use app\Domains\DayOffRequest\IDayOffRequestRepository;
 
 class SubmitDayOffRequestUseCase
 {
@@ -14,10 +13,6 @@ class SubmitDayOffRequestUseCase
         // private readonly SubmitDayOffRequestSpecification $submitDayOffRequestSpecification
     ) {}
 
-    /**
-     * @param  SubmitDayOffRequestUseCaseDto  $dto
-     * @return int
-     */
     public function __invoke(SubmitDayOffRequestUseCaseDto $dto): int
     {
         // TODO: Shiftモデルを取り込んだらシフト確定日以降の日付を申請しているか確認するSpecificationを追加する

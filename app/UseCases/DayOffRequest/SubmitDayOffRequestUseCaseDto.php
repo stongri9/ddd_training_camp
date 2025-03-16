@@ -15,7 +15,7 @@ class SubmitDayOffRequestUseCaseDto
     /**
      * Summary of create
      *
-     * @param  string[]  $day_off_requests
+     * @param  string[]  $day_off_request_days
      */
     public static function create(
         int $user_id,
