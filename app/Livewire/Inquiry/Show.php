@@ -8,7 +8,7 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Database\Eloquent\Collection;
 use Livewire\Component;
 
-class ShowInquiry extends Component
+class Show extends Component
 {
     /**
      * @var Collection<int, Inquiry>
@@ -29,6 +29,6 @@ class ShowInquiry extends Component
 
     public function render(): View
     {
-        return view('livewire.inquiry.show-inquiry');
+        return view('livewire.inquiry.show');
     }
 }

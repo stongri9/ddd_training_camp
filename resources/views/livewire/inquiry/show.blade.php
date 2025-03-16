@@ -20,7 +20,7 @@
                         <td class="px-6 py-4 text-sm">{{ $inquiry->zip_code }}<br>{{ $inquiry->address }}</td>
                         <td class="px-6 py-4 text-sm" style="white-space: pre-wrap;">{{ $inquiry->content }}</td>
                         <td class="px-6 py-4 whitespace-nowrap text-sm">
-                            <livewire:inquiry.update-inquiry :id="$inquiry->id" />
+                            <livewire:inquiry.update :id="$inquiry->id" />
                         </td>
                     </tr>
                 @endforeach
