@@ -2,25 +2,26 @@
 
 namespace Tests\Unit\Domains\User;
 
-use Tests\TestCase;
 use app\Domains\User\ExistUserSpecification;
 use app\Domains\User\IUserRepository;
+use app\Models\User;
 use Mockery;
 use Mockery\MockInterface;
-use app\Models\User;
+use Tests\TestCase;
+
 class ExistUserSpecificationTest extends TestCase
 {
     /**
      * @var MockInterface|IUserRepository
      */
     private $mockUserRepository;
-    
+
     /**
      * @var ExistUserSpecification
      */
     private $existUserSpecification;
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         parent::setUp();
         $this->mockUserRepository = Mockery::mock(IUserRepository::class);

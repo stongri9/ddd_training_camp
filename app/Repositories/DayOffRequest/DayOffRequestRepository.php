@@ -6,8 +6,8 @@ use app\Domains\DayOffRequest\DayOffRequest;
 use app\Domains\DayOffRequest\IDayOffRequestRepository;
 use app\Models\DayOffRequest as DayOffRequestModel;
 use app\Models\DayOffRequestDay as DayOffRequestDayModel;
-use app\Models\Shift as ShiftModel;
 use Illuminate\Database\Eloquent\Collection;
+
 class DayOffRequestRepository implements IDayOffRequestRepository
 {
     public function find(int $id): ?DayOffRequestModel

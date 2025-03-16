@@ -2,7 +2,6 @@
 
 namespace app\Domains\DayOffRequest;
 
-use app\Domains\DayOffRequest\DayOffRequest;
 use app\Models\DayOffRequest as DayOffRequestModel;
 use Illuminate\Database\Eloquent\Collection;
 

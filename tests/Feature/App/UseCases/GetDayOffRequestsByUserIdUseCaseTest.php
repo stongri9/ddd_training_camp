@@ -2,47 +2,47 @@
 
 namespace Tests\Feature\App\UseCases;
 
-use Tests\TestCase;
-use app\Models\User as UserModel;
 use app\Models\DayOffRequest as DayOffRequestModel;
-use PHPUnit\Framework\Attributes\Test;
+use app\Models\User as UserModel;
 use app\UseCases\DayOffRequest\GetDayOffRequestsByUserIdUseCase;
+use PHPUnit\Framework\Attributes\Test;
+use Tests\TestCase;
 
 class GetDayOffRequestsByUserIdUseCaseTest extends TestCase
 {
-  public function setUp(): void
-  {
-    parent::setUp();
-  }
-  
-  #[Test]
-  public function ユーザーIDを渡すとユーザーに紐づく休み希望日のコレクションを返す(): void
-  {
-    // Arrange
-    $user = UserModel::factory()->create();
-    DayOffRequestModel::factory()->count(3)->create([
-      'user_id' => $user->id,
-    ]);
+    protected function setUp(): void
+    {
+        parent::setUp();
+    }
 
-    // Act
-    $useCase = $this->app->make(GetDayOffRequestsByUserIdUseCase::class);
-    $result = $useCase($user->id);
+    #[Test]
+    public function ユーザー_i_dを渡すとユーザーに紐づく休み希望日のコレクションを返す(): void
+    {
+        // Arrange
+        $user = UserModel::factory()->create();
+        DayOffRequestModel::factory()->count(3)->create([
+            'user_id' => $user->id,
+        ]);
 
-    // Assert
-    $this->assertCount(3, $result);
-  }
+        // Act
+        $useCase = $this->app->make(GetDayOffRequestsByUserIdUseCase::class);
+        $result = $useCase($user->id);
 
-  #[Test]
-  public function ユーザーIDを渡すとユーザーが存在しない場合は例外を投げる(): void
-  {
-    // Arrange
-    $userId = 999999;
+        // Assert
+        $this->assertCount(3, $result);
+    }
 
-    // Assert
-    $this->expectException(\InvalidArgumentException::class);
+    #[Test]
+    public function ユーザー_i_dを渡すとユーザーが存在しない場合は例外を投げる(): void
+    {
+        // Arrange
+        $userId = 999999;
 
-    // Act
-    $useCase = $this->app->make(GetDayOffRequestsByUserIdUseCase::class);
-    $useCase($userId);
-  }
+        // Assert
+        $this->expectException(\InvalidArgumentException::class);
+
+        // Act
+        $useCase = $this->app->make(GetDayOffRequestsByUserIdUseCase::class);
+        $useCase($userId);
+    }
 }
