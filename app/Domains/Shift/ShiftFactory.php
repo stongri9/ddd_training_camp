@@ -43,12 +43,21 @@ class ShiftFactory
             fn (User $user) => in_array($user->role, [Role::AssociateNurse, Role::Nurse], true)
         );
         /** @var Collection<int, User> */
-        $workDayShiftNurseOrAssociateNurseUser = $canWorkNurseOrAssociateNurseUsers->random(1);
+        $workDayShiftNurseOrAssociateNurseUser = $canWorkNurseOrAssociateNurseUsers
+            ->when(
+                fn (Collection $canWorkUsers) => $canWorkUsers->count() === 0,
+                fn () => throw new \InvalidArgumentException('勤務可能な看護師または准看護師の人数が足りません。')
+            )
+            ->random(1);
 
         return $workDayShiftNurseOrAssociateNurseUser->merge(
             $canWorkUsers
                 ->reject(fn (User $user) => $user->id === $workDayShiftNurseOrAssociateNurseUser->first()?->id)
                 ->reject(fn (User $user) => $user->role === Role::Arbeit)
+                ->when(
+                    fn (Collection $canWorkUsers) => $canWorkUsers->count() < $numberOfDayShiftUser - 1,
+                    fn () => throw new \InvalidArgumentException('勤務可能な人の数が足りません。')
+                )
                 ->random($numberOfDayShiftUser - 1)
         );
     }
@@ -64,6 +73,10 @@ class ShiftFactory
             /** @var Collection<int, User> */
             return $canWorkUsers
                 ->filter(fn (User $user) => in_array($user->role, [Role::AssociateNurse, Role::Nurse], true))
+                ->when(
+                    fn (Collection $canWorkUsers) => $canWorkUsers->count() < $numberOfLateShiftUser,
+                    fn () => throw new \InvalidArgumentException('勤務可能な看護師または准看護師の人数が足りません。')
+                )
                 ->random($numberOfLateShiftUser);
         }
 
@@ -90,11 +103,19 @@ class ShiftFactory
         /** @var Collection<int, User> */
         $workNightShiftNurseUser = $canWorkNightShiftUsers
             ->filter(fn (User $user) => $user->role === Role::Nurse)
+            ->when(
+                fn (Collection $canWorkUsers) => $canWorkUsers->count() === 0,
+                fn () => throw new \InvalidArgumentException('勤務可能な看護師の人数が足りません。')
+            )
             ->random(1);
 
         return $workNightShiftNurseUser->merge(
             $canWorkNightShiftUsers
                 ->reject(fn (User $user) => $user->id === $workNightShiftNurseUser->first()?->id)
+                ->when(
+                    fn (Collection $canWorkUsers) => $canWorkUsers->count() < $numberOfNightShiftUser - 1,
+                    fn () => throw new \InvalidArgumentException('勤務可能な看護師、准看護師もしくはアルバイトの人数が足りません。')
+                )
                 ->random($numberOfNightShiftUser - 1)
         );
     }

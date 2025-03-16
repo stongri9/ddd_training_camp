@@ -43,6 +43,7 @@ class CreateUseCase
         }
 
         $errors = [];
+
         foreach ($shift_collection as $shift) {
             $errors = [
                 ...$errors,
@@ -53,10 +54,14 @@ class CreateUseCase
                 ),
             ];
         }
+
+        $before6dayshifts = $this->shiftRepository->getShiftsByPeriod($date->modify('-7 day'), $date->modify('-1 day'));
+        $after6dayshifts = $this->shiftRepository->getShiftsByPeriod($end_date->modify('+1 day'), $end_date->modify('+7 day'));
         $errors = [
             ...$errors,
-            ...$this->createShiftContinueSpecification->getViolations($shift_collection),
+            ...$this->createShiftContinueSpecification->getViolations($shift_collection, $before6dayshifts, $after6dayshifts),
         ];
+
         if ($errors) {
             throw new \InvalidArgumentException(implode(PHP_EOL, $errors));
         }

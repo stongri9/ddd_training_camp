@@ -6,25 +6,20 @@ use Illuminate\Support\Collection;
 
 class CreateShiftContinueSpecification
 {
-    public function __construct(
-        private readonly IShiftRepository $shiftRepository,
-    ) {}
-
     /**
      * @param  Collection<int, Shift>  $shiftCollection
+     * @param  Collection<int, Shift>  $before6dayshifts
+     * @param  Collection<int, Shift>  $after6dayshifts
      * @return string[]
      */
     public function getViolations(
-        Collection $shiftCollection
+        Collection $shiftCollection,
+        Collection $before6dayshifts,
+        Collection $after6dayshifts,
     ): array {
         $violations = [];
+
         // ７連勤以上できない
-        /** @var \DateTimeImmutable */
-        $maxDate = $shiftCollection->max('date');
-        /** @var \DateTimeImmutable */
-        $minDate = $shiftCollection->min('date');
-        $before6dayshifts = $this->shiftRepository->getShiftsByPeriod($minDate->modify('-7 day'), $minDate->modify('-1 day'));
-        $after6dayshifts = $this->shiftRepository->getShiftsByPeriod($maxDate->modify('+1 day'), $maxDate->modify('+7 day'));
         $mergedShifts = $shiftCollection->merge([...$before6dayshifts, ...$after6dayshifts])->sortBy('date');
         $userShiftMappings = [];
         foreach ($mergedShifts as $shift) {
@@ -56,15 +51,19 @@ class CreateShiftContinueSpecification
             }
         }
 
-        $shiftBeforeMaxdate = $this->shiftRepository->getShiftByDate($minDate->modify('-1 day'));
+        // 直前の夜勤シフトと重複しない
+        $shiftBeforeMindate = $before6dayshifts->sortBy('date')->first();
+        /** @var \DateTimeImmutable */
+        $maxDate = $shiftCollection->max('date');
 
-        if (isset($shiftBeforeMaxdate)) {
-            $shiftCollection->add($this->shiftRepository->getShiftByDate($maxDate->modify('-1 day')));
+        if (isset($shiftBeforeMindate)) {
+            $shiftCollection->merge($shiftBeforeMindate)->sortBy('date');
         }
 
         foreach ($shiftCollection as $shift) {
             if ($shift->date === $maxDate) {
-                $nextDayShift = $this->shiftRepository->getShiftByDate($maxDate->modify('+1 day'));
+                /** @var Shift|null */
+                $nextDayShift = $after6dayshifts->sortByDesc('date')->first();
             } else {
                 $nextDayShift = $shiftCollection->where('date', $shift->date->modify('+1 day'))->first();
             }
