@@ -2,8 +2,8 @@
 
 namespace Tests\Feature\App\UseCases;
 
-use app\Models\User as UserModel;
 use app\Models\Shift as ShiftModel;
+use app\Models\User as UserModel;
 use app\UseCases\DayOffRequest\SubmitDayOffRequestUseCase;
 use app\UseCases\DayOffRequest\SubmitDayOffRequestUseCaseDto;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -71,6 +71,4 @@ class SubmitDayOffRequestUseCaseTest extends TestCase
         $useCase = $this->app->make(SubmitDayOffRequestUseCase::class);
         $useCase($dto);
     }
-
-    
 }

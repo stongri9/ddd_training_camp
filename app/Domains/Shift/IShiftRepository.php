@@ -2,9 +2,8 @@
 
 namespace app\Domains\Shift;
 
-use Illuminate\Support\Collection;
-use app\Domains\Shift\Shift;
 use app\Models\Shift as ShiftModel;
+use Illuminate\Support\Collection;
 
 interface IShiftRepository
 {

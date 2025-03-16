@@ -9,7 +9,7 @@ class ShiftFactory extends Factory
     public function definition(): array
     {
         return [
-            'date' => $this->faker->date(),
+            'date' => $this->faker->date('Y-m-d'),
         ];
     }
 }
