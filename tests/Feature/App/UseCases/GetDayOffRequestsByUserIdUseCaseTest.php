@@ -16,7 +16,7 @@ class GetDayOffRequestsByUserIdUseCaseTest extends TestCase
     }
 
     #[Test]
-    public function ユーザー_i_dを渡すとユーザーに紐づく休み希望日のコレクションを返す(): void
+    public function ユーザーidを渡すとユーザーに紐づく休み希望日のコレクションを返す(): void
     {
         // Arrange
         $user = UserModel::factory()->create();
@@ -33,7 +33,7 @@ class GetDayOffRequestsByUserIdUseCaseTest extends TestCase
     }
 
     #[Test]
-    public function ユーザー_i_dを渡すとユーザーが存在しない場合は例外を投げる(): void
+    public function ユーザーが存在しない場合は例外を投げる(): void
     {
         // Arrange
         $userId = 999999;
