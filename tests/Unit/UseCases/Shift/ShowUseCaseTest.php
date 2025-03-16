@@ -42,7 +42,7 @@ class ShowUseCaseTest extends TestCase
                 ->andReturn($collection);
         });
 
-        $dto = ShowUseCaseDto::create(2025, 6);
+        $dto = ShowUseCaseDto::create(2025-06-01, 2025-06-30);
 
         $useCase = new ShowUseCase($repository);
         $result = $useCase($dto);

@@ -14,9 +14,7 @@ class ShiftFactory
      */
     public function create(DateTimeInterface $date, Collection $users, ?Shift $previousShift, ?Shift $confirmedNextShift): Shift
     {
-        $canWorkUsers = $users->filter(
-            fn (User $user) => ! in_array($user->id, $previousShift->nightShiftUserIds ?? [], true)
-        );
+        $canWorkUsers = $users->reject(fn (User $user) => in_array($user->id, $previousShift->nightShiftUserIds ?? [], true));
 
         $workDayShiftUsers = $this->determineDayShiftUsers($date, $canWorkUsers);
         $canWorkUsers = $canWorkUsers->reject(fn (User $user) => in_array($user->id, $workDayShiftUsers->pluck('id')->all(), true));
@@ -50,6 +48,7 @@ class ShiftFactory
         return $workDayShiftNurseOrAssociateNurseUser->merge(
             $canWorkUsers
                 ->reject(fn (User $user) => $user->id === $workDayShiftNurseOrAssociateNurseUser->first()?->id)
+                ->reject(fn (User $user) => $user->role === Role::Arbeit)
                 ->random($numberOfDayShiftUser - 1)
         );
     }
@@ -84,15 +83,7 @@ class ShiftFactory
 
         if (isset($confirmedNextShift)) {
             $canWorkNightShiftUsers = $canWorkNightShiftUsers->reject(
-                fn (User $user) => in_array(
-                    $user->id,
-                    [
-                        ...$confirmedNextShift->dayShiftUserIds,
-                        ...$confirmedNextShift->lateShiftUserIds,
-                        ...$confirmedNextShift->nightShiftUserIds,
-                    ],
-                    true
-                )
+                fn (User $user) => in_array($user->id, $confirmedNextShift->userIds, true)
             );
         }
 
