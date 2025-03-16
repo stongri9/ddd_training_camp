@@ -19,14 +19,4 @@ class CreateForm extends Form
      */
     #[Validate('required')]
     public $end_date = '';
-
-    public function toStringDateProperty(): void 
-    {
-        if (is_a($this->start_date, DateTimeInterface::class)) {
-            $this->start_date = $this->start_date->format('Y-m-d');
-        }
-        if (is_a($this->end_date, DateTimeInterface::class)) {
-            $this->end_date = $this->end_date->format('Y-m-d');
-        }
-    }
 }

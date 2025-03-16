@@ -20,11 +20,6 @@ class Create extends Component
         $this->createUsecase = $createUsecase;
     }
 
-    public function mount(): void
-    {
-        $this->form->toStringDateProperty();
-    }
-
     public function execute(): void 
     {
         $this->validate();
