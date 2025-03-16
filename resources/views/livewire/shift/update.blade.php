@@ -1,31 +1,32 @@
-<div class="px-2">
-    <x-m-primary-button 
-        x-on:click.prevent="$dispatch('open-modal', 'temporary-save')"
-    >{{ __('Shift') }}{{ __('Edit') }}</x-m-primary-button>
-
-    <x-modal name="update-shift" :show="$errors->isNotEmpty()" focusable>
-        <div class="p-6">
-            <h2 class="text-2xl font-medium text-gray-900 dark:text-gray-100">12/1</h2>
-            <table class="mt-3 border-collapse table-fixed">
-                <thead class="bg-slate-50 dark:bg-slate-700">
-                    <tr>
-                        <td class="font-semibold p-4 text-slate-900 dark:text-slate-200 text-left">シフト</td>
-                        <td class="font-semibold p-4 text-slate-900 dark:text-slate-200 text-left">ユーザー名</td>
-                    </tr>
-                </thead>
+<div class="p-6 text-gray-900 dark:text-gray-100">
+    <header class="flex justify-between items-center px-4 py-3 border-b border-gray-100 dark:border-gray-700">
+        <h2 class="text-lg font-medium text-gray-900 dark:text-gray-100">
+            {{ __('Shift') }}{{ __('Edit') }}
+        </h2>
+    </header>
+    <div class="flex justify-between mt-3">
+        @if ($shifts->isNotEmpty())
+            <table class="border-collapse table-fixed">
                 <tbody>
-                    <tr>
-                        <td class="p-4 text-slate-500 dark:text-slate-400 text-left">日勤</td>
-                        <td class="p-4 text-slate-500 dark:text-slate-400 text-center">
-                            <select class="text-black">
-                                <option>ユーザー名１</option>
-                                <option>ユーザー名２</option>
-                                <option>ユーザー名３</option>
-                            </select>
-                        </td>
-                    </tr>
+                    @foreach ($shifts as $shift)                    
+                        <tr>
+                            <td class="p-4 text-slate-500 dark:text-slate-400 text-left">{{ $shift->date }}</td>
+                            @foreach ($shift->shiftAssignments as $assignment)
+                                <td class="p-4 text-slate-500 dark:text-slate-400 text-center">
+                                    <span class="px-2 py-1 text-xs font-semibold rounded-lg bg-{{ $assignment->shift_type_color }}-100 text-{{ $assignment->shift_type_color }}-800">
+                                        {{ $assignment->user->name }}
+                                    </span>
+                                </td>
+                            @endforeach
+                            <td class="px-4 text-slate-500 dark:text-slate-400 text-center">
+                                <livewire:shift.apply :id="$shift->id" />
+                            </td>
+                        </tr>
+                    @endforeach
                 </tbody>
             </table>
-        </div>
-    </x-modal>
+        @else
+            <div class="text-center py-4">データはありません！</div>
+        @endif
+    </div>
 </div>
