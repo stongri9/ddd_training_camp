@@ -1,9 +1,8 @@
 <?php
 
-namespace App\Livewire\Inquiry;
+namespace app\Livewire\Inquiry;
 
-use App\Models\Inquiry;
-use App\UseCases\Inquiry\ShowUseCase;
+use app\UseCases\Inquiry\ShowUseCase;
 use Illuminate\Contracts\View\View;
 use Illuminate\Database\Eloquent\Collection;
 use Livewire\Component;
@@ -11,7 +10,7 @@ use Livewire\Component;
 class Show extends Component
 {
     /**
-     * @var Collection<int, Inquiry>
+     * @var Collection<int, \app\Models\Inquiry>
      */
     public Collection $inquiries;
 

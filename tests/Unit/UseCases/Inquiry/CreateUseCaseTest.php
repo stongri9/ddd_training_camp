@@ -2,9 +2,9 @@
 
 namespace Tests\Unit\UseCases\Inquiry;
 
-use App\Domains\Inquiry\IInquiryRepository;
-use App\UseCases\Inquiry\CreateUseCase;
-use App\UseCases\Inquiry\CreateUseCaseDto;
+use app\Domains\Inquiry\IInquiryRepository;
+use app\UseCases\Inquiry\CreateUseCase;
+use app\UseCases\Inquiry\CreateUseCaseDto;
 use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 

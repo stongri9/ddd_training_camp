@@ -2,10 +2,10 @@
 
 namespace Tests\Unit\UseCases\Inquiry;
 
-use App\Domains\Inquiry\IInquiryRepository;
-use App\Models\Inquiry as InquiryModel;
-use App\UseCases\Inquiry\UpdateUseCase;
-use App\UseCases\Inquiry\UpdateUseCaseDto;
+use app\Domains\Inquiry\IInquiryRepository;
+use app\Models\Inquiry as InquiryModel;
+use app\UseCases\Inquiry\UpdateUseCase;
+use app\UseCases\Inquiry\UpdateUseCaseDto;
 use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 

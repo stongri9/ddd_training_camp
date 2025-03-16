@@ -28,11 +28,11 @@ parameters:
       path: app/Livewire/*
 
     # Modelのプロパティ・メソッドアクセスは無視
-    - '#Call to an undefined.* method App\\Models#'
-    - '#Access to an undefined property App\\Models#'
+    - '#Call to an undefined.* method app\\Models#'
+    - '#Access to an undefined property app\\Models#'
 
     # Laravelのframework系（Illuminate）のは回避不可なので無視
-    - '#Call to an undefined method Illuminate#'
+    - '#Call to an undefined.* method Illuminate#'
     - '#Cannot call method.* on .*Illuminate#'
     - '#Parameter.* of method Illuminate#'
     - '#Parameter.* of class Illuminate#'

@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Domains\Shift;
+namespace app\Domains\Shift;
 
 use DateTimeImmutable;
 
+/** @property int[] $userIds */
 class Shift
 {
     /**
@@ -30,6 +31,10 @@ class Shift
      */
     public static function create(string $date, array $dayShiftUserIds, array $lateShiftUserIds, array $nightShiftUserIds)
     {
+        if (! collect([...$dayShiftUserIds, ...$lateShiftUserIds, ...$nightShiftUserIds])->every(fn ($v) => is_int($v))) {
+            throw new \InvalidArgumentException('無効なユーザーIDです。');
+        }
+
         if (count($nightShiftUserIds) < 2) {
             throw new \InvalidArgumentException('夜勤の人は2人以上必要です。');
         }
@@ -61,5 +66,52 @@ class Shift
         }
 
         return $shiftEntity;
+    }
+
+    /**
+     * @return array{ id: int|null, date: string, dayShiftUserIds: int[], lateShiftUserIds: int[] , nightShiftUserIds: int[] }
+     */
+    public function convertParams(): array
+    {
+        return [
+            'id' => $this->id,
+            'date' => $this->date->format('Y-m-d'),
+            'dayShiftUserIds' => $this->dayShiftUserIds,
+            'lateShiftUserIds' => $this->lateShiftUserIds,
+            'nightShiftUserIds' => $this->nightShiftUserIds,
+        ];
+    }
+
+    /**
+     * @return int[]
+     */
+    public function __get(string $property)
+    {
+        if ($property === 'userIds') {
+            return [...$this->dayShiftUserIds, ...$this->lateShiftUserIds, ...$this->nightShiftUserIds];
+        } else {
+            throw new \DomainException('アクセス不能なプロパティです。');
+        }
+    }
+
+    /**
+     * @param  list<int>  $dayShiftUserIds
+     * @param  list<int>  $lateShiftUserIds
+     * @param  list<int>  $nightShiftUserIds
+     */
+    public static function reconstruct(
+        int $id,
+        DateTimeImmutable $date,
+        array $dayShiftUserIds,
+        array $lateShiftUserIds,
+        array $nightShiftUserIds
+    ): self {
+        return new self(
+            $id,
+            $date,
+            $dayShiftUserIds,
+            $lateShiftUserIds,
+            $nightShiftUserIds
+        );
     }
 }

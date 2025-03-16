@@ -2,7 +2,7 @@
 
 namespace Tests\Unit\Domains\Inquiry;
 
-use App\Domains\Inquiry\Inquiry;
+use app\Domains\Inquiry\Inquiry;
 use InvalidArgumentException;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
