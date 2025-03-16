@@ -2,7 +2,7 @@
 
 namespace app\Livewire\Shift;
 
-use App\Livewire\Forms\Shift\CreateForm;
+use app\Livewire\Forms\Shift\CreateForm;
 use app\UseCases\Shift\CreateUseCase;
 use app\UseCases\Shift\CreateUseCaseDto;
 use Illuminate\Contracts\View\View;
