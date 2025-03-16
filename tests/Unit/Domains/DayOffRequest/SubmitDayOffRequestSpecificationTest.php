@@ -26,9 +26,7 @@ class SubmitDayOffRequestSpecificationTest extends TestCase
     {
         $this->mockShiftRepository = Mockery::mock(IShiftRepository::class);
 
-        // @phpstan-ignore-next-line
         $this->mockShift = Mockery::mock(ShiftModel::class);
-        // @phpstan-ignore-next-line
         $this->mockShift->shouldReceive('getAttribute')
             ->with('date')
             ->andReturn('2025-03-14');
@@ -38,10 +36,8 @@ class SubmitDayOffRequestSpecificationTest extends TestCase
     public function まだ一つもシフトが作成されていない場合はtrueを返す(): void
     {
         // Arrange
-        // @phpstan-ignore-next-line
         $this->mockShiftRepository->shouldReceive('getLatestShift')->andReturn(null);
 
-        // @phpstan-ignore-next-line
         $specification = new SubmitDayOffRequestSpecification($this->mockShiftRepository);
 
         $result = $specification->isSatisfied(['2025-03-14']);
@@ -53,12 +49,10 @@ class SubmitDayOffRequestSpecificationTest extends TestCase
     public function 休み希望日に最新のシフト確定日より前の日付が含まれていない場合はtrueを返す(): void
     {
         // Arrange
-        // @phpstan-ignore-next-line
         $this->mockShiftRepository->shouldReceive('getLatestShift')->andReturn(
             $this->mockShift
         );
 
-        // @phpstan-ignore-next-line
         $specification = new SubmitDayOffRequestSpecification($this->mockShiftRepository);
 
         $result = $specification->isSatisfied(['2025-03-15']);
@@ -70,12 +64,10 @@ class SubmitDayOffRequestSpecificationTest extends TestCase
     public function 休み希望日に最新のシフト確定日より前の日付が含まれている場合はfalseを返す(): void
     {
         // Arrange
-        // @phpstan-ignore-next-line
         $this->mockShiftRepository->shouldReceive('getLatestShift')->andReturn(
             $this->mockShift
         );
 
-        // @phpstan-ignore-next-line
         $specification = new SubmitDayOffRequestSpecification($this->mockShiftRepository);
 
         $result = $specification->isSatisfied(['2025-03-13']);
