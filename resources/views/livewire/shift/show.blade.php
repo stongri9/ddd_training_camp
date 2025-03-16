@@ -5,7 +5,7 @@
         </h2>
         <div class="flex justify-between">
             <x-m-primary-button>
-                <a href="{{ route('shift.edit') }}">{{ __('Shift') }}{{ __('Edit') }}</a>
+                <a href="{{ route('shift.edit', ['start_date' => $current_start_date, 'end_date' => $current_end_date], false) }}">{{ __('Shift') }}{{ __('Edit') }}</a>
             </x-m-primary-button>
             <livewire:shift.create />
         </div>
