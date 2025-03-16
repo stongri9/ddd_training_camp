@@ -16,7 +16,5 @@ class UpdateForm extends Form
 
     public function setShift(
         // Shift $shift
-    ): void {
-
-    }
+    ): void {}
 }

@@ -7,7 +7,7 @@ class ShowUseCaseDto
     private function __construct(
         public readonly string $start_date,
         public readonly string $end_date,
-        public readonly string $is_published_edit,
+        public readonly bool $is_published_edit,
     ) {}
 
     public static function create(

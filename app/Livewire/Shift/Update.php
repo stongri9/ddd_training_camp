@@ -6,7 +6,7 @@ use App\Livewire\Forms\Shift\UpdateForm;
 use app\UseCases\Shift\ShowUseCase;
 use app\UseCases\Shift\ShowUseCaseDto;
 use Illuminate\Contracts\View\View;
-use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Support\Collection;
 use Livewire\Attributes\Url;
 use Livewire\Component;
 
@@ -14,6 +14,9 @@ class Update extends Component
 {
     public UpdateForm $form;
 
+    /**
+     * @var Collection<int, \app\Domains\Shift\Shift>
+     */
     public Collection $shifts;
 
     #[Url]
@@ -25,19 +28,16 @@ class Update extends Component
     #[Url]
     public bool $is_published_edit;
 
-
     private ShowUseCase $showUseCase;
 
     public function boot(
         ShowUseCase $showUseCase
-    ): void 
-    {
+    ): void {
         $this->showUseCase = $showUseCase;
     }
 
     public function mount(
-    ): void
-    {
+    ): void {
         $dto = ShowUseCaseDto::create(
             $this->start_date,
             $this->end_date,

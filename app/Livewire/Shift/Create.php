@@ -20,7 +20,7 @@ class Create extends Component
         $this->createUsecase = $createUsecase;
     }
 
-    public function execute(): void 
+    public function execute(): void
     {
         $this->validate();
         $dto = CreateUseCaseDto::create(
@@ -29,9 +29,10 @@ class Create extends Component
 
         try {
             ($this->createUsecase)($dto);
-        } catch(\Error $e) {
+        } catch (\Error $e) {
             session()->flash('error', $e->getMessage());
             $this->redirect(route('shift'));
+
             return;
         }
 
@@ -42,9 +43,9 @@ class Create extends Component
                 'start_date' => $this->form->start_date,
                 'end_date' => $this->form->end_date,
             ], false));
-        return;
+
     }
-    
+
     public function render(): View
     {
         return view('livewire.shift.create');
