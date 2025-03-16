@@ -17,7 +17,7 @@ class Shift extends Model
     protected $table = 'shifts';
 
     /**
-     * @var array
+     * @var string[]
      */
     protected $guarded = ['id'];
 }
