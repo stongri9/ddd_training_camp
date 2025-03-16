@@ -7,17 +7,25 @@ use DateTimeImmutable;
 class DayOffRequestDate
 {
     /**
-     * @param  DateTimeImmutable  $date
+     * @param  \DateTimeImmutable  $date
      */
     private function __construct(
-        public readonly DateTimeImmutable $date
+        public readonly \DateTimeImmutable $date
     ) {}
 
-    public static function create(DateTimeImmutable $date): self
+    public static function create(string $date): self
     {
-        if ($date < new DateTimeImmutable('today')) {
+        try {
+            $date = new \DateTimeImmutable($date);
+        } catch (\Exception $e) {
+            print_r($e);
             throw new \Exception('不正な休み希望日です。');
         }
-        return new self($date);
+        return new self(new \DateTimeImmutable($date->format('Y-m-d')));
+    }
+
+    public static function reconstruct(\DateTimeInterface $date): self
+    {
+        return new self(new \DateTimeImmutable($date->format('Y-m-d')));
     }
 }

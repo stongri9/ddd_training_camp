@@ -26,4 +26,17 @@ class DayOffRequest
     ): self {
         return new self($id, $user_id, $dayOffRequestDateCollection);
     }
+
+    /**
+     * @param  int  $id
+     * @param  int  $user_id
+     * @param  DayOffRequestDateCollection  $dayOffRequestDateCollection
+     */
+    public static function reconstruct(
+        int $id,
+        int $user_id,
+        DayOffRequestDateCollection $dayOffRequestDateCollection
+    ): self {
+        return new self($id, $user_id, $dayOffRequestDateCollection);
+    }
 }
