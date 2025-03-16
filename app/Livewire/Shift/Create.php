@@ -29,8 +29,8 @@ class Create extends Component
 
         try {
             ($this->createUsecase)($dto);
-        } catch (\Error $e) {
-            session()->flash('error', $e->getMessage());
+        } catch (\Error|\Exception $e) {
+            session()->flash('error', $e);
             $this->redirect(route('shift'));
 
             return;
