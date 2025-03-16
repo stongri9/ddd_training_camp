@@ -2,7 +2,7 @@
 
 namespace app\Livewire\Shift;
 
-use App\Livewire\Forms\Shift\CreateForm;
+use app\Livewire\Forms\Shift\CreateForm;
 use app\UseCases\Shift\CreateUseCase;
 use app\UseCases\Shift\CreateUseCaseDto;
 use Illuminate\Contracts\View\View;
@@ -29,8 +29,8 @@ class Create extends Component
 
         try {
             ($this->createUsecase)($dto);
-        } catch (\Error $e) {
-            session()->flash('error', $e->getMessage());
+        } catch (\Error|\Exception $e) {
+            session()->flash('error', $e);
             $this->redirect(route('shift'));
 
             return;

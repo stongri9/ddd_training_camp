@@ -1,24 +1,18 @@
 <div class="p-6 text-gray-900 dark:text-gray-100">
     <header class="flex justify-between items-center px-4 py-3 border-b border-gray-100 dark:border-gray-700">
         <h2 class="text-lg font-medium text-gray-900 dark:text-gray-100">
-            {{ __('Published') }}{{ __('Shift') }}{{ __('List') }}
+            {{ __('Unpublished') }}{{ __('Shift') }}{{ __('List') }}
         </h2>
-        <div class="flex justify-between gap-2">
-            <livewire:shift.create />
+        <div class="flex justify-between">
             <x-m-primary-button>
                 <a href="{{ route('shift.edit', [
-                        'start_date' => $current_start_date, 
-                        'end_date' => $current_end_date,
-                        'is_published_edit' => true,
+                        'start_date' => $start_date, 
+                        'end_date' => $end_date,
+                        'is_published_edit' => false,
                     ], false) }}">
                     {{ __('Shift') }}{{ __('Edit') }}
                 </a>
             </x-m-primary-button>
-            <x-m-tertiary-button>
-                <a href="{{ route('shift.unpublished', ['latest_date' => $current_end_date], false) }}">
-                    {{ __('Unpublished') }}{{ __('Shift') }}
-                </a>
-            </x-m-tertiary-button>
         </div>
     </header>
     <div class="flex justify-between mt-3">

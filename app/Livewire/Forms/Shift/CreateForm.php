@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire\Forms\Shift;
+namespace app\Livewire\Forms\Shift;
 
 use Livewire\Attributes\Validate;
 use Livewire\Form;
@@ -10,12 +10,12 @@ class CreateForm extends Form
     /**
      * @var string
      */
-    #[Validate('required')]
+    #[Validate('required|date')]
     public $start_date = '';
 
     /**
      * @var string
      */
-    #[Validate('required')]
+    #[Validate('required|date')]
     public $end_date = '';
 }

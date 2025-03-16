@@ -25,7 +25,7 @@ class CreateShiftContinueSpecification
         $minDate = $shiftCollection->min('date');
         $before6dayshifts = $this->shiftRepository->getShiftsByPeriod($minDate->modify('-7 day'), $minDate->modify('-1 day'));
         $after6dayshifts = $this->shiftRepository->getShiftsByPeriod($maxDate->modify('+1 day'), $maxDate->modify('+7 day'));
-        $mergedShifts = $shiftCollection->add($before6dayshifts)->add($after6dayshifts)->sortByAsc('date');
+        $mergedShifts = $shiftCollection->merge([...$before6dayshifts, ...$after6dayshifts])->sortBy('date');
         $userShiftMappings = [];
         foreach ($mergedShifts as $shift) {
             $date = $shift->date;
@@ -56,7 +56,12 @@ class CreateShiftContinueSpecification
             }
         }
 
-        $shiftCollection->add($this->shiftRepository->getShiftByDate($maxDate->modify('-1 day')));
+        $shiftBeforeMaxdate = $this->shiftRepository->getShiftByDate($minDate->modify('-1 day'));
+
+        if (isset($shiftBeforeMaxdate)) {
+            $shiftCollection->add($this->shiftRepository->getShiftByDate($maxDate->modify('-1 day')));
+        }
+
         foreach ($shiftCollection as $shift) {
             if ($shift->date === $maxDate) {
                 $nextDayShift = $this->shiftRepository->getShiftByDate($maxDate->modify('+1 day'));
