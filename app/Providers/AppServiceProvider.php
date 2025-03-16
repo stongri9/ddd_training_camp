@@ -11,6 +11,8 @@ use app\Repositories\Inquiry\InquiryRepository;
 use app\Repositories\Shift\ShiftRepository;
 use app\Repositories\User\UserRepository;
 use Illuminate\Support\ServiceProvider;
+use app\Domains\ShiftPublishEvent\IShiftPublishEventRepository;
+use app\Repositories\ShiftPublishEvent\ShiftPublishEventRepository;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -23,6 +25,7 @@ class AppServiceProvider extends ServiceProvider
         $this->app->singleton(IShiftRepository::class, ShiftRepository::class);
         $this->app->singleton(IUserRepository::class, UserRepository::class);
         $this->app->singleton(IDayOffRequestRepository::class, DayOffRequestRepository::class);
+        $this->app->singleton(IShiftPublishEventRepository::class, ShiftPublishEventRepository::class);
     }
 
     /**
