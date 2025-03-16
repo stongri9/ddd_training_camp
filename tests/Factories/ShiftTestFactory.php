@@ -17,7 +17,7 @@ class ShiftTestFactory
         array $lateShiftUserIds = [],
         array $nightShiftUserIds = []
     ): Shift {
-        if (!$date instanceof DateTimeImmutable) {
+        if (! $date instanceof DateTimeImmutable) {
             $date = new DateTimeImmutable($date);
         }
 
@@ -32,7 +32,7 @@ class ShiftTestFactory
     {
         // 前日の日付を指定
         $previousDate = new DateTimeImmutable('2023-01-09'); // テスト日の前日
-        
+
         return self::create(
             1,
             $previousDate,
@@ -50,7 +50,7 @@ class ShiftTestFactory
     {
         // 翌日の日付を指定
         $nextDate = new DateTimeImmutable('2023-01-11'); // テスト日の翌日
-        
+
         return self::create(
             2,
             $nextDate,
