@@ -12,9 +12,6 @@ class User
         public private(set) Role $role,
     ) {}
 
-    /**
-     * @param  string  $role
-     */
     public static function create(string $role): self
     {
         $role = Role::tryFrom($role);
@@ -39,9 +36,6 @@ class User
         ];
     }
 
-    /**
-     * @param  Role  $role
-     */
     public static function reconstruct(
         int $id,
         Role $role,

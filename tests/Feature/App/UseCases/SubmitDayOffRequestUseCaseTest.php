@@ -3,6 +3,7 @@
 namespace Tests\Feature\App\UseCases;
 
 use app\Models\User as UserModel;
+use app\Models\Shift as ShiftModel;
 use app\UseCases\DayOffRequest\SubmitDayOffRequestUseCase;
 use app\UseCases\DayOffRequest\SubmitDayOffRequestUseCaseDto;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -23,6 +24,9 @@ class SubmitDayOffRequestUseCaseTest extends TestCase
     {
         // Arrange
         $user = UserModel::factory()->create();
+        ShiftModel::factory()->create([
+            'date' => '2025-03-14',
+        ]);
         $dto = SubmitDayOffRequestUseCaseDto::create(
             $user->id,
             ['2025-03-15', '2025-03-16'],
@@ -46,4 +50,27 @@ class SubmitDayOffRequestUseCaseTest extends TestCase
             'date' => '2025-03-16',
         ]);
     }
+
+    #[Test]
+    public function 休み希望日が最新のシフト確定日より前の場合は例外を投げる(): void
+    {
+        // Arrange
+        $user = UserModel::factory()->create();
+        ShiftModel::factory()->create([
+            'date' => '2025-03-14',
+        ]);
+        $dto = SubmitDayOffRequestUseCaseDto::create(
+            $user->id,
+            ['2025-03-13', '2025-03-14'],
+        );
+
+        // Assert
+        $this->expectException(\InvalidArgumentException::class);
+
+        // Act
+        $useCase = $this->app->make(SubmitDayOffRequestUseCase::class);
+        $useCase($dto);
+    }
+
+    
 }

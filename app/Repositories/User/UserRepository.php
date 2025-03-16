@@ -3,6 +3,7 @@
 namespace app\Repositories\User;
 
 use app\Domains\User\IUserRepository;
+use app\Domains\User\User;
 use app\Models\User as UserModel;
 use Illuminate\Support\Collection;
 
@@ -28,5 +29,17 @@ class UserRepository implements IUserRepository
     public function findAll(): Collection
     {
         return UserModel::all();
+    }
+
+    public function update(User $user): void
+    {
+        $model = UserModel::find($user->id);
+        if ($model && is_a($model, UserModel::class)) {
+            $model->fill($user->convertParams())->save();
+
+            return;
+        }
+
+        throw new \Exception('ユーザーのデータが存在しません。');
     }
 }

@@ -3,10 +3,12 @@
 namespace app\Domains\Shift;
 
 use Illuminate\Support\Collection;
+use app\Domains\Shift\Shift;
+use app\Models\Shift as ShiftModel;
 
 interface IShiftRepository
 {
-    public function getLatestShift(): ?Shift;
+    public function getLatestShift(): ?ShiftModel;
 
     public function create(Shift $shift): void;
 

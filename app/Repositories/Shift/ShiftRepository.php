@@ -12,7 +12,7 @@ class ShiftRepository implements IShiftRepository
     /**
      * 最新のシフトを1件取得する
      */
-    public function getLatestShift(): ?Shift
+    public function getLatestShift(): ?ShiftModel
     {
         return ShiftModel::orderBy('date', 'desc')
             ->first();

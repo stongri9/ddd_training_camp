@@ -12,18 +12,20 @@ class SubmitDayOffRequestSpecification
     ) {}
 
     /**
-     * @param  string[]  $day_off_requests
+     * @param  string[]  $day_off_request_days
      */
-    public function isSatisfied(array $day_off_requests): bool
+    public function isSatisfied(array $day_off_request_days): bool
     {
-        // 最新の確定したシフトよりも休みを希望する日付が後の場合はエラー
         $latest_shift = $this->shiftRepository->getLatestShift();
+
+        // まだ一つもシフトが作成されていなかった場合はOK
         if (is_null($latest_shift)) {
             return true;
         }
 
-        foreach ($day_off_requests as $day_off_request) {
-            if ($latest_shift->date->format('y-m-d') > (new DateTimeImmutable($day_off_request))->format('y-m-d')) {
+        foreach ($day_off_request_days as $day_off_request_day) {
+            $latestShiftDate = new DateTimeImmutable($latest_shift->date);
+            if ($latestShiftDate->format('y-m-d') > (new DateTimeImmutable($day_off_request_day))->format('y-m-d')) {
                 return false;
             }
         }
