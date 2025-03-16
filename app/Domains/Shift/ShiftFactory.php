@@ -47,7 +47,7 @@ class ShiftFactory
         /** @var Collection<int, User> */
         $workDayShiftNurseOrAssociateNurseUser = $canWorkNurseOrAssociateNurseUsers->random(1);
 
-        return $workDayShiftNurseOrAssociateNurseUser->add(
+        return $workDayShiftNurseOrAssociateNurseUser->merge(
             $canWorkUsers
                 ->reject(fn (User $user) => $user->id === $workDayShiftNurseOrAssociateNurseUser->first()?->id)
                 ->random($numberOfDayShiftUser - 1)
@@ -101,7 +101,7 @@ class ShiftFactory
             ->filter(fn (User $user) => $user->role === Role::Nurse)
             ->random(1);
 
-        return $workNightShiftNurseUser->add(
+        return $workNightShiftNurseUser->merge(
             $canWorkNightShiftUsers
                 ->reject(fn (User $user) => $user->id === $workNightShiftNurseUser->first()?->id)
                 ->random($numberOfNightShiftUser - 1)

@@ -1,9 +1,9 @@
 <div class="px-2">
-    <x-m-primary-button 
-        x-on:click.prevent="$dispatch('open-modal', 'temporary-save')"
-    >{{ __('Shift') }}{{ __('Edit') }}</x-m-primary-button>
+    <x-s-primary-button
+        x-on:click.prevent="$dispatch('open-modal', 'apply-shift{{ $form->id }}')"
+    >{{ __('Apply') }}</x-s-primary-button>
 
-    <x-modal name="update-shift" :show="$errors->isNotEmpty()" focusable>
+    <x-modal name="apply-shift{{ $form->id }}" :show="$errors->isNotEmpty()" focusable>
         <div class="p-6">
             <h2 class="text-2xl font-medium text-gray-900 dark:text-gray-100">12/1</h2>
             <table class="mt-3 border-collapse table-fixed">

@@ -31,10 +31,6 @@ class Shift
      */
     public static function create(string $date, array $dayShiftUserIds, array $lateShiftUserIds, array $nightShiftUserIds)
     {
-        if (! collect([...$dayShiftUserIds, ...$lateShiftUserIds, ...$nightShiftUserIds])->every(fn ($v) => is_int($v))) {
-            throw new \InvalidArgumentException('無効なユーザーIDです。');
-        }
-
         if (count($nightShiftUserIds) < 2) {
             throw new \InvalidArgumentException('夜勤の人は2人以上必要です。');
         }
@@ -95,9 +91,9 @@ class Shift
     }
 
     /**
-     * @param  list<int>  $dayShiftUserIds
-     * @param  list<int>  $lateShiftUserIds
-     * @param  list<int>  $nightShiftUserIds
+     * @param  int[]  $dayShiftUserIds
+     * @param  int[]  $lateShiftUserIds
+     * @param  int[]  $nightShiftUserIds
      */
     public static function reconstruct(
         int $id,

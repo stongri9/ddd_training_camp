@@ -9,7 +9,7 @@ use app\UseCases\Inquiry\UpdateUseCaseDto;
 use Illuminate\Contracts\View\View;
 use Livewire\Component;
 
-class UpdateInquiry extends Component
+class Update extends Component
 {
     public UpdateForm $form;
 
@@ -52,6 +52,6 @@ class UpdateInquiry extends Component
 
     public function render(): View
     {
-        return view('livewire.inquiry.update-inquiry');
+        return view('livewire.inquiry.update');
     }
 }

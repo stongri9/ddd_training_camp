@@ -5,7 +5,6 @@ parameters:
   level: 9
   paths:
     - app
-    - tests
   polluteScopeWithLoopInitialAssignments: true
   polluteScopeWithBlock: true
   checkExplicitMixedMissingReturn: true

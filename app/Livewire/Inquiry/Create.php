@@ -8,7 +8,7 @@ use app\UseCases\Inquiry\CreateUseCaseDto;
 use Illuminate\Contracts\View\View;
 use Livewire\Component;
 
-class CreateInquiry extends Component
+class Create extends Component
 {
     public CreateForm $form;
 
@@ -35,6 +35,6 @@ class CreateInquiry extends Component
 
     public function render(): View
     {
-        return view('livewire.inquiry.create-inquiry');
+        return view('livewire.inquiry.create');
     }
 }

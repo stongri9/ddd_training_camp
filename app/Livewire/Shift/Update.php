@@ -2,6 +2,7 @@
 
 namespace app\Livewire\Shift;
 
+use App\Livewire\Forms\Shift\UpdateForm;
 use Illuminate\Contracts\View\View;
 use Livewire\Component;
 
