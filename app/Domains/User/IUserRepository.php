@@ -9,8 +9,6 @@ interface IUserRepository
 {
     public function find(int $id): ?UserModel;
 
-    public function update(User $user): void;
-
     /**
      * @param  int[]  $ids
      * @return Collection<int, UserModel>

@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Unit\Domains\User;
+namespace Tests\Unit\Domains\DayOffRequest;
 
 use PHPUnit\Framework\TestCase;
 

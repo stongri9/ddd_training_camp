@@ -11,9 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('day_off_requests', function (Blueprint $table) {
+        Schema::create('day_off_request_days', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_id')->comment('ユーザーID');
+            $table->unsignedBigInteger('day_off_request_id')->comment('休み希望ID');
+            $table->date('date')->comment('休み希望日');
             $table->timestamps();
         });
     }
@@ -23,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('day_off_requests');
+        Schema::dropIfExists('day_off_request_days');
     }
 };

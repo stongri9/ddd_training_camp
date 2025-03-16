@@ -31,19 +31,4 @@ class UserRepository implements IUserRepository
     {
         return UserModel::all();
     }
-
-    public function update(User $user): void
-    {
-        $userModel = UserModel::find($user->id);
-
-        // 休み希望の洗い替えのため既存データを削除
-        DayOffRequest::where('user_id', $userModel->id)->delete();
-        // 新しい休み希望を登録
-        foreach ($user->day_off_requests as $dayOffRequest) {
-            DayOffRequest::create([
-                'user_id' => $userModel->id,
-                'date' => $dayOffRequest->date,
-            ]);
-        }
-    }
 }

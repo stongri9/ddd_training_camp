@@ -1,6 +1,6 @@
 <?php
 
-namespace app\Domains\User;
+namespace app\Domains\DayOffRequest;
 
 use app\Domains\Shift\IShiftRepository;
 use DateTimeImmutable;

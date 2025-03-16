@@ -2,10 +2,9 @@
 
 namespace Tests\Feature\App\UseCases;
 
-use app\Models\DayOffRequest as ModelsDayOffRequest;
 use app\Models\User as UserModel;
-use app\UseCases\User\SubmitDayOffRequestUseCase;
-use app\UseCases\User\SubmitDayOffRequestUseCaseDto;
+use app\UseCases\DayOffRequest\SubmitDayOffRequestUseCaseDto;
+use app\UseCases\DayOffRequest\SubmitDayOffRequestUseCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
@@ -20,57 +19,31 @@ class SubmitDayOffRequestUseCaseTest extends TestCase
     }
 
     #[Test]
-    public function 休み希望日を提出したら、ユーザーに紐づく休み希望日が更新される(): void
+    public function 休み希望日を提出したら、休み希望日が登録される(): void
     {
         // Arrange
-        $user = UserModel::factory()
-            ->has(
-                ModelsDayOffRequest::factory()
-                    ->count(3)
-                    ->sequence(
-                        ['date' => '2025-01-01'],
-                        ['date' => '2025-01-02'],
-                        ['date' => '2025-01-03'],
-                    )
-            )
-            ->createOne();
-
-        $action = $this->app->make(SubmitDayOffRequestUseCase::class);
-
-        $dto = SubmitDayOffRequestUseCaseDto::create($user->id, [
-            '2025-02-01',
-            '2025-02-02',
-            '2025-02-03',
-        ]);
+        $user = UserModel::factory()->create();
+        $dto = SubmitDayOffRequestUseCaseDto::create(
+            $user->id,
+            ['2025-03-15', '2025-03-16'],
+        );
 
         // Act
-        $action($dto);
+        $useCase = $this->app->make(SubmitDayOffRequestUseCase::class);
+        $result = $useCase($dto);
 
         // Assert
         $this->assertDatabaseHas('day_off_requests', [
+            'id' => $result,
             'user_id' => $user->id,
-            'date' => '2025-02-01',
         ]);
-        $this->assertDatabaseHas('day_off_requests', [
-            'user_id' => $user->id,
-            'date' => '2025-02-02',
+        $this->assertDatabaseHas('day_off_request_days', [
+            'day_off_request_id' => $result,
+            'date' => '2025-03-15',
         ]);
-        $this->assertDatabaseHas('day_off_requests', [
-            'user_id' => $user->id,
-            'date' => '2025-02-03',
-        ]);
-
-        $this->assertDatabaseMissing('day_off_requests', [
-            'user_id' => $user->id,
-            'date' => '2025-01-01',
-        ]);
-        $this->assertDatabaseMissing('day_off_requests', [
-            'user_id' => $user->id,
-            'date' => '2025-01-02',
-        ]);
-        $this->assertDatabaseMissing('day_off_requests', [
-            'user_id' => $user->id,
-            'date' => '2025-01-03',
+        $this->assertDatabaseHas('day_off_request_days', [
+            'day_off_request_id' => $result,
+            'date' => '2025-03-16',
         ]);
     }
 }

@@ -5,30 +5,16 @@ namespace app\Models;
 use Database\Factories\DayOffRequestFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-
+use Illuminate\Database\Eloquent\Relations\HasMany;
 /**
  * @property int $id
  * @property int $user_id
- * @property string $date
+ * @property HasMany<DayOffRequestDay, DayOffRequest> $day_off_request_days
  */
 class DayOffRequest extends Model
 {
     // @phpstan-ignore-next-line
     use HasFactory;
-
-    /**
-     * The name of the "created at" column.
-     *
-     * @var string|null
-     */
-    const CREATED_AT = 'created_at';
-
-    /**
-     * The name of the "updated at" column.
-     *
-     * @var string|null
-     */
-    const UPDATED_AT = null;
 
     /**
      * モデルに関連付けるテーブル
@@ -43,6 +29,17 @@ class DayOffRequest extends Model
      * @var array<int, string>
      */
     protected $fillable = ['user_id', 'date'];
+
+    /**
+     * リレーション
+     *
+     * @return HasMany<DayOffRequestDay, DayOffRequest>
+     */
+    public function day_off_request_days(): HasMany
+    {
+         /** @var HasMany<DayOffRequestDay, DayOffRequest> */
+        return $this->hasMany(DayOffRequestDay::class, 'day_off_request_id', 'id');
+    }
 
     protected static function newFactory(): DayOffRequestFactory
     {
