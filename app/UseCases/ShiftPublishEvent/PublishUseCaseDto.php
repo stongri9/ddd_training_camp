@@ -17,10 +17,6 @@ class PublishUseCaseDto
     public static function create(
         array $shifts,
     ): self {
-        if (empty($shifts)) {
-            throw new \InvalidArgumentException('公開するシフトがありません');
-        }
-
         return new self($shifts);
     }
 }

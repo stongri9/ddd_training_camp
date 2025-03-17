@@ -4,7 +4,6 @@ namespace Tests\Feature\App\UseCases\ShiftPublishEvent;
 
 use app\UseCases\ShiftPublishEvent\CreateUseCase;
 use app\UseCases\ShiftPublishEvent\CreateUseCaseDto;
-use DateTimeImmutable;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
@@ -22,8 +21,8 @@ class CreateUseCaseTest extends TestCase
     public function ユースケースを実行すると、シフト公開イベントが_d_bに保存される(): void
     {
         // Arrange
-        $start_date = new DateTimeImmutable('2025-01-01');
-        $end_date = new DateTimeImmutable('2025-01-31');
+        $start_date = '2025-01-01';
+        $end_date = '2025-01-31';
         $dto = CreateUseCaseDto::create($start_date, $end_date);
 
         // Act

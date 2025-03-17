@@ -49,12 +49,22 @@ class PublishUseCaseTest extends TestCase
         $spyTemporarySaveUseCase->shouldHaveReceived('__invoke');
         $spyCreateUseCase->shouldHaveReceived('__invoke');
         $this->assertTrue(true, 'シフト公開シナリオユースケースが正常に実行されました');
-        Mockery::close();
     }
 
-    protected function tearDown(): void
+    #[Test]
+    public function 公開するシフトがない場合は例外を投げる(): void
     {
-        Mockery::close();
-        parent::tearDown();
+        // Arrange
+        $dto = PublishUseCaseDto::create([]);
+        $mockTemporarySaveUseCase = Mockery::mock(TemporarySaveUseCase::class);
+        $mockCreateUseCase = Mockery::mock(CreateUseCase::class);
+
+        // Assert
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage('公開するシフトがありません。');
+
+        // Act
+        $publishUseCase = new PublishUseCase($mockTemporarySaveUseCase, $mockCreateUseCase);
+        $publishUseCase($dto);
     }
 }

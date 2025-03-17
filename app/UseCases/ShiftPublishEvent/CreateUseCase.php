@@ -4,6 +4,7 @@ namespace app\UseCases\ShiftPublishEvent;
 
 use app\Domains\ShiftPublishEvent\IShiftPublishEventRepository;
 use app\Domains\ShiftPublishEvent\ShiftPublishEvent;
+use DateTimeImmutable;
 
 class CreateUseCase
 {
@@ -13,14 +14,10 @@ class CreateUseCase
 
     public function __invoke(CreateUseCaseDto $dto): void
     {
-        try {
-            $shiftPublishEvent = ShiftPublishEvent::create(
-                $dto->start_date,
-                $dto->end_date,
-            );
-        } catch (\Exception $e) {
-            throw $e;
-        }
+        $shiftPublishEvent = ShiftPublishEvent::create(
+            new DateTimeImmutable($dto->start_date),
+            new DateTimeImmutable($dto->end_date),
+        );
 
         $this->shiftPublishEventRepository->create($shiftPublishEvent);
     }

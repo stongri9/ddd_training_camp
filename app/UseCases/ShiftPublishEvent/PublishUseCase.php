@@ -15,6 +15,10 @@ class PublishUseCase
 
     public function __invoke(PublishUseCaseDto $dto): void
     {
+        if (empty($dto->shifts)) {
+            throw new \InvalidArgumentException('公開するシフトがありません。');
+        }
+
         // シフト保存ユースケースの呼び出し
         $temporarySaveUseCaseDtos = array_map(function (array $shift) {
             return TemporarySaveUseCaseDto::create(
@@ -30,8 +34,10 @@ class PublishUseCase
         // シフト公開イベント保存ユースケースの呼び出し
         $dates = array_map(fn ($temporarySaveUseCaseDto) => $temporarySaveUseCaseDto->date, $temporarySaveUseCaseDtos);
 
-        /** @phpstan-ignore-next-line */
-        $createUseCaseDto = CreateUseCaseDto::create(min($dates), max($dates));
+        $createUseCaseDto = CreateUseCaseDto::create(
+            min($dates)->format('Y-m-d'),
+            max($dates)->format('Y-m-d')
+        );
         ($this->createUseCase)($createUseCaseDto);
     }
 }
