@@ -17,11 +17,16 @@ class UserRepository implements IUserRepository
 
     /**
      * @param  int[]  $ids
-     * @return Collection<int, UserModel>
+     * @return Collection<int, User>
      */
     public function getUsersByIds(array $ids): Collection
     {
-        return UserModel::whereIn('id', $ids)->get();
+        return UserModel::whereIn('id', $ids)->get()->map(function (UserModel $userModel) {
+            return User::reconstruct(
+                $userModel->id,
+                Role::from($userModel->role)
+            );
+        });
     }
 
     /**

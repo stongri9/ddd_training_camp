@@ -38,8 +38,8 @@ class TemporarySaveUseCase
                 $shift = Shift::create(
                     $temporarySaveUseCaseDto->date->format('Y-m-d'),
                     $temporarySaveUseCaseDto->dayShiftUserIds,
-                    $temporarySaveUseCaseDto->dayShiftUserIds,
-                    $temporarySaveUseCaseDto->dayShiftUserIds,
+                    $temporarySaveUseCaseDto->lateShiftUserIds,
+                    $temporarySaveUseCaseDto->nightShiftUserIds,
                 );
                 $shiftCollection->add($shift);
             }
