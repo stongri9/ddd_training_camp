@@ -27,6 +27,11 @@ class DatabaseSeeder extends Seeder
             )
             ->create();
 
+        User::factory()->create([
+            'name' => 'テストユーザー',
+            'email' => 'test@example.com',
+        ]);
+
         DB::table('shifts')->insert([
             [
                 'date' => '2025-01-13',

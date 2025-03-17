@@ -6,26 +6,21 @@ use Illuminate\Support\Collection;
 
 class CreateShiftContinueSpecification
 {
-    public function __construct(
-        private readonly IShiftRepository $shiftRepository,
-    ) {}
-
     /**
      * @param  Collection<int, Shift>  $shiftCollection
+     * @param  Collection<int, Shift>  $before6dayShifts
+     * @param  Collection<int, Shift>  $after6dayShifts
      * @return string[]
      */
     public function getViolations(
-        Collection $shiftCollection
+        Collection $shiftCollection,
+        Collection $before6dayShifts,
+        Collection $after6dayShifts,
     ): array {
         $violations = [];
+
         // ７連勤以上できない
-        /** @var \DateTimeImmutable */
-        $maxDate = $shiftCollection->max('date');
-        /** @var \DateTimeImmutable */
-        $minDate = $shiftCollection->min('date');
-        $before6dayshifts = $this->shiftRepository->getShiftsByPeriod($minDate->modify('-7 day'), $minDate->modify('-1 day'));
-        $after6dayshifts = $this->shiftRepository->getShiftsByPeriod($maxDate->modify('+1 day'), $maxDate->modify('+7 day'));
-        $mergedShifts = $shiftCollection->merge([...$before6dayshifts, ...$after6dayshifts])->sortBy('date');
+        $mergedShifts = $shiftCollection->merge([...$before6dayShifts, ...$after6dayShifts])->sortBy('date');
         $userShiftMappings = [];
         foreach ($mergedShifts as $shift) {
             $date = $shift->date;
@@ -56,18 +51,20 @@ class CreateShiftContinueSpecification
             }
         }
 
-        $shiftBeforeMaxdate = $this->shiftRepository->getShiftByDate($minDate->modify('-1 day'));
+        // 直前の夜勤シフトと重複しない
+        $shiftBeforeMinDate = $before6dayShifts->sortBy('date')->first();
+        /** @var \DateTimeImmutable */
+        $maxDate = $shiftCollection->max('date');
 
-        if (isset($shiftBeforeMaxdate)) {
-            $shiftCollection->add($this->shiftRepository->getShiftByDate($maxDate->modify('-1 day')));
+        if (isset($shiftBeforeMinDate)) {
+            $shiftCollection->merge($shiftBeforeMinDate)->sortBy('date');
         }
 
         foreach ($shiftCollection as $shift) {
-            if ($shift->date === $maxDate) {
-                $nextDayShift = $this->shiftRepository->getShiftByDate($maxDate->modify('+1 day'));
-            } else {
-                $nextDayShift = $shiftCollection->where('date', $shift->date->modify('+1 day'))->first();
-            }
+            $nextDayShift = $shift->date === $maxDate
+                ? $after6dayShifts->sortByDesc('date')->first()
+                : $shiftCollection->where('date', $shift->date->modify('+1 day'))->first();
+
             if (isset($nextDayShift) && ! empty(array_intersect($nextDayShift->userIds, $shift->nightShiftUserIds))) {
                 $violations[] = '夜勤の人は翌日は休みである必要があります。';
             }

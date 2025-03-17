@@ -21,12 +21,13 @@ class UserRepository implements IUserRepository
      */
     public function getUsersByIds(array $ids): Collection
     {
-        return UserModel::whereIn('id', $ids)->get()->map(function (UserModel $userModel) {
-            return User::reconstruct(
+        return UserModel::whereIn('id', $ids)
+            ->get()
+            ->map(fn (UserModel $userModel) => User::reconstruct(
                 $userModel->id,
                 Role::from($userModel->role)
+            )
             );
-        });
     }
 
     /**

@@ -8,13 +8,14 @@ return new class extends Migration
 {
     /**
      * Run the migrations.
-     * 仮です！！！！
      */
     public function up(): void
     {
         Schema::create('shifts', function (Blueprint $table) {
-            $table->id()->primary()->autoIncrement()->comment('ID');
+            $table->id()->comment('ID');
             $table->date('date')->comment('勤務日');
+            $table->timestamps();
+            $table->softDeletes();
         });
     }
 

@@ -11,7 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('shifts', function (Blueprint $table) {
+        Schema::create('shift_assignments', function (Blueprint $table) {
+            $table->id();
+            $table->unsignedBigInteger('shift_id')->comment('シフトID');
+            $table->unsignedBigInteger('user_id')->comment('ユーザーID');
+            $table->string('shift_type')->comment('シフト種別');
             $table->timestamps();
             $table->softDeletes();
         });
@@ -22,10 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('shifts', function (Blueprint $table) {
-            $table->dropColumn('created_at');
-            $table->dropColumn('updated_at');
-            $table->dropColumn('deleted_at');
-        });
+        Schema::dropIfExists('shift_assignments');
     }
 };

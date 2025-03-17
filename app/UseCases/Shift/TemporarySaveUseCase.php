@@ -22,10 +22,15 @@ class TemporarySaveUseCase
      */
     public function __invoke(array $temporarySaveUseCaseDtos): void
     {
-        DB::begintransaction();
+        DB::beginTransaction();
+        if (empty($temporarySaveUseCaseDtos)) {
+            throw new \InvalidArgumentException('一つ以上のシフトを登録してください');
+        }
+
         try {
             $shiftCollection = new Collection;
             $errors = [];
+
             foreach ($temporarySaveUseCaseDtos as $temporarySaveUseCaseDto) {
                 $errors = [
                     ...$errors,
@@ -43,13 +48,23 @@ class TemporarySaveUseCase
                 );
                 $shiftCollection->add($shift);
             }
+
+            $dateCollection = collect($temporarySaveUseCaseDtos)->map(fn ($dtom) => $temporarySaveUseCaseDto->date)->sortBy('date');
+            /** @var \DateTimeImmutable */
+            $firstDate = $dateCollection->first();
+            /** @var \DateTimeImmutable */
+            $endDate = $dateCollection->last();
+            $before6dayShifts = $this->shiftRepository->getShiftsByPeriod($firstDate->modify('-7 day'), $firstDate->modify('-1 day'));
+            $after6dayShifts = $this->shiftRepository->getShiftsByPeriod($endDate->modify('+1 day'), $endDate->modify('+7 day'));
             $errors = [
                 ...$errors,
-                ...$this->createShiftContinueSpecification->getViolations($shiftCollection),
+                ...$this->createShiftContinueSpecification->getViolations($shiftCollection, $before6dayShifts, $after6dayShifts),
             ];
+
             if ($errors) {
                 throw new \InvalidArgumentException(implode(PHP_EOL, $errors));
             }
+
             $this->shiftRepository->insert($shiftCollection);
             DB::commit();
         } catch (\Exception $e) {

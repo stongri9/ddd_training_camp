@@ -16,6 +16,7 @@ return new class extends Migration
             $table->unsignedBigInteger('day_off_request_id')->comment('休み希望ID');
             $table->date('date')->comment('休み希望日');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

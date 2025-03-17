@@ -5,7 +5,9 @@ namespace app\Repositories\Shift;
 use app\Domains\Shift\IShiftRepository;
 use app\Domains\Shift\Shift;
 use app\Models\Shift as ShiftModel;
+use App\Models\ShiftAssignment;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\DB;
 
 class ShiftRepository implements IShiftRepository
 {
@@ -19,26 +21,52 @@ class ShiftRepository implements IShiftRepository
     }
 
     /**
-     * インサートする
-     */
-    public function create(Shift $shift): void
-    {
-        ShiftModel::create($shift->convertParams());
-    }
-
-    /**
      * まとめてインサートする
      *
-     * @param  Collection<int, Shift>  $shiftCollecton
+     * @param  Collection<int, Shift>  $shiftCollection
      */
-    public function insert(Collection $shiftCollecton): void
+    public function insert(Collection $shiftCollection): void
     {
-        foreach ($shiftCollecton as $shift) {
-            /** @var Shift $shift */
-            ShiftModel::create([
-                'date' => $shift->date->format('Y-m-d'),
-            ]);
-        }
+        // トランザクションを開始
+        DB::transaction(function () use ($shiftCollection) {
+            foreach ($shiftCollection as $shift) {
+                // Shiftモデルの作成と保存
+                $shiftModel = ShiftModel::query()
+                    ->create([
+                        'date' => $shift->convertParams()['date'],
+                    ]);
+
+                // 日勤のユーザーIDを保存
+                foreach ($shift->dayShiftUserIds as $userId) {
+                    ShiftAssignment::query()
+                        ->create([
+                            'shift_id' => $shiftModel->id,
+                            'user_id' => $userId,
+                            'shift_type' => \app\Domains\Shift\ShiftType::Day->value,
+                        ]);
+                }
+
+                // 遅番のユーザーIDを保存
+                foreach ($shift->lateShiftUserIds as $userId) {
+                    ShiftAssignment::query()
+                        ->create([
+                            'shift_id' => $shiftModel->id,
+                            'user_id' => $userId,
+                            'shift_type' => \app\Domains\Shift\ShiftType::Late->value,
+                        ]);
+                }
+
+                // 夜勤のユーザーIDを保存
+                foreach ($shift->nightShiftUserIds as $userId) {
+                    ShiftAssignment::query()
+                        ->create([
+                            'shift_id' => $shiftModel->id,
+                            'user_id' => $userId,
+                            'shift_type' => \app\Domains\Shift\ShiftType::Night->value,
+                        ]);
+                }
+            }
+        });
     }
 
     /**
