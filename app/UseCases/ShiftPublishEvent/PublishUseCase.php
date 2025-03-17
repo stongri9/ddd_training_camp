@@ -6,6 +6,9 @@ use app\UseCases\Shift\TemporarySaveUseCase;
 use app\UseCases\Shift\TemporarySaveUseCaseDto;
 use DateTimeImmutable;
 
+/**
+ * シフト公開時のシナリオユースケース
+ */
 class PublishUseCase
 {
     public function __construct(
