@@ -11,8 +11,8 @@ class UserTestFactory
      * テスト用のUserエンティティを作成
      */
     public static function create(
-        int $id,
-        Role $role,
+        int $id = 1,
+        Role $role = Role::HeadNurse,
     ): User {
         return User::reconstruct($id, $role);
     }
