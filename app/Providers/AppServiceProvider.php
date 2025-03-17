@@ -5,10 +5,12 @@ namespace app\Providers;
 use app\Domains\DayOffRequest\IDayOffRequestRepository;
 use app\Domains\Inquiry\IInquiryRepository;
 use app\Domains\Shift\IShiftRepository;
+use app\Domains\ShiftPublishEvent\IShiftPublishEventRepository;
 use app\Domains\User\IUserRepository;
 use app\Repositories\DayOffRequest\DayOffRequestRepository;
 use app\Repositories\Inquiry\InquiryRepository;
 use app\Repositories\Shift\ShiftRepository;
+use app\Repositories\ShiftPublishEvent\ShiftPublishEventRepository;
 use app\Repositories\User\UserRepository;
 use Illuminate\Support\ServiceProvider;
 
@@ -23,6 +25,7 @@ class AppServiceProvider extends ServiceProvider
         $this->app->singleton(IShiftRepository::class, ShiftRepository::class);
         $this->app->singleton(IUserRepository::class, UserRepository::class);
         $this->app->singleton(IDayOffRequestRepository::class, DayOffRequestRepository::class);
+        $this->app->singleton(IShiftPublishEventRepository::class, ShiftPublishEventRepository::class);
     }
 
     /**

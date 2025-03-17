@@ -33,7 +33,12 @@ class ShiftRepository implements IShiftRepository
      */
     public function insert(Collection $shiftCollecton): void
     {
-        ShiftModel::insert($shiftCollecton->toArray());
+        foreach ($shiftCollecton as $shift) {
+            /** @var Shift $shift */
+            ShiftModel::create([
+                'date' => $shift->date->format('Y-m-d'),
+            ]);
+        }
     }
 
     /**

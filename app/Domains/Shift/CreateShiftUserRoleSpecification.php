@@ -47,7 +47,7 @@ class CreateShiftUserRoleSpecification
         if (! $nightShiftusers->contains(fn ($user) => $user->role === Role::Nurse)) {
             $violations[] = '夜勤には看護師を1人以上含める必要があります。';
         }
-        if ($lateShiftusers->contains(fn ($user) => in_array($user->role, [Role::HeadNurse, Role::Chief, Role::Part], true))) {
+        if ($nightShiftusers->contains(fn ($user) => in_array($user->role, [Role::HeadNurse, Role::Chief, Role::Part], true))) {
             $violations[] = '夜勤に看護師長、主任、パートを含めることはできません。';
         }
 
