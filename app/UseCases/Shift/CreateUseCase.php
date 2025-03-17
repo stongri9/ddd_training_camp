@@ -66,6 +66,8 @@ class CreateUseCase
             throw new \InvalidArgumentException(implode(PHP_EOL, $errors));
         }
 
+        $this->shiftRepository->insert($shift_collection);
+
         return $shift_collection;
     }
 }

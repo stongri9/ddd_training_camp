@@ -9,10 +9,10 @@ use Livewire\Form;
 class ApplyForm extends Form
 {
     /**
-     * @var string
+     * @var int
      */
     #[Validate('required|int')]
-    public $id = '';
+    public $id;
 
     /**
      * @var string[]

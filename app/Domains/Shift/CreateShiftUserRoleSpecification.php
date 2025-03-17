@@ -25,30 +25,36 @@ class CreateShiftUserRoleSpecification
         $violations = [];
 
         // 日勤ルール
-        $dayShiftusers = $this->userRepository->getUsersByIds($dayShiftUserIds);
-        if ($dayShiftusers->contains(fn ($user) => $user->role === Role::Arbeit)) {
-            $violations[] = '日勤にアルバイトを含めることはできません。';
-        }
-        if (! $dayShiftusers->contains(fn ($user) => in_array($user->role, [Role::Nurse, Role::AssociateNurse], true))) {
-            $violations[] = '日勤には看護師または准看護師を1人以上含める必要があります。';
+        $dayShiftUsers = $this->userRepository->getUsersByIds($dayShiftUserIds);
+        if ($dayShiftUsers->count() > 0) {
+            if ($dayShiftUsers->contains(fn ($user) => $user->role === Role::Arbeit)) {
+                $violations[] = '日勤にアルバイトを含めることはできません。';
+            }
+            if (! $dayShiftUsers->contains(fn ($user) => in_array($user->role, [Role::Nurse, Role::AssociateNurse], true))) {
+                $violations[] = '日勤には看護師または准看護師を1人以上含める必要があります。';
+            }
         }
 
         // 遅番ルール
-        $lateShiftusers = $this->userRepository->getUsersByIds($lateShiftUserIds);
-        if ($lateShiftusers->contains(fn ($user) => $user->role === Role::Arbeit)) {
-            $violations[] = '遅番にアルバイトを含めることはできません。';
-        }
-        if (! $lateShiftusers->contains(fn ($user) => in_array($user->role, [Role::Nurse, Role::AssociateNurse], true))) {
-            $violations[] = '遅番には看護師または准看護師を1人以上含める必要があります。';
+        $lateShiftUsers = $this->userRepository->getUsersByIds($lateShiftUserIds);
+        if ($lateShiftUsers->count() > 0) {
+            if ($lateShiftUsers->contains(fn ($user) => $user->role === Role::Arbeit)) {
+                $violations[] = '遅番にアルバイトを含めることはできません。';
+            }
+            if (! $lateShiftUsers->contains(fn ($user) => in_array($user->role, [Role::Nurse, Role::AssociateNurse], true))) {
+                $violations[] = '遅番には看護師または准看護師を1人以上含める必要があります。';
+            }
         }
 
         // 夜勤ルール
-        $nightShiftusers = $this->userRepository->getUsersByIds($nightShiftUserIds);
-        if (! $nightShiftusers->contains(fn ($user) => $user->role === Role::Nurse)) {
-            $violations[] = '夜勤には看護師を1人以上含める必要があります。';
-        }
-        if ($lateShiftusers->contains(fn ($user) => in_array($user->role, [Role::HeadNurse, Role::Chief, Role::Part], true))) {
-            $violations[] = '夜勤に看護師長、主任、パートを含めることはできません。';
+        $nightShiftUsers = $this->userRepository->getUsersByIds($nightShiftUserIds);
+        if ($nightShiftUsers->count() > 0) {
+            if (! $nightShiftUsers->contains(fn ($user) => $user->role === Role::Nurse)) {
+                $violations[] = '夜勤には看護師を1人以上含める必要があります。';
+            }
+            if ($nightShiftUsers->contains(fn ($user) => in_array($user->role, [Role::HeadNurse, Role::Chief, Role::Part], true))) {
+                $violations[] = '夜勤に看護師長、主任、パートを含めることはできません。';
+            }
         }
 
         return $violations;

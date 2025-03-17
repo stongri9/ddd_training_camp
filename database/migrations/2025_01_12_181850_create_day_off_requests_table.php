@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id')->comment('ユーザーID');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

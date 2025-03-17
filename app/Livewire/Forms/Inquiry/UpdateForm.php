@@ -12,7 +12,7 @@ class UpdateForm extends Form
      * @var string
      */
     #[Validate('required', 'int')]
-    public $id = '';
+    public $id;
 
     /**
      * @var string

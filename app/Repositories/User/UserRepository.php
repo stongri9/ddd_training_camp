@@ -23,7 +23,7 @@ class UserRepository implements IUserRepository
     {
         return UserModel::whereIn('id', $ids)
             ->get()
-            ->map(fn (UserModel $userModel) =>
+            ->map(fn (UserModel $userModel) => 
                 User::reconstruct(
                     $userModel->id,
                     Role::from($userModel->role)
