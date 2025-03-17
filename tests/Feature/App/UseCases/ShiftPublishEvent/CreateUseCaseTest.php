@@ -19,7 +19,7 @@ class CreateUseCaseTest extends TestCase
     }
 
     #[Test]
-    public function ユースケースを実行すると、シフト公開イベントがDBに保存される(): void
+    public function ユースケースを実行すると、シフト公開イベントが_d_bに保存される(): void
     {
         // Arrange
         $start_date = new DateTimeImmutable('2025-01-01');

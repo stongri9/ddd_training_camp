@@ -16,6 +16,7 @@ class ShiftPublishEvent
         if ($start_date > $end_date) {
             throw new \InvalidArgumentException('開始日は終了日よりも前の日付である必要があります');
         }
+
         return new self($start_date, $end_date);
     }
 }
