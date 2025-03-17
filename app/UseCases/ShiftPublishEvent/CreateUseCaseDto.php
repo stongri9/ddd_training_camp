@@ -2,16 +2,18 @@
 
 namespace app\UseCases\ShiftPublishEvent;
 
+use DateTimeImmutable;
+
 class CreateUseCaseDto
 {
     private function __construct(
-        public readonly string $start_date,
-        public readonly string $end_date,
+        public readonly DateTimeImmutable $start_date,
+        public readonly DateTimeImmutable $end_date,
     ) {}
 
     public static function create(
-        string $start_date,
-        string $end_date,
+        DateTimeImmutable $start_date,
+        DateTimeImmutable $end_date,
     ): self {
         return new self($start_date, $end_date);
     }
