@@ -45,7 +45,7 @@ class ApplyForm extends Form
         // $this->day_shift_users = $shift->day_shift_users;
         // $this->late_shift_users = $shift->late_shift_users;
         // $this->night_shift_users = $shift->night_shift_users;
-        $this->id = '1';
+        $this->id = 1;
         $this->day_shift_users = [];
         $this->late_shift_users = [];
         $this->night_shift_users = [];

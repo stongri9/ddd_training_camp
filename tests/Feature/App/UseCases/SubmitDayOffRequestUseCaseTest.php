@@ -2,6 +2,7 @@
 
 namespace Tests\Feature\App\UseCases;
 
+use app\Domains\User\Role;
 use app\Models\Shift as ShiftModel;
 use app\Models\User as UserModel;
 use app\UseCases\DayOffRequest\SubmitDayOffRequestUseCase;
@@ -23,7 +24,9 @@ class SubmitDayOffRequestUseCaseTest extends TestCase
     public function 休み希望日を提出したら、休み希望日が登録される(): void
     {
         // Arrange
-        $user = UserModel::factory()->create();
+        $user = UserModel::factory()->create([
+            'role' => Role::Nurse->value,
+        ]);
         ShiftModel::factory()->create([
             'date' => '2025-03-14',
         ]);
@@ -55,7 +58,9 @@ class SubmitDayOffRequestUseCaseTest extends TestCase
     public function 休み希望日が最新のシフト確定日より前の場合は例外を投げる(): void
     {
         // Arrange
-        $user = UserModel::factory()->create();
+        $user = UserModel::factory()->create([
+            'role' => Role::Nurse->value,
+        ]);
         ShiftModel::factory()->create([
             'date' => '2025-03-14',
         ]);
