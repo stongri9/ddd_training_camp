@@ -42,8 +42,8 @@ class Create extends Component
             route('shift.edit', [
                 'start_date' => $this->form->start_date,
                 'end_date' => $this->form->end_date,
+                'is_published_edit' => false,
             ], false));
-
     }
 
     public function render(): View

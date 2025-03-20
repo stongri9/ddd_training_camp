@@ -2,14 +2,13 @@
 
 namespace app\UseCases\Shift;
 
-use app\Domains\Shift\IShiftRepository;
 use DateTimeImmutable;
 use Illuminate\Support\Collection;
 
 class ShowUseCase
 {
     public function __construct(
-        private readonly IShiftRepository $shiftRepository,
+        private readonly IShowUseCaseQueryService $showUseCaseQueryService,
     ) {}
 
     /**
@@ -24,9 +23,10 @@ class ShowUseCase
             throw new \InvalidArgumentException('正しい形式の日付を指定してください。');
         }
 
-        return $this->shiftRepository->getShiftsByPeriod(
+        return ($this->showUseCaseQueryService)(
             $firstDayOfMonth,
             $endDayOfMonth,
+            $showUseCaseDto->is_published_edit,
         );
     }
 }

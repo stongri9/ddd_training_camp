@@ -35,7 +35,6 @@ class ShowUnpublished extends Component
     public function mount(): void
     {
         $datetime = new DateTime($this->latest_date);
-        $datetime->modify('+1 day');
         $this->start_date = $datetime->format('Y-m-d');
         $this->end_date = $datetime->format('Y-m-t');
         $dto = ShowUseCaseDto::create(

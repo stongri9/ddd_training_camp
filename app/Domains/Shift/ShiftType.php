@@ -8,12 +8,31 @@ enum ShiftType: string
     case Late = 'Late';
     case Night = 'Night';
 
+    /**
+     * @return string
+     * @throws \DomainException 
+     */
     public function label(): string
     {
         return match ($this) {
-            ShiftType::Day => '日勤',
-            ShiftType::Late => '夕勤',
-            default => '夜勤',
+            self::Day => '日勤',
+            self::Late => '夕勤',
+            self::Night => '夜勤',
+            default => throw new \DomainException('存在しないShiftTypeです'),
+        };
+    }
+
+    /**
+     * @return string
+     * @throws \DomainException 
+     */
+    public function color(): string
+    {
+        return match($this) {
+            self::Day => 'red',
+            self::Late => 'green',
+            self::Night => 'blue',
+            default => throw new \DomainException('存在しないShiftTypeです'),
         };
     }
 }
