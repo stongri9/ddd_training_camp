@@ -10,9 +10,9 @@ interface IShiftRepository
     public function getLatestShift(): ?ShiftModel;
 
     /**
-     * @param  Collection<int, Shift>  $shiftCollecton
+     * @param  Collection<int, Shift>  $shiftCollection
      */
-    public function insert(Collection $shiftCollecton): void;
+    public function insert(Collection $shiftCollection): void;
 
     /**
      * @return Collection<int, Shift>
