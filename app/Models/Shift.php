@@ -2,9 +2,12 @@
 
 namespace app\Models;
 
+use App\Models\ShiftAssignment;
 use Database\Factories\ShiftFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
@@ -27,6 +30,19 @@ class Shift extends Model
      * @var string[]
      */
     protected $guarded = ['id'];
+
+    /**
+     * @return HasMany<ShiftAssignment, Shift>
+     */
+    public function shiftAssignments(): HasMany
+    {
+        return $this->hasMany(ShiftAssignment::class, 'shift_id', 'id');
+    }
+
+    public function shiftPublishedEvent(): HasOne
+    {
+        return $this->hasOne(ShiftPublishEvent::class, 'shift_id', 'id');
+    }
 
     protected static function newFactory(): ShiftFactory
     {

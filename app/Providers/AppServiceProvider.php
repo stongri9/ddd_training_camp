@@ -7,11 +7,13 @@ use app\Domains\Inquiry\IInquiryRepository;
 use app\Domains\Shift\IShiftRepository;
 use app\Domains\ShiftPublishEvent\IShiftPublishEventRepository;
 use app\Domains\User\IUserRepository;
+use app\QueryServices\Shift\ShowUseCaseQueryService;
 use app\Repositories\DayOffRequest\DayOffRequestRepository;
 use app\Repositories\Inquiry\InquiryRepository;
 use app\Repositories\Shift\ShiftRepository;
 use app\Repositories\ShiftPublishEvent\ShiftPublishEventRepository;
 use app\Repositories\User\UserRepository;
+use app\UseCases\Shift\IShowUseCaseQueryService;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -21,11 +23,15 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
+        // リポジトリ
         $this->app->singleton(IInquiryRepository::class, InquiryRepository::class);
         $this->app->singleton(IShiftRepository::class, ShiftRepository::class);
         $this->app->singleton(IUserRepository::class, UserRepository::class);
         $this->app->singleton(IDayOffRequestRepository::class, DayOffRequestRepository::class);
         $this->app->singleton(IShiftPublishEventRepository::class, ShiftPublishEventRepository::class);
+
+        // クエリサービス
+        $this->app->singleton(IShowUseCaseQueryService::class, ShowUseCaseQueryService::class);
     }
 
     /**

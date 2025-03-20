@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('shift_publish_events', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('shift_id')->comment('シフトID');
             $table->string('start_date');
             $table->string('end_date');
             $table->timestamps();
