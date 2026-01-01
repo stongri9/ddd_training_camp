@@ -2,10 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::view('/', 'welcome');
-
 Route::middleware(['auth', 'verified'])->group(function () {
-    Route::view('dashboard', 'pages.dashboard')->name('dashboard');
+    Route::view('/', 'pages.dashboard')->name('dashboard');
 
     Route::view('shift', 'pages.shift', ['isPublished' => true])->name('shift');
     Route::view('shift/unpublished', 'pages.shift', ['isPublished' => false])->name('shift.unpublished');

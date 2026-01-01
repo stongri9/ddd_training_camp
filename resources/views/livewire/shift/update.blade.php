@@ -8,7 +8,7 @@
         @if ($shifts->isNotEmpty())
             <table class="border-collapse table-fixed">
                 <tbody>
-                    @foreach ($shifts as $shift)                    
+                    @foreach ($shifts as $shift)             
                         <tr>
                             <td class="p-4 text-slate-500 dark:text-slate-400 text-left">{{ $shift->date }}</td>
                             @foreach ($shift->shiftAssignments as $assignment)

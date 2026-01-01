@@ -39,6 +39,9 @@ class Shift extends Model
         return $this->hasMany(ShiftAssignment::class, 'shift_id', 'id');
     }
 
+    /**
+     * @return HasOne<ShiftPublishEvent, Shift>
+     */
     public function shiftPublishedEvent(): HasOne
     {
         return $this->hasOne(ShiftPublishEvent::class, 'shift_id', 'id');

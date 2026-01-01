@@ -12,7 +12,7 @@ class ShowUseCase
     ) {}
 
     /**
-     * @return Collection<int, \app\Domains\Shift\Shift>
+     * @return Collection<int, \app\Models\Shift>
      */
     public function __invoke(ShowUseCaseDto $showUseCaseDto): Collection
     {

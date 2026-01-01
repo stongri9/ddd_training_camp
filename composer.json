@@ -18,6 +18,7 @@
     },
     "require-dev": {
         "askdkc/breezejp": "^1.8",
+        "beyondcode/laravel-er-diagram-generator": "^4.0",
         "fakerphp/faker": "^1.23",
         "larastan/larastan": "^3.1",
         "laravel/pail": "^1.1",
